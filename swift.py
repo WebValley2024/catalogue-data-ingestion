@@ -6,9 +6,9 @@
 import requests
 import csv
 from bs4 import BeautifulSoup
+from time_related import swift_to_epoch
 
 # TODO: REPLACE TIME UTC WITH EPOCH
-# TODO: FIX HEADERS IN CSV FILE (THERE MIGHT BE ERRORS DURING THE PARSE OF THE HTML CONT)
 
 def download_swift_data():
     # Set the base URL
@@ -39,9 +39,20 @@ def download_swift_data():
 
         # Make the tab-delimited txt file a CSV file
         with open("swift.csv", "w", encoding="utf-8") as file:
-            writer = csv.writer(file, delimiter=",")
-            for line in response.text.split("\r\n"):
-                writer.writerow(line.split("\t"))
+            # replace all n/a with a tab
+            data = response.text.replace("n/a", "\t")
+            # extract the first column and convert it to epoch
+            data_rows = data.strip().split('\n')
+            # Process header separately
+            header = data_rows[0]
+            file.write(header + '\n')
+            # Process data rows
+            for row in data_rows[1:]:
+                fields = row.split('\t')
+                fields[1] = str(swift_to_epoch(fields[0], fields[1]))
+                converted_row = '\t'.join(fields)
+                file.write(converted_row + '\n')
+            file.close()
     else:
         print("Failed to download data")
         return
