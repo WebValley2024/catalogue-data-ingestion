@@ -1851,4 +1851,4 @@ GRB,Time [UT],Trigger Number,BAT RA (J2000),BAT Dec (J2000),BAT 90% Error Radius
 041219B",15:38:48,100367*,167.674,-33.458,7.0,30,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,IPN,,,"BAT: 1 big spike, 3 little spikes|No AT slew|XRT: no observation|UVOT: no observation
 041219A",01:42:18,100307|100319,6.154,62.847,7.0,520,1550,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,,,,"BAT: bright, long, multipeaked|No AT slew|XRT: no observation|UVOT: no observation
 041217",07:28:25,100116*,164.793,-17.942,1.3,5.800,27.70,1.23,6.86,0.52,"0.7, CPL",-0.3/0.3,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,INTEGRAL/IBIS,,,"BAT: first GRB image|No AT slew|XRT: no observation|UVOT: no observation
-"
+"
