@@ -6,22 +6,8 @@ import cloudscraper
 from datetime import datetime
 from bs4 import BeautifulSoup
 import csv
-from datetime import datetime, timezone
-
-
-def datetime_to_epoch(date, time):
-    # Combine date and time into a datetime object
-    datetime_str = f"{date} {time}"
-    dt = datetime.strptime(datetime_str, '%Y/%m/%d %H:%M')
-
-    # Convert datetime to UTC timezone aware datetime
-    dt_utc = dt.replace(tzinfo=timezone.utc)
-
-    # Convert UTC datetime to epoch timestamp (Unix timestamp)
-    epoch_timestamp = int(dt_utc.timestamp())
-
-    return epoch_timestamp
-
+from datetime import datetime
+from time_related import datetime_to_epoch
 
 def download_space_weather_data():
     # Set the base URL

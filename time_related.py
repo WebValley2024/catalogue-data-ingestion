@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 def mjd_to_utc(mjd):
     # Convert MJD to JD
@@ -33,6 +33,13 @@ def epoch_to_mjd(epoch_time):
 def utc_to_epoch(utc_time):
     return utc_time.timestamp()
 
+def iso_to_epoch(timestamp):
+    dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+    return int(dt.timestamp())
+
+def epoch_to_iso(epoch_time):
+    return datetime.fromtimestamp(epoch_time).isoformat()
+
 def epoch_to_utc(epoch_time):
     return datetime.fromtimestamp(epoch_time)
 
@@ -65,3 +72,16 @@ def swift_to_epoch(grb_date, time_ut):
     epoch_time = datetime_obj.timestamp()
     
     return epoch_time
+
+def datetime_to_epoch(date, time):
+    # Combine date and time into a datetime object
+    datetime_str = f"{date} {time}"
+    dt = datetime.strptime(datetime_str, '%Y/%m/%d %H:%M')
+
+    # Convert datetime to UTC timezone aware datetime
+    dt_utc = dt.replace(tzinfo=timezone.utc)
+
+    # Convert UTC datetime to epoch timestamp (Unix timestamp)
+    epoch_timestamp = int(dt_utc.timestamp())
+
+    return epoch_timestamp
