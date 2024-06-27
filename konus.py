@@ -1,26 +1,9 @@
 from bs4 import BeautifulSoup
-import requests
+from time_related import konus_to_epoch
+from rich import print
+import cloudscraper
+import time
 import csv
-from datetime import datetime, timezone
-
-
-def convert_to_epoch(date_str, time_str):
-    date_obj = datetime.strptime(date_str, "%Y%m%d")
-    
-    # Parse the time string without timezone abbreviation
-    time_obj = datetime.strptime(time_str.split()[0], "%H:%M:%S.%f")
-    
-    # Combine date and time
-    combined_datetime = datetime.combine(date_obj.date(), time_obj.time())
-    
-    # Manually convert to UTC timezone aware datetime object
-    combined_utc = combined_datetime.replace(tzinfo=timezone.utc)
-    
-    # Convert to epoch timestamp
-    epoch_timestamp = int(combined_utc.timestamp())
-    
-    return epoch_timestamp
-
 
 def add_cols(cols):
     l = []
@@ -45,15 +28,20 @@ def add_cols(cols):
 
 
 def download_data(url, mod):
-
-
-    page = requests.get(url)
-
+    # Create a cloudscraper instance
+    scraper = cloudscraper.create_scraper()
+    try:
+        page = scraper.get(url)
+    except Exception as e:
+        print(f"<konus> [bold red]Error while downloading data[/bold red] -- URL: {url} -- [bold yellow]RETRYING[/bold yellow]: ", e)
+        try:
+            time.sleep(5)
+            page = scraper.get(url)
+        except Exception as e:
+            print(f"<konus> [bold red]Error while downloading data[/bold red] -- URL: {url}: ", e)
+            return None
     soup = BeautifulSoup(page.content, 'html.parser')
-
     table = soup.find('table')
-
-
     rows = table.find_all('tr')
 
     with open("konus.csv", mod, newline='') as file:
@@ -67,20 +55,35 @@ def download_data(url, mod):
             row_data = add_cols(cols)
             row_data.pop(1)
             try:
-                timestamp = convert_to_epoch(row_data[0], row_data[1])
+                timestamp = konus_to_epoch(row_data[0], row_data[1])
                 row_data[0] = timestamp
                 row_data.pop(1)
                 csv_writer.writerow(row_data)
             except:
-                print("error")
+                # This row may not be in the correct format, instead of being '.' it may be ':'
+                # This is a workaround to fix the issue
+                print("Error: ", row_data)
+                try:
+                    row_data[1] = row_data[1].rsplit(':', 1)[0] + '.' + row_data[1].rsplit(':', 1)[1]
+                    timestamp = konus_to_epoch(row_data[0], row_data[1])
+                    row_data[0] = timestamp
+                    csv_writer.writerow(row_data)
+                    print("Fixed: ", row_data)
+                except:
+                    # If the row is still not in the correct format, skip it
+                    print("Still error: ", row_data)
+                    pass
 
 
-if __name__ == "__main__":
+def download_konus_data():
     url = "https://gcn.gsfc.nasa.gov/konus_grbs.html"
+    # print("Today --> 2020")
     download_data(url, 'w')
-
 
     for year in range(2019, 1993, -1):
         url = f"https://gcn.gsfc.nasa.gov/konus_{year}grbs.html"
-        print(year)
+        # print(year)
         download_data(url, 'a')
+
+if __name__ == "__main__":
+    download_konus_data()
