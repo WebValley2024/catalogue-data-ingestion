@@ -160,9 +160,6 @@ def download_fermi_data():
 
         # Save the DataFrame as a CSV file
         df.to_csv("fermi.csv", index=False)
-        print("Data downloaded and converted successfully.")
-    else:
-        print("Failed to download the data.")
 
 if __name__ == "__main__":
     download_fermi_data()

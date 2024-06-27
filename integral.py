@@ -70,8 +70,6 @@ def download_integral_data():
         else: 
             URL_table = URL + "?month=" + str(date.year) + "-" + str(date.month) + "&showall=on"
         
-        print(URL_table)
-        
         if not thread:
             extract_table(URL_table, filename, headers, first_write)
         else:

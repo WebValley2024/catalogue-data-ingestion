@@ -3,14 +3,10 @@
 
 import requests
 import sys
-import datetime
 from datetime import datetime, timedelta
+from time_related import iso_to_epoch
 
-def convert_to_epoch(timestamp):
-    dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
-    return int(dt.timestamp())
-
-def download_earthquake_data(end_date=datetime.now() - timedelta(days=30), initial_date=datetime.now()):
+def download_earthquake_data(initial_date=datetime.now() - timedelta(days=30), end_date=datetime.now()):
     if initial_date > end_date:
         print("Initial date must be less than end date")
         sys.exit(1)
@@ -23,8 +19,8 @@ def download_earthquake_data(end_date=datetime.now() - timedelta(days=30), initi
     response = requests.get(url)
 
     if response.status_code == 200:
-        with open("earthquake.csv", "w") as file:
-            data = response.content.decode('utf-8')
+        with open("earthquake.csv", "w", encoding='utf-8') as file:
+            data = response.text
             data_rows = data.strip().split('\n')
 
             # Process header separately
@@ -34,7 +30,7 @@ def download_earthquake_data(end_date=datetime.now() - timedelta(days=30), initi
             # Process data rows
             for row in data_rows[1:]:
                 fields = row.split(',')
-                fields[0] = str(convert_to_epoch(fields[0]))
+                fields[0] = str(iso_to_epoch(fields[0]))
                 converted_row = ','.join(fields)
                 file.write(converted_row + '\n')
 
@@ -44,4 +40,4 @@ def download_earthquake_data(end_date=datetime.now() - timedelta(days=30), initi
 
 
 if __name__ == "__main__":
-    download_earthquake_data(datetime.now(), datetime.now() - timedelta(days=30))
+    download_earthquake_data()

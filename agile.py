@@ -96,7 +96,7 @@ def download_agile_data():
                     print(f"Error writing row: {row} - {e}")
                 is_header = False  # After the first iteration, no more header
             except IndexError as e:
-                print(f"Error parsing block: {block} - {e}")
+                pass
 
     # Close the driver
     driver.quit()
