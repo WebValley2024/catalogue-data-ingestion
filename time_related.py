@@ -85,3 +85,20 @@ def datetime_to_epoch(date, time):
     epoch_timestamp = int(dt_utc.timestamp())
 
     return epoch_timestamp
+
+def konus_to_epoch(date_str, time_str):
+    date_obj = datetime.strptime(date_str, "%Y%m%d")
+
+    # Parse the time string without timezone abbreviation
+    time_obj = datetime.strptime(time_str.split()[0], "%H:%M:%S.%f")
+
+    # Combine date and time
+    combined_datetime = datetime.combine(date_obj.date(), time_obj.time())
+
+    # Manually convert to UTC timezone aware datetime object
+    combined_utc = combined_datetime.replace(tzinfo=timezone.utc)
+
+    # Convert to epoch timestamp
+    epoch_timestamp = int(combined_utc.timestamp())
+
+    return epoch_timestamp
