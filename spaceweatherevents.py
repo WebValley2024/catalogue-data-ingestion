@@ -6,6 +6,22 @@ import cloudscraper
 from datetime import datetime
 from bs4 import BeautifulSoup
 import csv
+from datetime import datetime, timezone
+
+
+def datetime_to_epoch(date, time):
+    # Combine date and time into a datetime object
+    datetime_str = f"{date} {time}"
+    dt = datetime.strptime(datetime_str, '%Y/%m/%d %H:%M')
+
+    # Convert datetime to UTC timezone aware datetime
+    dt_utc = dt.replace(tzinfo=timezone.utc)
+
+    # Convert UTC datetime to epoch timestamp (Unix timestamp)
+    epoch_timestamp = int(dt_utc.timestamp())
+
+    return epoch_timestamp
+
 
 def download_space_weather_data():
     # Set the base URL
@@ -45,6 +61,9 @@ def download_space_weather_data():
                     first_row = rows[0]
                     th_elements = first_row.find_all("th")
                     headers = [th.text for th in th_elements]
+                    headers.pop(2)
+                    headers[0] = "Top"
+                    headers[1] = "Flux"
                     csv_writer.writerow(headers)
                 rows = rows[1:]
                 # Loop through the remaining rows
@@ -53,6 +72,16 @@ def download_space_weather_data():
                     cols = row.find_all("td")
                     # Extract the text content from all but the last column
                     row_data = [col.text.strip() for col in cols[:-1]]  # Use strip() to remove leading/trailing whitespace
+
+                    date = row_data[2]
+                    row_data.pop(2)
+
+
+                    row_data[3] = datetime_to_epoch(date, row_data[3])
+                    row_data[4] = datetime_to_epoch(date, row_data[4])
+                    row_data[5] = datetime_to_epoch(date, row_data[5])
+
+
                     # For the last column, check if there is an <a> tag to extract the link
                     last_col = cols[-1].find('a')
                     if last_col and 'href' in last_col.attrs:
