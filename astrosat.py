@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
+import datetime
 
 # TODO: REMOVE ASTROSECONDS AND REPLACE UTC WITH EPOCH
 
@@ -45,6 +46,7 @@ def download_astrosat_data():
     table = soup.find('table')
     # Find all the rows in the table
     rows = table.find_all('tr')
+
     # Save the table as a CSV file
     with open(filename, 'w', newline='') as f:
         csv_writer = csv.writer(f)
@@ -62,6 +64,8 @@ def download_astrosat_data():
             headers_text = headers_text[:-1]
             # Append additional headers
             headers_text += ["CZT", "Veto", "Compton"]
+            headers_text[3] = 'Trigger Time'
+            headers_text.pop(2)
             # Write the modified headers to the CSV
             csv_writer.writerow(headers_text)
             # Remove the first row (headers) from processing
@@ -70,8 +74,15 @@ def download_astrosat_data():
         for row in rows:
             # Extract the columns from the row
             cols = row.find_all('td')
+
             # Use add_cols to process and extract data from columns
             row_data = add_cols(cols)
+
+            row_data[3] = datetime.datetime.strptime(row_data[3], "%Y-%m-%d %H:%M:%S").timestamp()
+            row_data.pop(2)
+
+
+
             # Write the row data to the CSV file
             csv_writer.writerow(row_data)
 
