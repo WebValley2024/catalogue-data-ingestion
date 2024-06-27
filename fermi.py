@@ -3,6 +3,7 @@
 
 import requests
 import pandas as pd
+from time_related import mjd_to_epoch
 
 def download_fermi_data():
     # Download the data
@@ -151,6 +152,12 @@ def download_fermi_data():
     if response.status_code == 200:
         # Read the response content as a pandas DataFrame
         df = pd.read_excel(response.content, sheet_name=1)
+
+        # Convert the time columns from MJD to epoch
+        df["time"] = df["time"].apply(mjd_to_epoch)
+        df["end_time"] = df["end_time"].apply(mjd_to_epoch)
+        df["trigger_time"] = df["trigger_time"].apply(mjd_to_epoch)
+
         # Save the DataFrame as a CSV file
         df.to_csv("fermi.csv", index=False)
         print("Data downloaded and converted successfully.")

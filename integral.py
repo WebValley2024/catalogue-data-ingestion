@@ -4,6 +4,8 @@ import datetime
 import threading
 from dateutil.relativedelta import relativedelta
 
+# TODO: REPLACE TIME UTC WITH EPOCH
+
 # Create a lock object
 lock = threading.Lock()
 
@@ -50,9 +52,9 @@ def download_integral_data():
             headers = True
             thread = False
         if (date.month < 10):
-            URL_table = URL + "?month=" + str(date.year) + "-0" + str(date.month)
+            URL_table = URL + "?month=" + str(date.year) + "-0" + str(date.month) + "&showall=on"
         else: 
-            URL_table = URL + "?month=" + str(date.year) + "-" + str(date.month)
+            URL_table = URL + "?month=" + str(date.year) + "-" + str(date.month) + "&showall=on"
         print(URL_table)
         if not thread:
             extract_table(URL_table, filename, headers)
@@ -73,6 +75,11 @@ def download_integral_data():
         headers = data[0]
 
     data = data[1:]
+    # Remove the headers from the data
+    for i in range(len(data)):
+        if headers in data[i]:
+            data.pop(i)
+    # Order the data by date
     data.sort(key=lambda x: (
         datetime.datetime.strptime(x.split(',')[0].split()[0], '%Y-%m-%d'),
         datetime.datetime.strptime(x.split(',')[0].split()[1], '%H:%M:%S')

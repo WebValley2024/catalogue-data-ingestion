@@ -7,6 +7,9 @@ import requests
 import csv
 from bs4 import BeautifulSoup
 
+# TODO: REPLACE TIME UTC WITH EPOCH
+# TODO: FIX HEADERS IN CSV FILE (THERE MIGHT BE ERRORS DURING THE PARSE OF THE HTML CONT)
+
 def download_swift_data():
     # Set the base URL
     url = "https://swift.gsfc.nasa.gov"

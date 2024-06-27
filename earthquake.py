@@ -5,6 +5,8 @@ import requests
 import sys
 import datetime
 
+# TODO: REPLACE TIME UTC WITH EPOCH
+
 def download_earthquake_data(initial_date = datetime.datetime.now() - datetime.timedelta(days=30), end_date = datetime.datetime.now()):
     if initial_date > end_date:
         print("Initial date must be less than end date")

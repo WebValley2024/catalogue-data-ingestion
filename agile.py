@@ -2,6 +2,8 @@
 # and BeautifulSoup (for parsing the HTML)
 # This script is for the website https://www.ssdc.asi.it/mcal3tgfcat/
 
+# TODO: FIX AGILE CSV EXTRACTION BECAUSE SOME COLUMNS ARE BROKEN
+
 import os
 import time
 import csv
