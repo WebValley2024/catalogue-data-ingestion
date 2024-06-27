@@ -25,7 +25,10 @@ def download_earthquake_data(initial_date=datetime.now() - timedelta(days=30), e
 
             # Process header separately
             header = data_rows[0]
-            file.write(header + '\n')
+            headerlist = header.split(",")
+            headerlist[0] = "Trigger Time"
+            converted_header = ','.join(headerlist)
+            file.write(converted_header + '\n')
 
             # Process data rows
             for row in data_rows[1:]:

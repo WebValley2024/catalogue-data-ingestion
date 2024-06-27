@@ -30,6 +30,7 @@ def extract_table(url, filename, headers=False, first_write=False):
                 if headers and row.find('th'):
                     cols = row.find_all('th')
                     cols = [ele.text.strip() for ele in cols]
+                    cols[0] = "Trigger Time"
                     f.write(','.join(cols) + '\n')
                     continue
                 if row.find('td'):

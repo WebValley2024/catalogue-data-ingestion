@@ -1,4 +1,4 @@
-time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource
+Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource
 1719488565,-21.4578,-68.6812,106.79,4.8,mb,59,42,1.14,1.3,us,us6000n8lr,2024-06-27T12:02:58.040Z,"51 km WSW of Ollagüe, Chile",earthquake,6.31,5.278,0.062,80,reviewed,us,us
 1719488266,60.9418,-139.9991,10,4.3,mb,51,37,0.362,1.18,us,us6000n8lp,2024-06-27T13:45:28.624Z,"156 km N of Yakutat, Alaska",earthquake,1.51,1.954,0.188,8,reviewed,us,us
 1719487912,-17.8968,-178.4829,601.089,4.5,mb,64,41,2.49,0.68,us,us6000n8ln,2024-06-27T11:52:50.040Z,"233 km E of Levuka, Fiji",earthquake,12.56,4.061,0.035,236,reviewed,us,us
@@ -15,10 +15,10 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 1719453188,13.3334,120.4514,10,4.8,mb,41,114,10.037,1.19,us,us6000n8ja,2024-06-27T02:37:36.276Z,"9 km S of Paluan, Philippines",earthquake,11.57,1.949,0.105,28,reviewed,us,us
 1719451697,25.6033,106.4462,10,4.3,mb,18,89,6.955,0.97,us,us6000n8j9,2024-06-27T02:00:40.040Z,"88 km SE of Anshun, China",earthquake,9.19,1.967,0.201,7,reviewed,us,us
 1719451394,19.44,-64.8316666666667,71.99,3.39,md,6,291,1.034,0.4,pr,pr71454123,2024-06-27T02:09:57.380Z,"121 km N of Charlotte Amalie, U.S. Virgin Islands",earthquake,15.26,28.38,0.234424354426926,5,reviewed,pr,pr
-1719450411,47.7077,7.9876,10,4.2,mb,38,86,0.664,1.35,us,us6000n8j2,2024-06-27T13:07:15.145Z,"3 km SSW of Todtmoos, Germany",earthquake,2.84,1.953,0.215,6,reviewed,us,us
+1719450411,47.7077,7.9876,10,4.2,mb,38,86,0.664,1.35,us,us6000n8j2,2024-06-27T14:24:59.469Z,"3 km SSW of Todtmoos, Germany",earthquake,2.84,1.953,0.215,6,reviewed,us,us
 1719447073,41.6901,48.4194,10,4.1,mb,27,86,2.17,1.32,us,us6000n8it,2024-06-27T00:21:35.040Z,"5 km N of Samur, Azerbaijan",earthquake,7.02,1.969,0.114,22,reviewed,us,us
 1719444639,-5.9798,126.6124,8.529,4.6,mb,30,56,4.412,0.9,us,us6000n8il,2024-06-26T23:46:31.040Z,"276 km N of Baukau, Timor Leste",earthquake,8.93,4.672,0.103,28,reviewed,us,us
-1719443336,32.141,-101.075,7.8369,3.3,ml,19,68,0.2,0.1,tx,tx2024mndy,2024-06-27T13:06:18.488Z,"24 km SSW of Westbrook, Texas",earthquake,0.8019735440164004,2.440331220046195,0.2,31,reviewed,tx,tx
+1719443336,32.141,-101.075,7.8369,3.3,ml,19,68,0.2,0.1,tx,tx2024mndy,2024-06-27T14:16:53.978Z,"24 km SSW of Westbrook, Texas",earthquake,0.8019735440164004,2.440331220046195,0.2,31,reviewed,tx,tx
 1719442675,50.608,-175.1281,10,3.3,ml,15,248,1.468,0.54,us,us6000n8is,2024-06-27T00:34:20.040Z,"175 km SE of Adak, Alaska",earthquake,7.01,2.018,0.121,9,reviewed,us,us
 1719442474,35.225,-101.758,26.4893,2.8,ml,11,103,0.2,0.1,tx,tx2024mndk,2024-06-27T13:24:58.771Z,"6 km E of Amarillo, Texas",earthquake,2.78002461170703,1.5605655167950456,0.1,7,reviewed,tx,tx
 1719437978,18.3211666666667,-67.2781666666667,22.71,2.92,md,14,255,0.1694,0.27,pr,pr71454108,2024-06-26T22:08:18.750Z,"3 km W of Stella, Puerto Rico",earthquake,1.02,1.51,0.0524509707761793,7,reviewed,pr,pr
@@ -314,6 +314,7 @@ time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,
 1718634861,31.662,-104.313,6.4587,2.5,ml,33,68,0,0.2,tx,tx2024lwbk,2024-06-20T17:00:30.040Z,"57 km S of Whites City, New Mexico",earthquake,0.7610360651984795,0.8434291292778112,0.2,25,reviewed,tx,tx
 1718633384,-11.4526,166.2368,48.694,5.6,mww,158,17,6.501,0.61,us,us7000mt0h,2024-06-18T14:13:30.869Z,"93 km SSE of Lata, Solomon Islands",earthquake,9.85,3.944,0.066,22,reviewed,us,us
 1718633114,-18.8182,-173.2767,10,5.5,mww,77,33,5.088,1.31,us,us7000mt0e,2024-06-18T14:09:04.957Z,"76 km ESE of Neiafu, Tonga",earthquake,11.31,1.778,0.083,14,reviewed,us,us
+1718629822,-39.1557,78.5404,10,4.6,mb,23,87,41.004,0.52,us,us6000n8f0,2024-06-27T14:14:36.040Z,"Mid-Indian Ridge",earthquake,10.13,1.74,0.146,14,reviewed,us,us
 1718628599,31.66,-104.302,7.0612,3.1,ml,48,67,0,0.1,tx,tx2024lvxy,2024-06-17T13:20:04.040Z,"57 km S of Whites City, New Mexico",earthquake,0.4927781579504061,0.6071205168318345,0.2,34,reviewed,tx,tx
 1718623933,36.8535,-121.297333333333,8.53,2.59,md,81,34,,0.14,nc,nc75023222,2024-06-26T17:45:13.800Z,"7 km NNE of Tres Pinos, CA",earthquake,0.17,0.33,0.118,68,reviewed,nc,nc
 1718618894,18.0415,-68.0996666666667,16.16,3.19,md,11,209,0.541,0.27,pr,pr71452993,2024-06-17T10:40:09.530Z,"65 km SE of Boca de Yuma, Dominican Republic",earthquake,1.65,1.98,0.0218570995017733,9,reviewed,pr,pr

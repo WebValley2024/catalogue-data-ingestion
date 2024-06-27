@@ -158,6 +158,9 @@ def download_fermi_data():
         df["end_time"] = df["end_time"].apply(mjd_to_epoch)
         df["trigger_time"] = df["trigger_time"].apply(mjd_to_epoch)
 
+        df = df.rename(columns={"trigger_time": "Trigger Time"})
+
+
         # Save the DataFrame as a CSV file
         df.to_csv("fermi.csv", index=False)
 

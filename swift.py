@@ -45,7 +45,9 @@ def download_swift_data():
             data_rows = data.strip().split('\n')
             # Process header separately
             header = data_rows[0]
-            file.write(header + '\n')
+            header_list = header.split("\t")
+            header_list[1] = "Trigger Time"
+            file.write("\t".join(header_list) + '\n')
             # Process data rows
             for row in data_rows[1:]:
                 fields = row.split('\t')
