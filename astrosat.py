@@ -3,8 +3,6 @@ import requests
 import csv
 import datetime
 
-# TODO: REMOVE ASTROSECONDS AND REPLACE UTC WITH EPOCH
-
 def add_cols(cols):
     """
     Extracts content from HTML elements and adds them to a list.

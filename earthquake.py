@@ -6,8 +6,6 @@ import sys
 import datetime
 from datetime import datetime, timedelta
 
-# TODO: REPLACE TIME UTC WITH EPOCH
-
 def convert_to_epoch(timestamp):
     dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
     return int(dt.timestamp())
