@@ -55,6 +55,7 @@ def download_space_weather_data():
                     headers[0] = "Top"
                     headers[1] = "Flux"
                     headers[4] = "Trigger Time"
+                    headers[5] = "Links"
                     csv_writer.writerow(headers)
                 rows = rows[1:]
                 # Loop through the remaining rows
