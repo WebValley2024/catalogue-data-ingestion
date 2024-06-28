@@ -78,6 +78,7 @@ def download_astrosat_data():
             row_data = add_cols(cols)
 
             row_data[3] = datetime.datetime.strptime(row_data[3], "%Y-%m-%d %H:%M:%S").timestamp()
+            row_data[3] = int(row_data[3])
             row_data.pop(2)
             row_data.pop(0)
 
