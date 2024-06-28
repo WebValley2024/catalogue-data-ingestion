@@ -1,8 +1,6 @@
 # Script to download and convert from XLS to CSV the data from the following URL with specific parameters
 # https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3query.pl
 
-from fermi_divider import divide_fermi
-
 import requests
 import pandas as pd
 from time_related import mjd_to_epoch
@@ -164,10 +162,13 @@ def download_fermi_data():
 
         df = df.rename(columns={"trigger_time": "Trigger Time"})
 
+        # Divide the data into GRB and TGF
+        df_grb = df[df["trigger_type"].str.contains("GRB")]
+        df_tgf = df[df["trigger_type"].str.contains("TGF")]
 
-        # Save the DataFrame as a CSV file
-        df.to_csv("fermi.csv", index=False)
+        # Save the divided data as CSV files
+        df_grb.to_csv("fermi_grb.csv", index=False)
+        df_tgf.to_csv("fermi_tgf.csv", index=False)
 
 if __name__ == "__main__":
     download_fermi_data()
-    divide_fermi()
