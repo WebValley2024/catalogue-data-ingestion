@@ -4,8 +4,13 @@ def divide_fermi():
     f = open("fermi.csv", "r")
     fgrb = open("fermi_grb.csv", "w")
     ftgf = open("fermi_tgf.csv", "w")
+    
+    lines = f.readlines()
+    fgrb.write(lines[0])
+    ftgf.write(lines[0])
 
-    for line in f:
+
+    for line in lines[1:]:
         if (line.find("GRB") != -1):
             fgrb.write(line)
         elif (line.find("TGF") != -1):
