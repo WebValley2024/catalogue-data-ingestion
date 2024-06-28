@@ -52,6 +52,9 @@ def swift_to_epoch(grb_date, time_ut):
     # Normalize time format to HH:MM:SS
     if '.' in time_ut:  # Check for fractional seconds
         time_ut = time_ut.split('.')[0]  # Remove fractional seconds
+    
+    if time_ut.strip() == '' or time_ut.strip() == 'null':  # Check for empty time
+        time_ut = '00:00:00'
 
     # Split time into hours, minutes, and seconds
     time_parts = time_ut.split(':')
