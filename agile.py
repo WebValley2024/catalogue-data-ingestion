@@ -78,19 +78,17 @@ def download_agile_data():
                 soup_block = BeautifulSoup(block, "html.parser")
                 text = soup_block.get_text().strip()  # Get clean text without HTML tags
                 row = [element.strip() for element in text.split(",")]
-                row = row[1:-1]  # Remove the first and last element which is an empty string
+                row = row[2:-1]  # Remove the first and last element which is an empty string
+                row.pop(4)
                 if is_header:
                     # Modify the header of 4 cell of "Date (UTC)" to "Date (EPOCH)"
-                    row[4] = "Date (EPOCH)"
-                    row[5] = "Trigger Time"
+                    row[3] = "Trigger Time"
                     row = [unicodedata.normalize("NFKD", cell).encode("ascii", "ignore").decode("utf-8") for cell in row]
                     pass
+
                 if not is_header:
                     # Convert the date from UTC to EPOCH
-                    row[4] = '"' + str(utc_to_epoch(datetime.strptime(row[4].lstrip('"').rstrip('"'), "%Y-%m-%dT%H:%M:%S"))) + '"'
-                    # Convert the trigger time from UTC to EPOCH
-                    trigger_time = float(row[5].lstrip('"').rstrip('"'))
-                    row[5] = '"' + str(utc_to_epoch(AGILE_MISSION_START) + trigger_time) + '"'
+                    row[3] = '"' + str(utc_to_epoch(datetime.strptime(row[3].lstrip('"').rstrip('"'), "%Y-%m-%dT%H:%M:%S")))[:-2] + '"'
                 try:
                     file.write(",".join(row) + "\n")
                 except Exception as e:
