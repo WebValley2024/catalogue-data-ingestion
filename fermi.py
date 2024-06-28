@@ -1,6 +1,8 @@
 # Script to download and convert from XLS to CSV the data from the following URL with specific parameters
 # https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3query.pl
 
+from fermi_divider import divide_fermi
+
 import requests
 import pandas as pd
 from time_related import mjd_to_epoch
@@ -166,3 +168,4 @@ def download_fermi_data():
 
 if __name__ == "__main__":
     download_fermi_data()
+    divide_fermi()
