@@ -42,11 +42,14 @@ def download_agile_data():
             break
 
     # Execute JavaScript functions
+    # Select all the checkboxes
     driver.execute_script("document.forms['form_table_choix'].elements['selectAll'].checked = true;")
     driver.execute_script("select_deselect_all(document.forms['form_table_choix'].elements['selectAll']);")
     time.sleep(1)
+    # Apply the checkbox selection
     driver.execute_script("update_table_columns()")
     time.sleep(10)
+    # Export the CSV data
     driver.execute_script("exportCSV()")
 
     # A new tab (about:blank) will be opened with the CSV data
@@ -85,6 +88,9 @@ def download_agile_data():
                 if not is_header:
                     # Remove the first column from all rows except the header
                     row = row[1:]
+                    # For column in the row, remove the double quotes
+                    for i in range(len(row)):
+                        row[i] = row[i].replace('"', '')
                     # Convert the date from UTC to EPOCH
                     row[4] = utc_to_epoch(datetime.strptime(row[4], "%Y-%m-%dT%H:%M:%S"))
                     # Convert the trigger time from UTC to EPOCH

@@ -12,14 +12,18 @@ from time_related import datetime_to_epoch
 def download_space_weather_data():
     # Set the base URL
     base_url = "https://www.spaceweatherlive.com"
-    
+
+    # Set the URL of the website    
     url = base_url + "/en/solar-activity/top-50-solar-flares/year/"
+
+    # File name
+    file_name = "spaceweatherevents.csv"
 
     # Create a cloudscraper instance
     scraper = cloudscraper.create_scraper()
 
     # Empty the CSV file
-    with open("space_weather.csv", "w", newline="") as f:
+    with open(file_name, "w", newline="") as f:
         f.write("")
         f.close()
 
@@ -40,7 +44,7 @@ def download_space_weather_data():
             rows = table.find_all("tr")
 
             # Save to the same CSV file
-            with open("space_weather.csv", "a", newline="") as f:
+            with open(file_name, "a", newline="") as f:
                 csv_writer = csv.writer(f)
                 if year == 1996:
                     # Process the first row (headers) separately

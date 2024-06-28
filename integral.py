@@ -31,7 +31,7 @@ def extract_table(url, filename, headers=False, first_write=False):
                     cols = row.find_all('th')
                     cols = [ele.text.strip() for ele in cols]
                     cols[0] = "Trigger Time"
-                    f.write(','.join(cols) + '\n')
+                    f.write('\t'.join(cols) + '\n')
                     continue
                 if row.find('td'):
                     cols = row.find_all('td')
@@ -46,7 +46,7 @@ def extract_table(url, filename, headers=False, first_write=False):
                     except ValueError:
                         pass
                     
-                    f.write(','.join(cols) + '\n')
+                    f.write('\t'.join(cols) + '\n')
 
 def download_integral_data():
     filename = 'integral.csv'
@@ -94,7 +94,7 @@ def download_integral_data():
     data = [line for line in data if headers not in line]
     
     # Order the data by date (using epoch timestamp)
-    data.sort(key=lambda x: int(x.split(',')[0]))
+    data.sort(key=lambda x: int(x.split('\t')[0]))
 
     # Write the ordered data to a new file
     with open(filename, 'w') as f:
