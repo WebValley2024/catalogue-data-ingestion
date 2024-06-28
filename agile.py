@@ -3,7 +3,7 @@
 # This script is for the website https://www.ssdc.asi.it/mcal3tgfcat/
 
 import time
-import csv
+import unicodedata
 import warnings
 
 from selenium import webdriver
@@ -71,7 +71,6 @@ def download_agile_data():
     
     # Write the CSV data to a file
     with open("agile.csv", "w", newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
         is_header = True  # Flag to check if the current row is the header
         for block in text_blocks:
             try:
@@ -79,25 +78,21 @@ def download_agile_data():
                 soup_block = BeautifulSoup(block, "html.parser")
                 text = soup_block.get_text().strip()  # Get clean text without HTML tags
                 row = [element.strip() for element in text.split(",")]
-                row = row[:-1]  # Remove the last element which is an empty string
+                row = row[1:-1]  # Remove the first and last element which is an empty string
                 if is_header:
                     # Modify the header of 4 cell of "Date (UTC)" to "Date (EPOCH)"
                     row[4] = "Date (EPOCH)"
                     row[5] = "Trigger Time"
+                    row = [unicodedata.normalize("NFKD", cell).encode("ascii", "ignore").decode("utf-8") for cell in row]
                     pass
                 if not is_header:
-                    # Remove the first column from all rows except the header
-                    row = row[1:]
-                    # For column in the row, remove the double quotes
-                    for i in range(len(row)):
-                        row[i] = row[i].replace('"', '')
                     # Convert the date from UTC to EPOCH
-                    row[4] = utc_to_epoch(datetime.strptime(row[4], "%Y-%m-%dT%H:%M:%S"))
+                    row[4] = '"' + str(utc_to_epoch(datetime.strptime(row[4].lstrip('"').rstrip('"'), "%Y-%m-%dT%H:%M:%S"))) + '"'
                     # Convert the trigger time from UTC to EPOCH
-                    trigger_time = float(row[5])
-                    row[5] = utc_to_epoch(AGILE_MISSION_START) + trigger_time
+                    trigger_time = float(row[5].lstrip('"').rstrip('"'))
+                    row[5] = '"' + str(utc_to_epoch(AGILE_MISSION_START) + trigger_time) + '"'
                 try:
-                    writer.writerow(row)
+                    file.write(",".join(row) + "\n")
                 except Exception as e:
                     print(f"Error writing row: {row} - {e}")
                 is_header = False  # After the first iteration, no more header
