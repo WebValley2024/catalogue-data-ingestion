@@ -54,25 +54,27 @@ def download_data(url, mod):
             cols = row.find_all('td')[:6]
             row_data = add_cols(cols)
             row_data.pop(1)
-            try:
-                timestamp = konus_to_epoch(row_data[0], row_data[1])
-                row_data[0] = timestamp
-                row_data.pop(1)
-                csv_writer.writerow(row_data)
-            except:
-                # This row may not be in the correct format, instead of being '.' it may be ':'
-                # This is a workaround to fix the issue
-                print("Error: ", row_data)
+            if row_data[3] == "" or row_data[3] == "GRB":
                 try:
-                    row_data[1] = row_data[1].rsplit(':', 1)[0] + '.' + row_data[1].rsplit(':', 1)[1]
                     timestamp = konus_to_epoch(row_data[0], row_data[1])
                     row_data[0] = timestamp
+                    row_data.pop(1)
                     csv_writer.writerow(row_data)
-                    print("Fixed: ", row_data)
                 except:
-                    # If the row is still not in the correct format, skip it
-                    print("Still error: ", row_data)
-                    pass
+                    # This row may not be in the correct format, instead of being '.' it may be ':'
+                    # This is a workaround to fix the issue
+                    print("Error: ", row_data)
+                    try:
+                        row_data[1] = row_data[1].rsplit(':', 1)[0] + '.' + row_data[1].rsplit(':', 1)[1]
+                        timestamp = konus_to_epoch(row_data[0], row_data[1])
+                        row_data[0] = timestamp
+                        row_data.pop(1)
+                        csv_writer.writerow(row_data)
+                        print("Fixed: ", row_data)
+                    except:
+                        # If the row is still not in the correct format, skip it
+                        print("Still error: ", row_data)
+                        pass
 
 
 def download_konus_data():
