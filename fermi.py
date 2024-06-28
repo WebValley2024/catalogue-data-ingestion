@@ -155,6 +155,8 @@ def download_fermi_data():
         # Read the response content as a pandas DataFrame
         df = pd.read_excel(response.content, sheet_name=1)
 
+        df = df.drop(columns=['version', 'trigger_name'])
+
         # Convert the time columns from MJD to epoch
         df["time"] = df["time"].apply(mjd_to_epoch)
         df["end_time"] = df["end_time"].apply(mjd_to_epoch)
