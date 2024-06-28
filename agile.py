@@ -78,8 +78,11 @@ def download_agile_data():
                 soup_block = BeautifulSoup(block, "html.parser")
                 text = soup_block.get_text().strip()  # Get clean text without HTML tags
                 row = [element.strip() for element in text.split(",")]
-                row = row[2:-1]  # Remove the first and last element which is an empty string
+                row = row[2:-2]  # Remove the first and last element which is an empty string
                 row.pop(4)
+                row.pop(7)
+                for i in range(4):
+                    row.pop(11)
                 if is_header:
                     # Modify the header of 4 cell of "Date (UTC)" to "Date (EPOCH)"
                     row[3] = "Trigger Time"
