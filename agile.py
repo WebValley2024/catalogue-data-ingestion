@@ -93,6 +93,7 @@ def download_agile_data():
                     # Convert the date from UTC to EPOCH
                     row[3] = '"' + str(utc_to_epoch(datetime.strptime(row[3].lstrip('"').rstrip('"'), "%Y-%m-%dT%H:%M:%S")))[:-2] + '"'
                 try:
+                    row = [cell.replace('"', '') for cell in row]
                     file.write(",".join(row) + "\n")
                 except Exception as e:
                     print(f"Error writing row: {row} - {e}")
