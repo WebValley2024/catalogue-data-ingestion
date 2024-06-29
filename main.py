@@ -80,7 +80,7 @@ def harmonize_step1():
         print("Harmonizing", dataset)
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
-        df.to_csv(dataset, index=False)
+        df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
     
     for dataset in GRB:
         print("Harmonizing", dataset)
@@ -89,19 +89,22 @@ def harmonize_step1():
         else:
             df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
-        df.to_csv(dataset, index=False)
+        if dataset == "swift.csv":
+            df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=';')
+        else:
+            df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
     for dataset in SWE:
         print("Harmonizing", dataset)
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
-        df.to_csv(dataset, index=False)
+        df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
     for dataset in EQ:
         print("Harmonizing", dataset)
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
-        df.to_csv(dataset, index=False)
+        df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
 def harmonize_step2():
     # Combine all tables of the same type (e.g. TGF, GRB, SWE, EQ) into a single table
@@ -112,9 +115,10 @@ def harmonize_step2():
     tgf.to_csv("tgf.csv", index=False)
 
     # GRB
-    grb = pd.concat([pd.read_csv(dataset) for dataset in GRB if dataset != "integral.csv"])
-    integral = pd.read_csv("integral.csv", sep='\t')
-    grb = pd.concat([grb, integral])
+    grb = pd.concat([pd.read_csv(dataset) for dataset in GRB if dataset != "integral.csv" and dataset != "swift.csv"])
+    integral = pd.read_csv("integral.csv", sep=',')
+    swift = pd.read_csv("swift.csv", sep=';')
+    grb = pd.concat([grb, integral, swift])
     grb.to_csv("grb.csv", index=False)
 
     # SWE
@@ -143,20 +147,21 @@ def harmonize_step3():
         'dec': 'DEC',
         'DEC (deg)': 'DEC',
         'T90 (s)': 'T90',
+        'T90 (sec)': 'T90',
         'Start Time Observation': 'start_time_obs',
         'End Time Observation': 'end_time_obs',
         'BAT RA': 'BAT_RA',
         'BAT Dec': 'BAT_DEC',
-        'BAT 90%\Error Radius[arcmin]': 'BAT_90_err',
+        'BAT 90%Error Radius[arcmin]': 'BAT_90_err',
         'BAT Fluence': 'BAT_fluence',
-        'BAT Fluence90%\ Error': 'BAT_fluence_90_err',
+        'BAT Fluence90% Error': 'BAT_fluence_90_err',
         'BAT 1-sec PeakPhoton Flux': 'BAT_1sec_peak_photon_flux',
-        'BAT 1-sec PeakPhoton Flux90%\ Error': 'BAT_1sec_peak_photon_flux_90_err',
+        'BAT 1-sec PeakPhoton Flux90% Error': 'BAT_1sec_peak_photon_flux_90_err',
         'BAT Photon Index': 'BAT_photon_index',
-        'BAT Photon Index90%\ Error': 'BAT_photon_index_90_err',
+        'BAT Photon Index90% Error': 'BAT_photon_index_90_err',
         'XRT RA': 'xrtRA',
         'XRT Dec': 'xrtDEC',
-        'XRT 90%\Error Radius[arcmin]': 'xrt_90_err',
+        'XRT 90%Error Radius[arcsec]': 'xrt_90_err',
         'XRT Time to FirstObservation[sec]': 'xrt_time_to_first_obs',
         'XRT Early Flux': 'xrt_early_flux',
         'XRT 11 Hour Flux': 'xrt_11hour_flux',
@@ -166,7 +171,7 @@ def harmonize_step3():
         'XRT Column Density': 'xrt_column_density',
         'UVOT RA': 'uvotRA',
         'UVOT Dec': 'uvotDEC',
-        'UVOT 90%\Error Radius[arcmin]': 'uvot_90_err',
+        'UVOT 90%Error Radius[arcsec]': 'uvot_90_err',
         'UVOT Time toFirst Observation[sec]': 'uvot_time_to_first_obs',
         'UVOT Magnitude': 'uvot_magnitude',
         'UVOT Other FilterMagnitudes': 'uvot_other_filter_magnitudes',
@@ -177,14 +182,19 @@ def harmonize_step3():
         'Type': 'type',
         'Sigma': 'sigma',
         'Duration [s]': 'duration',
-        'Max Count, source': 'max_count',
+        'Max Count': 'max_count',
     }
 
     for dataset in FINAL:
         print("Correcting", dataset)
-        df = pd.read_csv(dataset)
-        df.columns = df.columns.str.lower().str.replace(' ', '_')
+        df = pd.read_csv(dataset, low_memory=False)
+        t = df.columns
+        print(df.columns)
         df.rename(columns=NAMES, inplace=True, errors='ignore')
+        f = df.columns
+        print(df.columns)
+        print(t == f)
+        df.columns = df.columns.str.lower().str.replace(' ', '_')
         df.to_csv(dataset, index=False)
 
 # def convert_to_sql():
@@ -247,6 +257,8 @@ if __name__ == "__main__":
         download_konus_data()
         print("<konus> Download completed.")
         progress.advance(download_task)
+        if not progress.finished:
+            progress.stop()
 
     print("All data downloaded successfully")
     print("Harmonizing data (step 1/3)...")

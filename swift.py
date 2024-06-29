@@ -4,7 +4,6 @@
 
 import requests
 from bs4 import BeautifulSoup
-import csv
 from time_related import swift_to_epoch
 
 def download_swift_data():
@@ -47,9 +46,8 @@ def download_swift_data():
         
         # Write the CSV data to a file
         with open("swift.csv", "w", encoding="utf-8", newline='') as file:
-            writer = csv.writer(file, delimiter=';', quotechar='"', quoting=csv.QUOTE_NONE, escapechar='\\')
-            writer.writerow(headers)  # Write the header
-            
+            # write header without csv library
+            file.write(";".join(headers) + "\n")
             for row in rows[1:]:  # Skip header row
                 cols = [ele.text.strip().replace(";", ",") for ele in row.find_all(["td", "th"])]
                 cols = [col if col != "n/a" else "" for col in cols]
@@ -60,7 +58,8 @@ def download_swift_data():
                     cols.pop(5)
                     # Convert the date to epoch time
                     cols[1] = str(swift_to_epoch(cols[0], cols[1]))
-                    writer.writerow(cols)
+                    file.write(";".join(cols) + "\n")
+                    
     else:
         print("Failed to download data")
         return
