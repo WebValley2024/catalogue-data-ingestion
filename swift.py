@@ -34,11 +34,14 @@ def download_swift_data():
                 thead.decompose()
 
         # Replace the first header with "Trigger Time"
-        headers[0] = "Trigger Time"
+        headers[1] = "Trigger Time"
+
+        # Remove all text inside parentheses
+        headers = [header.split("(")[0].strip() for header in headers]
         
         # Write the CSV data to a file
         with open("swift.csv", "w", encoding="utf-8", newline='') as file:
-            writer = csv.writer(file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer = csv.writer(file, delimiter=';', quotechar='"', quoting=csv.QUOTE_NONE, escapechar='\\')
             writer.writerow(headers)  # Write the header
             
             for row in rows[1:]:  # Skip header row
