@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'spade.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'wv24',
-        'USER': 'root',
-        'PASSWORD': 'prova1234',
-        'HOST': '192.168.90.252',
-        'PORT':'3306'    
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
