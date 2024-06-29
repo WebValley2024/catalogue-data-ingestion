@@ -63,8 +63,15 @@ def download_astrosat_data():
             # Append additional headers
             headers_text += ["CZT", "Veto", "Compton"]
             headers_text[3] = 'Trigger Time'
+
+            headers_text.pop(11)
+            headers_text.pop(10)
+            headers_text.pop(9)
+            headers_text.pop(7)
+            headers_text.pop(6)
             headers_text.pop(2)
             headers_text.pop(0)
+
             # Write the modified headers to the CSV
             csv_writer.writerow(headers_text)
             # Remove the first row (headers) from processing
@@ -79,10 +86,14 @@ def download_astrosat_data():
 
             row_data[3] = datetime.datetime.strptime(row_data[3], "%Y-%m-%d %H:%M:%S").timestamp()
             row_data[3] = int(row_data[3])
+
+            row_data.pop(11)
+            row_data.pop(10)
+            row_data.pop(9)
+            row_data.pop(7)
+            row_data.pop(6)
             row_data.pop(2)
             row_data.pop(0)
-
-
 
             # Write the row data to the CSV file
             csv_writer.writerow(row_data)
