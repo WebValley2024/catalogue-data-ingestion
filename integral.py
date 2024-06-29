@@ -31,11 +31,13 @@ def extract_table(url, filename, headers=False, first_write=False):
                     cols = row.find_all('th')
                     cols = [ele.text.strip() for ele in cols]
                     cols[0] = "Trigger Time"
+                    del cols[1]
                     f.write('\t'.join(cols) + '\n')
                     continue
                 if row.find('td'):
                     cols = row.find_all('td')
                     cols = [ele.text.strip() for ele in cols]
+                    del cols[1]
                     
                     # Extract and convert datetime to epoch timestamp
                     try:
