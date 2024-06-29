@@ -5,6 +5,7 @@ import requests
 import pandas as pd
 from time_related import mjd_to_epoch
 
+
 def download_fermi_data():
     # Download the data
     url = "https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3query.pl"
@@ -153,7 +154,11 @@ def download_fermi_data():
         # Read the response content as a pandas DataFrame
         df = pd.read_excel(response.content, sheet_name=1)
 
-        df = df.drop(columns=['version', 'trigger_name'])
+        columns_to_delete = ['version', 'trigger_name', 'lii', 'bii', 'error_radius', 'trigger_timescale', 'trigger_algorithm', 
+                            'channel_low', 'channel_high', 'adc_low', 'adc_high', 'detector_mask',
+                            'ra_scx', 'dec_scx', 'ra_scz', 'dec_scz', 'theta', 'phi', 'localization_source']
+
+        df = df.drop(columns=columns_to_delete)
 
         # Convert the time columns from MJD to epoch
         df["time"] = df["time"].apply(mjd_to_epoch)
@@ -161,14 +166,15 @@ def download_fermi_data():
         df["trigger_time"] = df["trigger_time"].apply(mjd_to_epoch)
 
         df = df.rename(columns={"trigger_time": "Trigger Time"})
+        df = df.rename(columns={"time": "Start Time Observation"})
+        df = df.rename(columns={"end_time": "End Time Observation"})
 
         # Divide the data into GRB and TGF
         df_grb = df[df["trigger_type"].str.contains("GRB")]
         df_tgf = df[df["trigger_type"].str.contains("TGF")]
 
-        # Drop the trigger_type column
-        df_grb = df_grb.drop(columns=["trigger_type"])
-        df_tgf = df_tgf.drop(columns=["trigger_type"])
+        df_grb = df_grb.drop(columns=['trigger_type'])
+        df_tgf = df_tgf.drop(columns=['trigger_type'])
 
         # Save the divided data as CSV files
         df_grb.to_csv("fermi_grb.csv", index=False)
