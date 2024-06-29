@@ -134,7 +134,7 @@ def convert_to_sql():
     # TGF
     tgf = pd.read_csv("tgf.csv", quotechar='"')
     tgf.columns = tgf.columns.str.strip('"')  # Strip double quotes from column names
-    tgf.to_sql("tgf", conn, if_exists='replace', index=False)
+    tgf.to_sql("tgf", conn, if_exists='append', index=False)
 
     # GRB
     grb = pd.read_csv("grb.csv", quotechar='"', dtype=str)  # Ensure all data is read as string
@@ -144,17 +144,17 @@ def convert_to_sql():
     for col in grb.columns:
         grb[col] = grb[col].apply(lambda x: x.strip('"') if isinstance(x, str) else x)
 
-    grb.to_sql("grb", conn, if_exists='replace', index=False)
+    grb.to_sql("grb", conn, if_exists='append', index=False)
 
     # SWE
     swe = pd.read_csv("swe.csv", quotechar='"')
     swe.columns = swe.columns.str.strip('"')  # Strip double quotes from column names
-    swe.to_sql("swe", conn, if_exists='replace', index=False)
+    swe.to_sql("swe", conn, if_exists='append', index=False)
 
     # EQ
     eq = pd.read_csv("eq.csv", quotechar='"')
     eq.columns = eq.columns.str.strip('"')  # Strip double quotes from column names
-    eq.to_sql("eq", conn, if_exists='replace', index=False)
+    eq.to_sql("eq", conn, if_exists='append', index=False)
 
 if __name__ == "__main__":
     print("Downloading data...")
