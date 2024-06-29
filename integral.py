@@ -47,6 +47,9 @@ def extract_table(url, filename, headers=False, first_write=False):
                     cols.pop(7)
                     cols.pop(3)
                     cols.pop(1)
+
+                    # Convert "," to "." in the data
+                    cols = [col.replace(',', '.') for col in cols]
                     
                     # Extract and convert datetime to epoch timestamp
                     try:
