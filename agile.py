@@ -86,6 +86,7 @@ def download_agile_data():
                 if is_header:
                     # Modify the header of 4 cell of "Date (UTC)" to "Date (EPOCH)"
                     row[3] = "Trigger Time"
+                    row[-2] = "TGF Name"
                     row = [unicodedata.normalize("NFKD", cell).encode("ascii", "ignore").decode("utf-8") for cell in row]
                     pass
 

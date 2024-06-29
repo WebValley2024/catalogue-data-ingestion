@@ -173,6 +173,9 @@ def download_fermi_data():
         df_grb = df[df["trigger_type"].str.contains("GRB")]
         df_tgf = df[df["trigger_type"].str.contains("TGF")]
 
+        df_grb = df_grb.rename(columns={"name": "GRB Name"})
+        df_tgf = df_tgf.rename(columns={"name": "TGF Name"})
+
         df_grb = df_grb.drop(columns=['trigger_type'])
         df_tgf = df_tgf.drop(columns=['trigger_type'])
 
