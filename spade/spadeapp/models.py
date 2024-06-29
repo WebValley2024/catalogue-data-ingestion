@@ -8,7 +8,7 @@ class SampleModel(models.Model):
         return self.fieldSample
 
 class Earthquake(models.Model):
-    sat_source = models.CharField(verbose_name="Source", max_length=50)
+    sat_source = models.CharField(verbose_name="Satellite", max_length=50)
     trigger_time = models.DateTimeField("trigger_time")
     latitude = models.FloatField("latitude")
     longitude = models.FloatField("longitude")
@@ -27,6 +27,9 @@ class Earthquake(models.Model):
     identifier = models.CharField(verbose_name="Identifier", max_length=20)
     place = models.CharField(verbose_name="Place", max_length=50)
     type = models.CharField(verbose_name="Type", max_length=20)
+    locationSource = models.CharField(verbose_name="Location source", max_length=5, default="us")
+    magSource = models.CharField(verbose_name="Magnitude source", max_length=20, default="us")
+    source = models.CharField(verbose_name="Source", max_length=20, default="earthquake")
 
 class TGF(models.Model):
     sat_source = models.CharField(verbose_name="Source", max_length=50, default="Fermi")
