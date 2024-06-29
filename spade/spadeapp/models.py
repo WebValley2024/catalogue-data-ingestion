@@ -7,6 +7,28 @@ class SampleModel(models.Model):
     def __str__(self):
         return self.fieldSample
 
+class Earthquake(models.Model):
+    trigger_time = models.DateTimeField("trigger_time")
+    latitude = models.FloatField("latitude")
+    longitude = models.FloatField("longitude")
+    horizontal_err = models.FloatField("horizontal_err")
+    depth = models.FloatField("depth")
+    depth_err = models.FloatField("depth_err")
+    magnitude = models.FloatField("magnitude")
+    magnitude_err = models.FloatField("magnitude_err")
+    magType = models.CharField(max_length=4)
+    nst = models.IntegerField("nst")
+    magnst = models.IntegerField("magnst")
+    gap = models.IntegerField("gap")
+    dmin = models.FloatField("dmin")
+    rms = models.FloatField("rms")
+    net = models.CharField(max_length=2)
+    identifier = models.CharField(max_length=20)
+    place = models.CharField(max_length=50)
+    type = models.CharField(max_length=20)
+
+
+
 class TGF(models.Model):
     TGF_name = models.CharField(max_length=30)
     GEO_long = models.FloatField("geo_long")
@@ -27,4 +49,3 @@ class TGF(models.Model):
     end_time_obs = models.DateTimeField("end_time_obs")
     reliability = models.FloatField("reliability")
 
-    
