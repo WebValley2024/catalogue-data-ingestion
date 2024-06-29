@@ -27,6 +27,11 @@ def download_swift_data():
 
         # Remove the 32th column from the header (Comments column)
         headers.pop(32)
+        headers.pop(-1)
+        # Remove the 3rd column (Trigger Time column)
+        headers.pop(2)
+        headers.pop(5)
+
 
         # Remove all other instances of the same header (<thead> tag) and leave only the first one
         for index, thead in enumerate(table.find_all("thead")):
@@ -35,6 +40,7 @@ def download_swift_data():
 
         # Replace the first header with "Trigger Time"
         headers[1] = "Trigger Time"
+        headers[0] = "GRB Name"
 
         # Remove all text inside parentheses
         headers = [header.split("(")[0].strip() for header in headers]
@@ -49,6 +55,9 @@ def download_swift_data():
                 cols = [col if col != "n/a" else "" for col in cols]
                 if cols:  # If the row was not empty
                     cols.pop(32) # Remove the 32th column (Comments column)
+                    cols.pop(-1) # Remove the last column
+                    cols.pop(2)
+                    cols.pop(5)
                     # Convert the date to epoch time
                     cols[1] = str(swift_to_epoch(cols[0], cols[1]))
                     writer.writerow(cols)
