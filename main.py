@@ -109,7 +109,9 @@ def harmonize_step2():
     tgf.to_csv("tgf.csv", index=False)
 
     # GRB
-    grb = pd.concat([pd.read_csv(dataset) for dataset in GRB])
+    grb = pd.concat([pd.read_csv(dataset) for dataset in GRB if dataset != "integral.csv"])
+    integral = pd.read_csv("integral.csv", sep='\t')
+    grb = pd.concat([grb, integral])
     grb.to_csv("grb.csv", index=False)
 
     # SWE
