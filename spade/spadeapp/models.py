@@ -49,3 +49,8 @@ class TGF(models.Model):
     end_time_obs = models.DateTimeField("end_time_obs")
     reliability = models.FloatField("reliability")
 
+class SWE(models.Model):
+    flux = models.CharField(max_length=5)
+    region = models.IntegerField("region")
+    trigger_time = models.DateTimeField("trigger_time")
+    time_start_obs = models.DateTimeField("time_start_obs")
