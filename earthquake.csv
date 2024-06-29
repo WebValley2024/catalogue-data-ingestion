@@ -1,6 +1,6 @@
 Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource,source
 1719645773,-16.1686,-74.3463,52.923,5.3,mww,58.0,137.0,4.408,1.24,us,us6000n94d,2024-06-29T07:48:09.040Z,"41 km S of Atiquipa, Peru",earthquake,5.47,7.128,0.086,13.0,reviewed,us,us,earthquake
-1719644733,-16.1219,-74.5791,19.32,6.1,mww,98.0,89.0,4.625,1.04,us,us6000n948,2024-06-29T09:09:54.792Z,"42 km SSW of Atiquipa, Peru",earthquake,6.04,4.406,0.059,28.0,reviewed,us,us,earthquake
+1719644733,-16.1219,-74.5791,19.32,6.1,mww,98.0,89.0,4.625,1.04,us,us6000n948,2024-06-29T10:08:42.277Z,"42 km SSW of Atiquipa, Peru",earthquake,6.04,4.406,0.059,28.0,reviewed,us,us,earthquake
 1719634908,-24.0128,-70.2167,43.529,5.2,mb,62.0,110.0,1.279,1.02,us,us6000n933,2024-06-29T05:07:40.183Z,"43 km SSE of Antofagasta, Chile",earthquake,6.18,6.129,0.031,354.0,reviewed,us,us,earthquake
 1719595004,10.1108,93.6697,10.0,5.0,mb,68.0,62.0,5.837,0.83,us,us6000n8zg,2024-06-28T17:36:41.040Z,"199 km SSE of Port Blair, India",earthquake,9.25,1.857,0.072,62.0,reviewed,us,us,earthquake
 1719579639,-20.6842,-175.6828,10.0,5.7,mww,56.0,79.0,0.659,0.93,us,us6000n8vk,2024-06-28T13:32:15.040Z,"66 km NW of Houma, Tonga",earthquake,7.45,1.125,0.069,20.0,reviewed,us,us,earthquake

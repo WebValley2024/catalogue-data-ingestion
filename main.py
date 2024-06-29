@@ -42,6 +42,9 @@ SWE = ["spaceweatherevents.csv"]
 # Earthquakes
 EQ = ["earthquake.csv"]
 
+# Final data
+FINAL = ["eq.csv", "grb.csv", "swe.csv", "tgf.csv"]
+
 def thread_download_astrosat_data():
     download_astrosat_data()
     print("<astrosat> Download completed.")
@@ -122,39 +125,101 @@ def harmonize_step2():
     eq = pd.concat([pd.read_csv(dataset) for dataset in EQ])
     eq.to_csv("eq.csv", index=False)
 
-def convert_to_sql():
-    # Convert the harmonized data to MySQL
-    USER = os.getenv('MYSQL_USER')
-    PASSWORD = os.getenv('MYSQL_PASSWORD')
-    HOST = os.getenv('MYSQL_HOST')
-    DATABASE = os.getenv('MYSQL_DATABASE')
-    engine = create_engine('mysql://' + USER + ':' + PASSWORD + '@' + HOST + '/' + DATABASE)
-    conn = engine.connect()
+def harmonize_step3():
+    # Convert all csv columns to lowercase and remove spaces (replace with underscores)
+    # Also use a dictionary to rename columns to a common name
+    # TODO: FIX NAMES
+    NAMES = {
+        # Earthquake
+        'Trigger Time': 'trigger_time',
+        'horizontalError': 'horizontal_err',
+        'depthError': 'depth_err',
+        'magError': 'magnitude_err',
+        # GRB
+        'GRB Name': 'name',
+        'Trigger Time': 'trigger_time',
+        'RA (deg)': 'RA',
+        'ra': 'RA',
+        'dec': 'DEC',
+        'DEC (deg)': 'DEC',
+        'T90 (s)': 'T90',
+        'Start Time Observation': 'start_time_obs',
+        'End Time Observation': 'end_time_obs',
+        'BAT RA': 'BAT_RA',
+        'BAT Dec': 'BAT_DEC',
+        'BAT 90%\Error Radius[arcmin]': 'BAT_90_err',
+        'BAT Fluence': 'BAT_fluence',
+        'BAT Fluence90%\ Error': 'BAT_fluence_90_err',
+        'BAT 1-sec PeakPhoton Flux': 'BAT_1sec_peak_photon_flux',
+        'BAT 1-sec PeakPhoton Flux90%\ Error': 'BAT_1sec_peak_photon_flux_90_err',
+        'BAT Photon Index': 'BAT_photon_index',
+        'BAT Photon Index90%\ Error': 'BAT_photon_index_90_err',
+        'XRT RA': 'xrtRA',
+        'XRT Dec': 'xrtDEC',
+        'XRT 90%\Error Radius[arcmin]': 'xrt_90_err',
+        'XRT Time to FirstObservation[sec]': 'xrt_time_to_first_obs',
+        'XRT Early Flux': 'xrt_early_flux',
+        'XRT 11 Hour Flux': 'xrt_11hour_flux',
+        'XRT 24 Hour Flux': 'xrt_24hour_flux',
+        'XRT InitialTemporalIndex': 'xrt_initial_temp_index',
+        'XRTSpectral Index': 'xrt_spectral_index',
+        'XRT Column Density': 'xrt_column_density',
+        'UVOT RA': 'uvotRA',
+        'UVOT Dec': 'uvotDEC',
+        'UVOT 90%\Error Radius[arcmin]': 'uvot_90_err',
+        'UVOT Time toFirst Observation[sec]': 'uvot_time_to_first_obs',
+        'UVOT Magnitude': 'uvot_magnitude',
+        'UVOT Other FilterMagnitudes': 'uvot_other_filter_magnitudes',
+        'Other Observatory Detections': 'other_obs_detects',
+        'Redshift': 'redshift',
+        'Host Galaxy': 'host_galaxy',
+        'References': 'references',
+        'Type': 'type',
+        'Sigma': 'sigma',
+        'Duration [s]': 'duration',
+        'Max Count, source': 'max_count',
+    }
 
-    # TGF
-    tgf = pd.read_csv("tgf.csv", quotechar='"')
-    tgf.columns = tgf.columns.str.strip('"')  # Strip double quotes from column names
-    tgf.to_sql("TGF", conn, if_exists='append', index=False)
+    for dataset in FINAL:
+        print("Correcting", dataset)
+        df = pd.read_csv(dataset)
+        df.columns = df.columns.str.lower().str.replace(' ', '_')
+        df.rename(columns=NAMES, inplace=True, errors='ignore')
+        df.to_csv(dataset, index=False)
 
-    # GRB
-    grb = pd.read_csv("grb.csv", quotechar='"', dtype=str)  # Ensure all data is read as string
-    grb.columns = grb.columns.str.strip('"')  # Strip double quotes from column names
+# def convert_to_sql():
+#     # Convert the harmonized data to MySQL
+#     USER = os.getenv('MYSQL_USER')
+#     PASSWORD = os.getenv('MYSQL_PASSWORD')
+#     HOST = os.getenv('MYSQL_HOST')
+#     DATABASE = os.getenv('MYSQL_DATABASE')
+#     engine = create_engine('mysql://' + USER + ':' + PASSWORD + '@' + HOST + '/' + DATABASE)
+#     conn = engine.connect()
 
-    # Strip double quotes from data values
-    for col in grb.columns:
-        grb[col] = grb[col].apply(lambda x: x.strip('"') if isinstance(x, str) else x)
+#     # TGF
+#     tgf = pd.read_csv("tgf.csv", quotechar='"')
+#     tgf.columns = tgf.columns.str.strip('"')  # Strip double quotes from column names
+#     tgf.to_sql("spadeapp_tgf", conn, if_exists='append', index=False)
 
-    grb.to_sql("GRB", conn, if_exists='append', index=False)
+#     # GRB
+#     grb = pd.read_csv("grb.csv", quotechar='"', dtype=str)  # Ensure all data is read as string
+#     grb.columns = grb.columns.str.strip('"')  # Strip double quotes from column names
 
-    # SWE
-    swe = pd.read_csv("swe.csv", quotechar='"')
-    swe.columns = swe.columns.str.strip('"')  # Strip double quotes from column names
-    swe.to_sql("SWE", conn, if_exists='append', index=False)
+#     # Strip double quotes from data values
+#     for col in grb.columns:
+#         grb[col] = grb[col].apply(lambda x: x.strip('"') if isinstance(x, str) else x)
 
-    # EQ
-    eq = pd.read_csv("eq.csv", quotechar='"')
-    eq.columns = eq.columns.str.strip('"')  # Strip double quotes from column names
-    eq.to_sql("Earthquake", conn, if_exists='append', index=False)
+#     grb.to_sql("spadeapp_grb", conn, if_exists='append', index=False)
+
+#     # SWE
+#     swe = pd.read_csv("swe.csv", quotechar='"')
+#     swe.columns = swe.columns.str.strip('"')  # Strip double quotes from column names
+#     swe.to_sql("spadeapp_swe", conn, if_exists='append', index=False)
+
+#     # EQ
+#     eq = pd.read_csv("eq.csv", quotechar='"')
+#     eq.columns = eq.columns.str.strip('"')  # Strip double quotes from column names
+#     eq.to_sql("spadeapp_earthquake", conn, if_exists='append', index=False)
 
 if __name__ == "__main__":
     print("Downloading data...")
@@ -184,14 +249,14 @@ if __name__ == "__main__":
         progress.advance(download_task)
 
     print("All data downloaded successfully")
-    print("Harmonizing data (step 1/2)...")
+    print("Harmonizing data (step 1/3)...")
     harmonize_step1()
     # print("[bold red]Not implemented yet[/bold red]")
-    print("Harmonizing data (step 2/2)...")
+    print("Harmonizing data (step 2/3)...")
     harmonize_step2()
     # print("[bold red]Not implemented yet[/bold red]")
-    print("Data harmonized successfully")
-    print("Converting data to SQL...")
-    convert_to_sql()
+    print("Harmonizing data (step 3/3)...")
+    harmonize_step3()
     # print("[bold red]Not implemented yet[/bold red]")
+    print("Data harmonized successfully")
     print("Data converted successfully")
