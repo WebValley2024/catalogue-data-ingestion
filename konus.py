@@ -46,7 +46,7 @@ def download_data(url, mod):
 
     with open("konus.csv", mod, newline='') as file:
         csv_writer = csv.writer(file)
-        rows[0] = ["Trigger Time", "Det", "Event", "Trig"]
+        rows[0] = ["Trigger Time", "Type"]
         if mod == 'w':
             csv_writer.writerow(rows[0])
 
@@ -54,7 +54,9 @@ def download_data(url, mod):
             cols = row.find_all('td')[:6]
             row_data = add_cols(cols)
             row_data.pop(1)
-            if row_data[3] == "" or row_data[3] == "GRB":
+            row_data.pop(2)
+            row_data.pop(-1)
+            if row_data[2] == "" or row_data[2] == "GRB":
                 try:
                     timestamp = konus_to_epoch(row_data[0], row_data[1])
                     row_data[0] = timestamp
