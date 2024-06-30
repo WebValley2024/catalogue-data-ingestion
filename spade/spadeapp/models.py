@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class SampleModel(models.Model):
@@ -7,10 +8,10 @@ class SampleModel(models.Model):
 
     def __str__(self):
         return self.fieldSample
-
+    
 class Earthquake(models.Model):
     sat_source = models.CharField(verbose_name="Satellite", max_length=50)
-    trigger_time = models.DateTimeField("trigger_time")
+    trigger_time = models.CharField(verbose_name="trigger_time", max_length=50)
     latitude = models.FloatField("latitude")
     longitude = models.FloatField("longitude")
     horizontal_err = models.FloatField("horizontal_err")
@@ -49,22 +50,42 @@ class TGF(models.Model):
     event_type = models.IntegerField("Event type")
     RA = models.FloatField("RA")
     DEC = models.FloatField("DEC")
-    start_time_obs = models.DateTimeField("Start time observations")
-    end_time_obs = models.DateTimeField("End time observations")
+    start_time_obs = models.CharField(verbose_name="Start time observations", max_length=50)
+    end_time_obs = models.CharField(verbose_name="End time observations", max_length=50)
     reliability = models.FloatField("Reliability")
 
 class SWE(models.Model):
     sat_source = models.CharField(verbose_name="Source", max_length=50)
     flux = models.CharField(verbose_name="Flux", max_length=5)
-    region = models.IntegerField("Region")
-    trigger_time = models.DateTimeField("Trigger time")
-    time_start_obs = models.DateTimeField("Time start observations")
+    region = models.CharField(verbose_name="Region", max_length=20)
+    trigger_time = models.CharField(verbose_name="Trigger time", max_length=50)
+    time_start_obs = models.CharField(verbose_name="Time start observations", max_length=50)
+    time_end_obs = models.CharField(verbose_name="Time end observations", max_length=50)
     
+    def add_data():
+        objs = []
+        f = open("swe.csv", "r")
+                    
+        attributes = ["index", "flux", "region", "time_start_obs", "trigger_time", "time_end_obs"]
+        next(f)
+        for line in f:
+            params = line.split(",")
+        
+            print("params:", params)
+            swe = SWE()
+            for att in attributes[1:]:
+                print("att:", att)
+                setattr(swe, att, params[attributes.index(att)])        
+            objs.append(swe)
+                
+        return objs
+            
+
 
 class GRB(models.Model):
     sat_source = models.CharField(verbose_name="Source", max_length=50)
     name = models.CharField(verbose_name="Name", max_length=50)
-    trigger_time = models.DateTimeField("Trigger time")
+    trigger_time = models.DateTimeField(verbose_name="Trigger time", max_length=50)
     BAT_RA = models.FloatField("RA")
     BAT_DEC = models.FloatField("DEC")
     BAT_90_err = models.FloatField("Bat 90%/ error radius")
@@ -87,7 +108,7 @@ class GRB(models.Model):
     xrtRA = models.FloatField("xrtRA")
     xrtDEC = models.FloatField("xrtDEC")
     xrt_90_err = models.FloatField("xrt 90 radius error")
-    xrt_time_to_first_obs = models.TimeField("xrt time to first observation")
+    xrt_time_to_first_obs = models.CharField(verbose_name="xrt time to first observation", max_length=50)
     xrt_early_flux = models.FloatField("xrt early flux")
     xrt_11h_flux_error = models.FloatField("xrt 11 hours flux error")
     xrt_24h_flux_error = models.FloatField("xrt 24 hours flux error")
