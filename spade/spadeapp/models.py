@@ -64,6 +64,9 @@ class Earthquake(models.Model):
             "magSource",
             "sat_source"            
         ]
+    
+    def __str__(self):
+        return str(self.pk)    
 
     def add_data():
         objs = []
@@ -86,25 +89,26 @@ class Earthquake(models.Model):
         
 
 class TGF(models.Model):
-    GEO_long = models.FloatField("Geo longitude")
-    GEO_lat = models.FloatField("Geo latitude")
-    orbit = models.IntegerField("Orbit")
-    trigger_time = models.DateTimeField("Trigger time", default=timezone.now())
-    T50 = models.TimeField("T50")
-    T50_err = models.TimeField("T50 error")
-    T50_err_applied = models.TimeField("T50 error applied")
-    sat_altitude = models.FloatField("Satellite altitude")
-    ML_counts = models.FloatField("ML counts")
-    ML_counts_err = models.FloatField("ML counts error")
-    ML_counts_err_applied = models.FloatField("ML counts error applied")
+    GEO_long = models.CharField(verbose_name="Geo longitude", max_length=50)
+    GEO_lat = models.CharField(verbose_name="Geo latitude", max_length=50)
+    orbit = models.CharField(verbose_name="Orbit", max_length=50)
+    trigger_time = models.DateTimeField(verbose_name="Trigger time", default=timezone.now())
+    T50 = models.CharField(verbose_name="T50", max_length=50)
+    T50_err = models.CharField(verbose_name="T50 error", max_length=50)
+    T50_err_applied = models.CharField(verbose_name="T50 error applied", max_length=50)
+    sat_altitude = models.CharField(verbose_name="Satellite altitude", max_length=50)
+    ML_counts = models.CharField(verbose_name="ML counts", max_length=50)
+    ML_counts_err = models.CharField(verbose_name="ML counts error", max_length=50)
+    ML_counts_err_applied = models.CharField(verbose_name="ML counts error applied", max_length=50)
     TGF_name = models.CharField(verbose_name="TGF name", max_length=30)
-    event_type = models.IntegerField("Event type")
+    event_type = models.CharField(verbose_name="Event type", max_length=50)
+    normalised_duration = models.CharField(verbose_name="Normalised duration", max_length=50, default="1")
     sat_source = models.CharField(verbose_name="Source", max_length=50, default="Fermi")
-    RA = models.FloatField("RA")
-    DEC = models.FloatField("DEC")
-    start_time_obs = models.DateTimeField(verbose_name="Start time observations", default=timezone.now())
-    end_time_obs = models.DateTimeField(verbose_name="End time observations", default=timezone.now())
-    reliability = models.FloatField("Reliability")
+    RA = models.CharField(verbose_name="RA", max_length=50)
+    DEC = models.CharField(verbose_name="DEC", max_length=50)
+    start_time_obs = models.CharField(verbose_name="Start time observations", max_length=50)
+    end_time_obs = models.CharField(verbose_name="End time observations", max_length=50)
+    reliability = models.CharField(verbose_name="Reliability", max_length=50)
     
     attributes = [
         "GEO_long", 
@@ -120,6 +124,7 @@ class TGF(models.Model):
         "ML_counts_err_applied",
         "TGF_name",
         "event_type",
+        "normalised_duration",
         "sat_source",
         "RA",
         "DEC",
@@ -128,6 +133,9 @@ class TGF(models.Model):
         "reliability"
     ]
 
+    def __str__(self):
+        return str(self.pk)
+    
     def add_data():
         objs = []
         fileToOpen = data_folder / "tgf.csv"
@@ -140,10 +148,13 @@ class TGF(models.Model):
                     
             tgf = TGF()
             for att in TGF.attributes:
+                if (att == "reliability" and params[TGF.attributes.index(att)] == '\n'):
+                    setattr(tgf, att, "-")
                 setattr(tgf, att, params[TGF.attributes.index(att)])        
             objs.append(tgf)
 
         if objs:
+            TGF.objects.all().delete()
             TGF.objects.bulk_create(objs)    
     
 
@@ -157,6 +168,9 @@ class SWE(models.Model):
     
     attributes = ["flux", "region", "time_start_obs", "trigger_time", "time_end_obs", "sat_source"]
         
+    def __str__(self):
+        return str(self.pk)
+    
     def add_data():
         objs = []
         fileToOpen = data_folder / "swe.csv"    
@@ -224,6 +238,9 @@ class GRB(models.Model):
     host_galaxy = models.CharField(verbose_name="Host galaxy", max_length=100)
     references = models.CharField(verbose_name="References", max_length=100)
 
+    def __str__(self):
+        return str(self.pk)
+    
     def add_data():
         objs = []
         fileToOpen = data_folder / "grb.csv"    

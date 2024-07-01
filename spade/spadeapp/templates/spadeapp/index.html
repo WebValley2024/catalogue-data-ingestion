@@ -1,14 +1,180 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        
-    </head>
+        {% load static %}
+        <title>SpaDe</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- <link rel="manifest" href="{% static 'manifest.json' %}" /> -->
+        <script src="{% static 'dark_mode_toggler.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/kt-2.12.1/r-3.0.2/rg-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/kt-2.12.1/r-3.0.2/rg-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.js"></script>
+        <link rel="stylesheet" href="{% static 'index.css' %}">
+        <script src="{% static 'index.js' %}"></script>
+
+        <noscript>
+            <style>
+                h1 {
+                    text-align: center;
+                }
+                p {
+                    text-align: center;
+                }
+                .container {
+                    display: none;
+                }
+                .dropdown {
+                    display: none;
+                }
+                .modal {
+                    display: none;
+                }
+                .navbar {
+                    display: none;
+                }
+            </style>
+            <h1>JavaScript is disabled</h1>
+            <p>JavaScript is required for this page to work properly. Please enable it and refresh the page.</p>
+        </noscript>
+    </head>
     <body>
-        {% if latest_fields %}
-            <p>Latest added field is {{latest_field}}</p> 
-        {% else %}
-            <p>No fields have been added.</p>
-        {% endif %}
-        <a href="https://www.google.com/webhp?authuser=1" target="_blank">Link sample</a>
+        <div class="fixed-top" id="supBar">
+            <nav class="navbar navbar-expand-md">
+                <div class="container-fluid d-flex">
+                    <!-- Left spacer with flex-basis equal to the right container for balance -->
+                    <div style="flex: 1;"></div>
+                    
+                    <!-- Logo centered with flex-grow to ensure it takes available space -->
+                    <a class="navbar-brand d-flex justify-content-center" href="#" id="logo" style="flex-grow: 1;">
+                        <h2><b>Sp<i id="logo_letter" class="bi bi-suit-spade-fill"></i>De</b></h2>
+                    </a>
+                    
+                    <!-- Right container for buttons with flex-basis for specific width -->
+                    <div style="flex: 1; display: flex; justify-content: flex-end;">
+                        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+                            <i class="bi bi-filter-square-fill"></i>
+                        </button>
+                        <button class="btn" id="openSettings">
+                            <i class="bi bi-gear-fill"></i>
+                        </button>
+                        <button class="btn" id="openCatalogue">
+                            <i class="bi bi-info-square-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <div id="alert-container" class="fixed-top" tabindex="-1" style="display: none;"></div>
+        </div>
+        <div class="dropdown theme-dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                <i id="currentThemeIcon" class="bi"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+                <li><a class="dropdown-item" href="#" id="auto_theme"><i
+                        class="bi bi-circle-half"></i> Automatic</a></li>
+                <li><a class="dropdown-item" href="#" id="light_theme"><i
+                        class="bi bi-sun-fill"></i> Light</a></li>
+                <li><a class="dropdown-item" href="#" id="dark_theme"><i
+                        class="bi bi-moon-stars-fill"></i> Dark</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="card" id="dateSelectorBox" style="width: auto;">
+                <div class="card-body">
+                    <h5 class="card-title">Time period<div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dateRangeDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Quick range
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dateRangeDropdown">
+                            <li><a class="dropdown-item" href="#" id="quickRange7g">7 days</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange14g">14 days</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange1m">1 month</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange3m">3 months</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange6m">6 months</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange1y">1 year</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange2y">2 years</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange3y">3 years</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange4y">4 years</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange5y">5 years</a></li>
+                            <li><a class="dropdown-item" href="#" id="quickRange10y">10 years</a></li>
+                        </ul>
+                    </div></h5>
+                    <div class="card-text">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <label for="startDate">Start</label>
+                                <input id="startDate" class="form-control" type="date" />
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End</label>
+                                <input id="endDate" class="form-control" type="date" />
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-2" id="applyDateRange">Apply</button>
+                </div>
+                <!-- Add offcanvas to select filters -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="filterOffcanvas" aria-labelledby="filterOffcanvasLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="filterOffcanvasLabel">Filters</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <ul class="nav nav-tabs nav-fill mt-3">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="earthquake" data-bs-toggle="tab" data-bs-target="#earthquakeTable" type="button" role="tab" href="#">Earthquake</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="grb" data-bs-toggle="tab" data-bs-target="#grbTable" type="button" role="tab" href="#">GRB</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="tgf" data-bs-toggle="tab" data-bs-target="#tgfTable" type="button" role="tab" href="#">TGF</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="swe" data-bs-toggle="tab" data-bs-target="#sweTable" type="button" role="tab" href="#">SpaceWeatherEvents</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="tables">
+                <div class="tab-pane fade show active" id="earthquakeTable" role="tabpanel">
+                    <div class="coolDIV" style="overflow-y: auto;">
+                        <table class="table table-striped table-hover table-bordered">
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="grbTable" role="tabpanel">
+                    <div class="coolDIV" style="overflow-y: auto;">
+                        <table class="table table-striped table-hover table-bordered">
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tgfTable" role="tabpanel">
+                    <div class="coolDIV" style="overflow-y: auto;">
+                        <table class="table table-striped table-hover table-bordered">
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="sweTable" role="tabpanel">
+                    <div class="coolDIV" style="overflow-y: auto;">
+                        <table class="table table-striped table-hover table-bordered">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

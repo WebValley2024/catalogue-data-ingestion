@@ -44,8 +44,8 @@ def add_data(request):
 
 def add_all_data(request):
     #SWE.add_data()
-    Earthquake.add_data()
-    #TGF.add_data()
+    #Earthquake.add_data()
+    TGF.add_data()
     #GRB.add_data()
 
     return HttpResponse("All data added")
