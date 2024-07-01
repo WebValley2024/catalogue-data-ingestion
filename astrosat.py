@@ -87,6 +87,9 @@ def download_astrosat_data():
             headers_text.pop(2)
             headers_text.pop(0)
 
+            headers_text[2] = "ra"
+            headers_text[3] = "dec"
+
             headers_text.append("Normalised Duration")
 
             # Write modified headers to the CSV file
