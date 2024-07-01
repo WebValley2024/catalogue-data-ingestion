@@ -5,9 +5,10 @@ import cloudscraper
 import time
 import csv
 
+
 def add_cols(cols):
-    l = []
-    
+    list = []
+
     # Loop through the HTML elements
     for ele in cols:
         # Extract the content from the HTML element
@@ -19,12 +20,12 @@ def add_cols(cols):
         elif (ele.find('p')):
             paragraphs = ele.find_all('p')
             for p in paragraphs:
-                content += p.find('strong').text 
+                content += p.find('strong').text
         else:
             content = ele.text.strip()
         # Append the content to the list
-        l.append(content)
-    return l
+        list.append(content)
+    return list
 
 
 def download_data(url, mod):
@@ -80,14 +81,18 @@ def download_data(url, mod):
 
 
 def download_konus_data():
+    """
+    Downloads data from Konus and saves it as a CSV file.
+    """
     url = "https://gcn.gsfc.nasa.gov/konus_grbs.html"
-    # print("Today --> 2020")
+
     download_data(url, 'w')
 
     for year in range(2019, 1993, -1):
         url = f"https://gcn.gsfc.nasa.gov/konus_{year}grbs.html"
         # print(year)
         download_data(url, 'a')
+
 
 if __name__ == "__main__":
     download_konus_data()

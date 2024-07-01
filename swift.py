@@ -1,13 +1,12 @@
-# Script to download data from NASA's SWIFT satellite
-# URL: https://swift.gsfc.nasa.gov/archive/grb_table/fullview/
-# Extract the table data and save it as a CSV file
-
 import requests
 from bs4 import BeautifulSoup
 from time_related import swift_to_epoch
 
+
 def download_swift_data():
-    # Set the base URL
+    """
+    Downloads data from Swift and saves it as a CSV file.
+    """
     url = "https://swift.gsfc.nasa.gov"
 
     # Get the page content
@@ -16,21 +15,17 @@ def download_swift_data():
     # Check if the request was successful
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, "html.parser")
-        
+
         # Assuming the table is the first or only table in the page
         table = soup.find("table")
         rows = table.find_all("tr")
-        
+
         # Extracting header
         headers = [header.text for header in rows[0].find_all("th")]
 
         # Remove the 32th column from the header (Comments column)
-        headers.pop(32)
-        headers.pop(-1)
-        # Remove the 3rd column (Trigger Time column)
-        headers.pop(2)
-        headers.append("Normalised Duration")
 
+        headers.append("Normalised Duration")
 
         # Remove all other instances of the same header (<thead> tag) and leave only the first one
         for index, thead in enumerate(table.find_all("thead")):
@@ -46,7 +41,7 @@ def download_swift_data():
 
         # Remove all text inside parentheses
         headers = [header.split("(")[0].strip() for header in headers]
-        
+
         # Write the CSV data to a file
         with open("swift.csv", "w", encoding="utf-8", newline='') as file:
             # write header without csv library
@@ -55,17 +50,15 @@ def download_swift_data():
                 cols = [ele.text.strip().replace(";", ",") for ele in row.find_all(["td", "th"])]
                 cols = [col if col != "n/a" else "" for col in cols]
                 if cols:  # If the row was not empty
-                    cols.pop(32) # Remove the 32th column (Comments column)
-                    cols.pop(-1) # Remove the last column
-                    cols.pop(2)
+
                     cols.append(cols[5])
                     # Convert the date to epoch time
                     cols[1] = str(swift_to_epoch(cols[0], cols[1]))
                     file.write(";".join(cols) + "\n")
-                    
     else:
         print("Failed to download data")
         return
-    
+
+
 if __name__ == "__main__":
     download_swift_data()

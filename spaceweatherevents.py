@@ -1,7 +1,3 @@
-# Script to download an HTML file from a website and extract data from it using BeautifulSoup
-# URL: https://www.spaceweatherlive.com/en/solar-activity/top-50-solar-flares/year/2024.html
-
-# pip install cloudscraper
 import cloudscraper
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -9,11 +5,14 @@ import csv
 from datetime import datetime
 from time_related import datetime_to_epoch
 
+
 def download_space_weather_data():
-    # Set the base URL
+    """
+    Downloads data from Space Weather Events and saves it as a CSV file.
+    """
     base_url = "https://www.spaceweatherlive.com"
 
-    # Set the URL of the website    
+    # Set the URL of the website
     url = base_url + "/en/solar-activity/top-50-solar-flares/year/"
 
     # File name
@@ -58,7 +57,6 @@ def download_space_weather_data():
                     headers[5] = "End"
                     headers[6] = "Links"
 
-                    
                     csv_writer.writerow(headers)
                 rows = rows[1:]
                 # Loop through the remaining rows
@@ -71,11 +69,9 @@ def download_space_weather_data():
                     date = row_data[2]
                     row_data.pop(2)
 
-
                     row_data[3] = datetime_to_epoch(date, row_data[3])
                     row_data[4] = datetime_to_epoch(date, row_data[4])
                     row_data[5] = datetime_to_epoch(date, row_data[5])
-
 
                     # For the last column, check if there is an <a> tag to extract the link
                     last_col = cols[-1].find('a')
@@ -89,6 +85,7 @@ def download_space_weather_data():
                     csv_writer.writerow(row_data)
         else:
             print("Failed to download data for year", year)
+
 
 if __name__ == "__main__":
     download_space_weather_data()
