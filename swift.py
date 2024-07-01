@@ -24,7 +24,6 @@ def download_swift_data():
         headers = [header.text for header in rows[0].find_all("th")]
 
         # Remove the 32th column from the header (Comments column)
-
         headers.append("Normalised Duration")
 
         # Remove all other instances of the same header (<thead> tag) and leave only the first one
@@ -33,11 +32,16 @@ def download_swift_data():
                 thead.decompose()
 
         # Replace the first header with "Trigger Time"
-        headers[1] = "Trigger Time"
         headers[0] = "GRB Name"
-        headers[2] = "Ra"
-        headers[3] = "Dec"
-        headers[5] = "BAT T90"
+        headers[1] = "Trigger Time"
+        headers[3] = "BAT Ra"
+        headers[4] = "BAT Dec"
+        headers[6] = "BAT T90"
+
+
+        headers = [headers[0], headers[1], headers[3], headers[4], headers[6], headers[7], headers[21]]
+
+        headers.append("Normalised Duration")
 
         # Remove all text inside parentheses
         headers = [header.split("(")[0].strip() for header in headers]
@@ -49,10 +53,18 @@ def download_swift_data():
             for row in rows[1:]:  # Skip header row
                 cols = [ele.text.strip().replace(";", ",") for ele in row.find_all(["td", "th"])]
                 cols = [col if col != "n/a" else "" for col in cols]
-                if cols:  # If the row was not empty
 
-                    cols.append(cols[5])
+                if cols:  # If the row was not empty
                     # Convert the date to epoch time
+
+                    cols = [cols[0], cols[1], cols[3], cols[4], cols[6], cols[7], cols[8], cols[21]]
+
+                    if cols[5] != "" and cols[6] != "":
+                        cols[5] = f"{cols[5]}±{cols[6]}"
+
+                    cols.pop(6)
+
+                    cols.append(cols[4])
                     cols[1] = str(swift_to_epoch(cols[0], cols[1]))
                     file.write(";".join(cols) + "\n")
     else:
