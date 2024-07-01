@@ -170,6 +170,10 @@ def download_fermi_data():
         df = df.rename(columns={"trigger_time": "Trigger Time"})
         df = df.rename(columns={"time": "Start Time Observation"})
         df = df.rename(columns={"end_time": "End Time Observation"})
+        df = df.rename(columns={"ra": "Ra"})
+        df = df.rename(columns={"dec": "Dec"})
+        df = df.rename(columns={"geo_long": "GeoLon"})
+        df = df.rename(columns={"geo_lat": "GeoLat"})
 
         df["Normalised Duration"] = df["End Time Observation"] - df["Start Time Observation"]
 

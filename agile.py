@@ -89,6 +89,9 @@ def download_agile_data():
                     # Rename headers
                     row[3] = "Trigger Time"
                     row[-2] = "TGF Name"
+                    row[0] = "GeoLon"
+                    row[1] = "GeoLat"
+                    row[4] = "T50(ms)"
                     row.append("Normalised Duration")
                     # Normalize and remove non-ASCII characters
                     row = [
@@ -99,7 +102,9 @@ def download_agile_data():
                 else:
                     # Convert date from UTC to EPOCH
                     row[3] = '"' + str(int(datetime.strptime(row[3].strip('"'), "%Y-%m-%dT%H:%M:%S").timestamp())) + '"'
-                    row.append(float(row[4].replace('"', '')) * 2)
+                    duration = "{:.6f}".format(float(row[4].replace('"', '')) * 2 / 1000)
+                    duration = duration.rstrip('0').rstrip('.')
+                    row.append(duration)
                     row[-1] = str(row[-1])
 
                 # Write row to CSV file

@@ -87,8 +87,9 @@ def download_astrosat_data():
             headers_text.pop(2)
             headers_text.pop(0)
 
-            headers_text[2] = "ra"
-            headers_text[3] = "dec"
+            headers_text[2] = "Ra"
+            headers_text[3] = "Dec"
+            headers_text[4] = "T90(sec)"
 
             headers_text.append("Normalised Duration")
 

@@ -40,6 +40,9 @@ def download_swift_data():
         # Replace the first header with "Trigger Time"
         headers[1] = "Trigger Time"
         headers[0] = "GRB Name"
+        headers[2] = "Ra"
+        headers[3] = "Dec"
+        headers[5] = "BAT T90"
 
         # Remove all text inside parentheses
         headers = [header.split("(")[0].strip() for header in headers]
