@@ -248,6 +248,7 @@ def convert_columns_to_datetime(filename, columns):
                     utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
                     data[c] = utc_dt
             new_line = ",".join(data)
+            new_line = new_line.replace("--", "")
             new_lines.append(new_line + "\n")
 
     with open(filename, 'w') as file:
