@@ -1,13 +1,12 @@
-# Script to download and convert from XLS to CSV the data from the following URL with specific parameters
-# https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3query.pl
-
 import requests
 import pandas as pd
 from time_related import mjd_to_epoch
 
 
 def download_fermi_data():
-    # Download the data
+    """
+    Downloads data from Fermi and saves it as a CSV file.
+    """
     url = "https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3query.pl"
 
     # Set the request headers (you can copy these from the browser's developer tools)
@@ -154,9 +153,12 @@ def download_fermi_data():
         # Read the response content as a pandas DataFrame
         df = pd.read_excel(response.content, sheet_name=1)
 
-        columns_to_delete = ['version', 'trigger_name', 'lii', 'bii', 'error_radius', 'trigger_timescale', 'trigger_algorithm', 
-                            'channel_low', 'channel_high', 'adc_low', 'adc_high', 'detector_mask',
-                            'ra_scx', 'dec_scx', 'ra_scz', 'dec_scz', 'theta', 'phi', 'localization_source']
+        columns_to_delete = ['version', 'trigger_name', 'lii', 'bii',
+                             'error_radius', 'trigger_timescale',
+                             'trigger_algorithm', 'channel_low',
+                             'channel_high', 'adc_low', 'adc_high',
+                             'detector_mask', 'ra_scx', 'dec_scx', 'ra_scz',
+                             'dec_scz', 'theta', 'phi', 'localization_source']
 
         df = df.drop(columns=columns_to_delete)
 
@@ -182,6 +184,7 @@ def download_fermi_data():
         # Save the divided data as CSV files
         df_grb.to_csv("fermi_grb.csv", index=False)
         df_tgf.to_csv("fermi_tgf.csv", index=False)
+
 
 if __name__ == "__main__":
     download_fermi_data()
