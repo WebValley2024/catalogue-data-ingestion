@@ -1,0 +1,35 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>        
+
+        <table border = 1>
+            <thead>
+                <tr>
+                    {% for att in attributes %}
+                        <th>{{att}}</th>
+                    {% endfor %}
+                </tr>                
+            </thead>
+            <tbody>
+                
+                {%for x in models%}
+                
+                <tr>          
+                    
+                    <td>{{x.flux}}</td> 
+                    <td>{{x.region}}</td> 
+                    <td>{{x.time_start_obs}}</td> 
+                    <td>{{x.trigger_time}}</td> 
+                    <td>{{x.time_end_obs}}</td>
+                    <td>{{x.sat_source}}</td> 
+                    
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </body>
+</html>

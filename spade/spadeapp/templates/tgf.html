@@ -1,0 +1,48 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>        
+
+        <table border = 1>
+            <thead>
+                <tr>
+                    {% for att in attributes %}
+                        <th>{{att}}</th>
+                    {% endfor %}
+                </tr>                
+            </thead>
+            <tbody>
+                
+                {%for x in models%}
+                
+                <tr>          
+                    
+                    <td>{{GEO_long}}</td> 
+                    <td>{{GEO_lat}}</td> 
+                    <td>{{orbit}}</td> 
+                    <td>{{trigger_time}}</td> 
+                    <td>{{T50}}</td> 
+                    <td>{{T50_err}}</td> 
+                    <td>{{T50_err_applied}}</td>
+                    <td>{{sat_altitude}}</td>
+                    <td>{{ML_counts}}</td>
+                    <td>{{ML_counts_err}}</td>
+                    <td>{{ML_counts_err_applied}}</td>
+                    <td>{{TGF_name}}</td>
+                    <td>{{event_type}}</td>
+                    <td>{{sat_source}}</td>
+                    <td>{{RA}}</td>
+                    <td>{{DEC}}</td>
+                    <td>{{start_time_obs}}</td>
+                    <td>{{end_time_obs}}</td>
+                    <td>{{reliability}}</td> 
+                    
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </body>
+</html>

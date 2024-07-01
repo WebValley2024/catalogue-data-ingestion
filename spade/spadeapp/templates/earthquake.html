@@ -4,47 +4,47 @@
     </head>
 
     <body>        
-        <table display = none>
-            <tr>
-                {% for att in attributes %}
-                    <th>{{att}}</th>
-                {% endfor %}
-            </tr>            
-        </table>
 
         <table border = 1>
-            <tr>
-                {% for att in attributes %}
-                    <th>{{att}}</th>
-                {% endfor %}
-            </tr>
-            {%for x in models%}
-            <tr>                
-                <td>{{ x.sat_source }}</td>
-                <td>{{ x.trigger_time }}</td>
-                <td>{{ x.latitude }}</td>
-                <td>{{ x.longitude }}</td>
-                <td>{{ x.horizontal_err }}</td>
-                <td>{{ x.depth }}</td>
-                <td>{{ x.depth_err }}</td>
-                <td>{{ x.magnitude }}</td>
-                <td>{{ x.magnitude_err }}</td>
-                <td>{{ x.magType }}</td>
-                <td>{{ x.nst }}</td>
-                <td>{{ x.magnst }}</td>
-                <td>{{ x.gap }}</td>
-                <td>{{ x.dmin }}</td>
-                <td>{{ x.rms }}</td>
-                <td>{{ x.net }}</td>
-                <td>{{ x.identifier }}</td>
-                <td>{{ x.place }}</td>
-                <td>{{ x.type }}</td>
-                <td>{{ x.locationSource }}</td>
-                <td>{{ x.magSource }}</td>
-                <td>{{ x.source }}</td>                                      
-                
-            </tr>
-            {%endfor%}
+            <thead>
+                <tr>
+                    {% for att in attributes %}
+                        <th>{{att}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+
+                {%for x in models%}
+                <tr>          
+                    
+                    <td>{{x.trigger_time}}</td> 
+                    <td>{{x.latitude}}</td> 
+                    <td>{{x.longitude}}</td> 
+                    <td>{{x.depth}}</td> 
+                    <td>{{x.magnitude}}</td> 
+                    <td>{{x.magType}}</td> 
+                    <td>{{x.nst}}</td>
+                    <td>{{x.gap}}</td>
+                    <td>{{x.dmin}}</td>
+                    <td>{{x.rms}}</td>
+                    <td>{{x.net}}</td>
+                    <td>{{x.identifier}}</td>
+                    <td>{{x.updated}}</td>
+                    <td>{{x.place}}</td>
+                    <td>{{x.type}}</td>
+                    <td>{{x.horizontal_err}}</td>
+                    <td>{{x.depth_err}}</td>
+                    <td>{{x.magnitude_err}}</td>
+                    <td>{{x.magnst}}</td>
+                    <td>{{x.status}}</td>            
+                    <td>{{x.locationSource}}</td>
+                    <td>{{x.magSource}}</td>
+                    <td>{{x.sat_source}}</td>                                     
+                    
+                </tr>
+                {%endfor%}
+            </tbody>
         </table>
 
     </body>

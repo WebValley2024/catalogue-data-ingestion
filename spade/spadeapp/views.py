@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import SampleModel, TGF, SWE, Earthquake, GRB
 from pathlib import Path
+from time import strftime, localtime
 import json
 
 # Create your views here.
@@ -59,35 +60,25 @@ def select_model_sample(request):
     context = {"samplemodels":samplemodels}
     return render(request, "prova.html", context)
 
-def select_model_earthquake(request):
+def select_earthquake(request):
     #samplemodels = SampleModel.objects.raw("SELECT * FROM spadeapp_sampleModel")
     models = Earthquake.objects.all() 
-    attributes = [
-            "trigger_time", 
-            "latitude", 
-            "longitude", 
-            "depth", 
-            "magnitude", 
-            "magType", 
-            "nst",
-            "gap",
-            "dmin",
-            "rms",
-            "net",
-            "identifier",
-            "updated",
-            "place",
-            "type",
-            "horizontal_err",
-            "depth_error",
-            "magnitude_err",
-            "magnst",
-            "status",            
-            "locationSource",
-            "magSource",
-            "source"
-        ]   
+       
     #print(samplemodels)
-    context = {"models":models, "attributes":attributes}
+    context = {"models":models, "attributes":Earthquake.attributes}
     return render(request, "earthquake.html", context)
+
+def select_swe(request):
+    
+    models = SWE.objects.all()
+
+    context = {"models":models, "attributes":SWE.attributes}
+    return render(request, "swe.html", context)
+
+def select_tgf(request):
+    
+    models = TGF.objects.all()               
+    
+    context = {"models":models, "attributes":TGF.attributes}
+    return render(request, "tgf.html", context)
 

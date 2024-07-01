@@ -16,33 +16,30 @@ class SampleModel(models.Model):
     
 class Earthquake(models.Model):
     trigger_time = models.CharField(verbose_name="trigger_time", max_length=50)
-    latitude = models.CharField(verbose_name="latitude", max_length=50)
-    longitude = models.CharField(verbose_name="longitude", max_length=50)
-    horizontal_err = models.CharField(verbose_name="horizontal_err", max_length=50)
-    depth = models.CharField(verbose_name="depth", max_length=50)
-    depth_err = models.CharField(verbose_name="depth_err", max_length=50)
-    magnitude = models.CharField(verbose_name="magnitude", max_length=50)
-    magnitude_err = models.CharField(verbose_name="magnitude_err", max_length=50)
-    magType = models.CharField(verbose_name="Magnitude type", max_length=4)
+    latitude = models.FloatField(verbose_name="latitude")
+    longitude = models.FloatField(verbose_name="longitude")
+    depth = models.FloatField(verbose_name="depth")    
+    magnitude = models.FloatField(verbose_name="magnitude", max_length=50)
+    magType = models.CharField(verbose_name="Magnitude type", max_length=50)
     nst = models.CharField(verbose_name="Nst", max_length=50)
-    magnst = models.CharField(verbose_name="Magnst", max_length=50)
     gap = models.CharField(verbose_name="Gap", max_length=50)
     dmin = models.CharField(verbose_name="Dmin", max_length=50)
     rms = models.CharField(verbose_name="Rms", max_length=50)
     net = models.CharField(verbose_name="Net", max_length=2)
     identifier = models.CharField(verbose_name="Identifier", max_length=20)
+    updated = models.CharField(verbose_name="updated", max_length=20, default="loaded")
+    place = models.CharField(verbose_name="Place", max_length=50)
     type = models.CharField(verbose_name="Type", max_length=20)
+    horizontal_err = models.CharField(verbose_name="horizontal_err", max_length=50)
+    magnitude_err = models.CharField(verbose_name="magnitude_err", max_length=50)
+    depth_err = models.CharField(verbose_name="depth_err", max_length=50)
+    magnst = models.CharField(verbose_name="Magnst", max_length=50)
+    status = models.CharField(verbose_name="Status", max_length=50, default="0")
     locationSource = models.CharField(verbose_name="Location source", max_length=5, default="us")
     magSource = models.CharField(verbose_name="Magnitude source", max_length=20, default="us")
     sat_source = models.CharField(verbose_name="Satellite", max_length=50)
-    place = models.CharField(verbose_name="Place", max_length=50)
-
-    def add_data():
-        objs = []
-        fileToOpen = data_folder / "earthquake.csv"
-        f = open(file=fileToOpen, mode="r", encoding="cp850")
-                    
-        attributes = [
+    
+    attributes = [
             "trigger_time", 
             "latitude", 
             "longitude", 
@@ -56,39 +53,43 @@ class Earthquake(models.Model):
             "net",
             "identifier",
             "updated",
+            "place",
             "type",
             "horizontal_err",
-            "depth_error",
+            "depth_err",
             "magnitude_err",
             "magnst",
             "status",            
             "locationSource",
             "magSource",
-            "sat_source",
-            "place"
+            "sat_source"            
         ]
+
+    def add_data():
+        objs = []
+        fileToOpen = data_folder / "earthquake.csv"
+        f = open(file=fileToOpen, mode="r", encoding="cp850")
+                   
+        
         next(f)
         for line in f:
             params = line.split(",")
                     
             eart = Earthquake()
-            for att in attributes:
-                if att == "updated":
-                    continue
-                setattr(eart, att, params[attributes.index(att)])        
+            for att in Earthquake.attributes:                
+                setattr(eart, att, params[Earthquake.attributes.index(att)])        
             objs.append(eart)
 
         if objs:
+            Earthquake.objects.all().delete()
             Earthquake.objects.bulk_create(objs)    
         
 
 class TGF(models.Model):
-    sat_source = models.CharField(verbose_name="Source", max_length=50, default="Fermi")
-    TGF_name = models.CharField(verbose_name="TGF name", max_length=30)
     GEO_long = models.FloatField("Geo longitude")
     GEO_lat = models.FloatField("Geo latitude")
-    trigger_time = models.DateTimeField("Trigger time")
     orbit = models.IntegerField("Orbit")
+    trigger_time = models.DateTimeField("Trigger time", default=timezone.now())
     T50 = models.TimeField("T50")
     T50_err = models.TimeField("T50 error")
     T50_err_applied = models.TimeField("T50 error applied")
@@ -96,46 +97,50 @@ class TGF(models.Model):
     ML_counts = models.FloatField("ML counts")
     ML_counts_err = models.FloatField("ML counts error")
     ML_counts_err_applied = models.FloatField("ML counts error applied")
+    TGF_name = models.CharField(verbose_name="TGF name", max_length=30)
     event_type = models.IntegerField("Event type")
+    sat_source = models.CharField(verbose_name="Source", max_length=50, default="Fermi")
     RA = models.FloatField("RA")
     DEC = models.FloatField("DEC")
-    start_time_obs = models.CharField(verbose_name="Start time observations", max_length=50)
-    end_time_obs = models.CharField(verbose_name="End time observations", max_length=50)
+    start_time_obs = models.DateTimeField(verbose_name="Start time observations", default=timezone.now())
+    end_time_obs = models.DateTimeField(verbose_name="End time observations", default=timezone.now())
     reliability = models.FloatField("Reliability")
-   
+    
+    attributes = [
+        "GEO_long", 
+        "GEO_lat", 
+        "orbit", 
+        "trigger_time", 
+        "T50", 
+        "T50_err", 
+        "T50_err_applied",
+        "sat_altitude",
+        "ML_counts",
+        "ML_counts_err",
+        "ML_counts_err_applied",
+        "TGF_name",
+        "event_type",
+        "sat_source",
+        "RA",
+        "DEC",
+        "start_time_obs",
+        "end_time_obs",
+        "reliability"
+    ]
+
     def add_data():
         objs = []
         fileToOpen = data_folder / "tgf.csv"
         f = open(fileToOpen, "r")
                     
-        attributes = [
-            "GEO_long", 
-            "GEO_lat", 
-            "orbit", 
-            "trigger_time", 
-            "T50", 
-            "T50_err", 
-            "T50_err_applied",
-            "sat_altitude",
-            "ML_counts",
-            "ML_counts_err",
-            "ML_counts_err_applied",
-            "TGF_name",
-            "event_type",
-            "sat_source",
-            "RA",
-            "DEC",
-            "start_time_obs",
-            "end_time_obs",
-            "reliability"
-        ]
+        
         next(f)
         for line in f:
             params = line.split(",")
                     
             tgf = TGF()
-            for att in attributes:
-                setattr(tgf, att, params[attributes.index(att)])        
+            for att in TGF.attributes:
+                setattr(tgf, att, params[TGF.attributes.index(att)])        
             objs.append(tgf)
 
         if objs:
@@ -143,38 +148,38 @@ class TGF(models.Model):
     
 
 class SWE(models.Model):
-    sat_source = models.CharField(verbose_name="Source", max_length=50)
     flux = models.CharField(verbose_name="Flux", max_length=5)
     region = models.CharField(verbose_name="Region", max_length=20)
     trigger_time = models.CharField(verbose_name="Trigger time", max_length=50)
     time_start_obs = models.CharField(verbose_name="Time start observations", max_length=50)
     time_end_obs = models.CharField(verbose_name="Time end observations", max_length=50)
+    sat_source = models.CharField(verbose_name="Source", max_length=50)
     
+    attributes = ["flux", "region", "time_start_obs", "trigger_time", "time_end_obs", "sat_source"]
+        
     def add_data():
         objs = []
         fileToOpen = data_folder / "swe.csv"    
         f = open(fileToOpen, "r")
                     
-        attributes = ["index", "flux", "region", "time_start_obs", "trigger_time", "time_end_obs"]
         next(f)
         for line in f:
             params = line.split(",")
         
             print("params:", params)
             swe = SWE()
-            for att in attributes[1:]:
-                print("att:", att)
-                setattr(swe, att, params[attributes.index(att)])        
+            for att in SWE.attributes[:-1]:
+                setattr(swe, att, params[SWE.attributes.index(att)])
+            setattr(swe, "sat_source", "swe")        
             objs.append(swe)
 
         if objs:
+            SWE.objects.all().delete()
             SWE.objects.bulk_create(objs)    
         
-            
-
 
 class GRB(models.Model):
-    trigger_time = models.DateTimeField(verbose_name="Trigger time", max_length=50)
+    trigger_time = models.DateTimeField(verbose_name="Trigger time", default=timezone.now())
     BAT_RA = models.FloatField("BAT_RA")
     BAT_DEC = models.FloatField("BAT_DEC")
     BAT_90_err = models.FloatField("Bat 90%/ error radius")
@@ -186,8 +191,8 @@ class GRB(models.Model):
     name = models.CharField(verbose_name="Name", max_length=50)
     geo_long = models.FloatField("Geo longitude (deg)")
     geo_lat = models.FloatField("Geo latitude (deg)")
-    start_time_obs = models.TimeField("Start time observations (s)")
-    end_time_obs = models.TimeField("End time observations (s)")
+    start_time_obs = models.DateTimeField(verbose_name="Start time observations (s)", default=timezone.now())
+    end_time_obs = models.DateTimeField(verbose_name="End time observations (s)", default=timezone.now())
     reliability = models.FloatField("Reliability")
     duration = models.IntegerField("Duration (s)")
     type = models.IntegerField("Type")
@@ -201,7 +206,7 @@ class GRB(models.Model):
     xrtRA = models.FloatField("xrtRA")
     xrtDEC = models.FloatField("xrtDEC")
     xrt_90_err = models.FloatField("xrt 90 radius error")
-    xrt_time_to_first_obs = models.CharField(verbose_name="xrt time to first observation", max_length=50)
+    xrt_time_to_first_obs = models.TimeField(verbose_name="xrt time to first observation", max_length=50)
     xrt_early_flux = models.FloatField("xrt early flux")
     xrt_11h_flux_error = models.FloatField("xrt 11 hours flux error")
     xrt_24h_flux_error = models.FloatField("xrt 24 hours flux error")
