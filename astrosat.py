@@ -47,7 +47,7 @@ def download_astrosat_data():
 
     # Save the table as a CSV file
     with open(filename, 'w', newline='') as f:
-        csv_writer = csv.writer(f)
+        csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONE, escapechar='\\', skipinitialspace=True, doublequote=False)
         # Process the first row (headers) separately
         if rows:
             first_row = rows[0]

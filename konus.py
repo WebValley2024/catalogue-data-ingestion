@@ -45,7 +45,7 @@ def download_data(url, mod):
     rows = table.find_all('tr')
 
     with open("konus.csv", mod, newline='') as file:
-        csv_writer = csv.writer(file)
+        csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONE, escapechar='\\', skipinitialspace=True, doublequote=False)
         rows[0] = ["Trigger Time", "Type"]
         if mod == 'w':
             csv_writer.writerow(rows[0])

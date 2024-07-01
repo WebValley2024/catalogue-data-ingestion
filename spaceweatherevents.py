@@ -45,7 +45,7 @@ def download_space_weather_data():
 
             # Save to the same CSV file
             with open(file_name, "a", newline="") as f:
-                csv_writer = csv.writer(f)
+                csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONE, escapechar='\\', skipinitialspace=True, doublequote=False)
                 if year == 1996:
                     # Process the first row (headers) separately
                     first_row = rows[0]
@@ -55,7 +55,9 @@ def download_space_weather_data():
                     headers[0] = "Top"
                     headers[1] = "Flux"
                     headers[4] = "Trigger Time"
-                    headers[5] = "Links"
+                    headers[5] = "End"
+                    headers[6] = "Links"
+
                     
                     csv_writer.writerow(headers)
                 rows = rows[1:]

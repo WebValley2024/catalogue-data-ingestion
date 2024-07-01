@@ -7,9 +7,16 @@ import time
 
 # Create a lock object
 lock = threading.Lock()
+semaphore = threading.Semaphore(5)
+
+SEPARATOR = ','
 
 def thread_wrapper(url, filename, headers, first_write):
-    extract_table(url, filename, headers, first_write)
+    semaphore.acquire()
+    try:
+        extract_table(url, filename, headers, first_write)
+    finally:
+        semaphore.release()
 
 threads = []
 
@@ -37,7 +44,7 @@ def extract_table(url, filename, headers=False, first_write=False):
                     cols.pop(3)
                     cols.pop(1)
 
-                    f.write('\t'.join(cols) + '\n')
+                    f.write(SEPARATOR.join(cols) + '\n')
                     continue
                 if row.find('td'):
                     cols = row.find_all('td')
@@ -60,7 +67,7 @@ def extract_table(url, filename, headers=False, first_write=False):
                     except ValueError:
                         pass
                     
-                    f.write('\t'.join(cols) + '\n')
+                    f.write(SEPARATOR.join(cols) + '\n')
 
 def download_integral_data():
     filename = 'integral.csv'
@@ -108,7 +115,7 @@ def download_integral_data():
     data = [line for line in data if headers not in line]
     
     # Order the data by date (using epoch timestamp)
-    data.sort(key=lambda x: int(x.split('\t')[0]))
+    data.sort(key=lambda x: int(x.split(SEPARATOR)[0]))
 
     # Write the ordered data to a new file
     with open(filename, 'w') as f:

@@ -1,4 +1,4 @@
-GeoLon(deg),GeoLat(deg),Orbit,Trigger Time,T50(ms),T50_Err(ms),T50+/-Err(ms),Satellite Altitude(km),ML Counts,ML Counts Err,ML Counts+/-Err,TGF Name,EventType,source,ra,dec,Start Time Observation,End Time Observation,reliability,geo_long,geo_lat
+geolon(deg),geolat(deg),orbit,trigger_time,t50(ms),t50_err(ms),t50+/-err(ms),satellite_altitude(km),ml_counts,ml_counts_err,ml_counts+/-err,tgf_name,eventtype,source,ra,dec,start_time_obs,end_time_obs,reliability,geo_long,geo_lat
 -1.87,0.52,40902.0,1427103774.0,0.086,0.011,8.600e-2+/-1.100e-2,488.97,32.92,5.73,32.92+/-5.73,150323.10425,0.0,agile,,,,,,,
 102.09,2.07,40902.0,1427105527.0,0.104,0.015,1.040e-1+/-1.500e-2,501.11,24.0,4.889,24.00+/-4.889,150323.1112,0.0,agile,,,,,,,
 -71.93,2.48,40908.0,1427138955.0,0.061,0.009,6.100e-2+/-9.000e-3,500.18,18.0,4.234,18.00+/-4.234,150323.20291,0.0,agile,,,,,,,
