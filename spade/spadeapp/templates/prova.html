@@ -1,0 +1,22 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>  
+        <table border = 1>
+            <tr> 
+                <th>fieldSample</th>
+                <th>Num</th>
+            </tr>
+        </table>      
+        
+        <table border = 1>
+            {% for x in samplemodels %}
+                {{x.fieldSample}}
+                {{x.num}}
+            {% endfor %}
+        </table>
+
+    </body>
+</html>

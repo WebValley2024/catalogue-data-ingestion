@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import SampleModel, TGF, SWE
-import inspect
+from .models import SampleModel, TGF, SWE, Earthquake, GRB
+from pathlib import Path
+import json
 
 # Create your views here.
 def index(request):
@@ -17,8 +18,9 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def add_data(request):
-    
-    f = open("file_ex.csv", "r") 
+    data_folder = Path("C:/Users/Tommaso Scesi/Desktop/Challenge1/catalogue-data-ingestion/spade/spade/files_data")
+    fileToOpen = data_folder / "file_ex.csv"
+    f = open(fileToOpen, "r") 
     objs = []
     attributes = ["fieldSample", "num"]
     for line in f:
@@ -40,13 +42,52 @@ def add_data(request):
     return HttpResponse("Data added correctly")
 
 def add_all_data(request):
-    objs_swe = SWE.add_data()
-    if objs_swe:
-        SWE.objects.bulk_create(objs_swe)
-    else:
-        return HttpResponse("Failed")
-    return HttpResponse("Data added correctly")
+    #SWE.add_data()
+    Earthquake.add_data()
+    #TGF.add_data()
+    #GRB.add_data()
 
+    return HttpResponse("All data added")
 
 def sampleView(request, sampleField):
     return HttpResponse("Field is: %s." %sampleField)
+
+def select_model_sample(request):
+    #samplemodels = SampleModel.objects.raw("SELECT * FROM spadeapp_sampleModel")
+    samplemodels = SampleModel.objects.all()    
+    print(samplemodels)
+    context = {"samplemodels":samplemodels}
+    return render(request, "prova.html", context)
+
+def select_model_earthquake(request):
+    #samplemodels = SampleModel.objects.raw("SELECT * FROM spadeapp_sampleModel")
+    models = Earthquake.objects.all() 
+    attributes = [
+            "trigger_time", 
+            "latitude", 
+            "longitude", 
+            "depth", 
+            "magnitude", 
+            "magType", 
+            "nst",
+            "gap",
+            "dmin",
+            "rms",
+            "net",
+            "identifier",
+            "updated",
+            "place",
+            "type",
+            "horizontal_err",
+            "depth_error",
+            "magnitude_err",
+            "magnst",
+            "status",            
+            "locationSource",
+            "magSource",
+            "source"
+        ]   
+    #print(samplemodels)
+    context = {"models":models, "attributes":attributes}
+    return render(request, "earthquake.html", context)
+
