@@ -14,6 +14,7 @@ import os
 from rich.console import Console
 from rich.progress import Progress
 from rich import print
+from time import strftime, localtime
 
 console = Console()
 
@@ -231,7 +232,37 @@ def harmonize_step3():
 #     eq.columns = eq.columns.str.strip('"')  # Strip double quotes from column names
 #     eq.to_sql("spadeapp_earthquake", conn, if_exists='append', index=False)
 
+
+def convert_columns_to_datetime(filename, columns):
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+        new_lines = []
+        new_lines.append(lines[0])
+
+        for line in lines[1:]:
+            data = line.strip().split(",")
+            for c in columns:
+                if data[c] != "":
+                    epoch_int = int(float(data[c]))
+                    utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
+                    data[c] = utc_dt
+            new_line = ",".join(data)
+            new_lines.append(new_line + "\n")
+
+    with open(filename, 'w') as file:
+        file.writelines(new_lines)
+
+
+def harmonize_step4():
+    convert_columns_to_datetime('tgf.csv', [3, 17, 18])
+    convert_columns_to_datetime('grb.csv', [1, 7, 8])
+    convert_columns_to_datetime('eq.csv', [0])
+    convert_columns_to_datetime('swe.csv', [3, 4, 5])
+
+    
 if __name__ == "__main__":
+
     print("Downloading data...")
 
     with Progress() as progress:
@@ -261,14 +292,17 @@ if __name__ == "__main__":
             progress.stop()
 
     print("All data downloaded successfully")
-    print("Harmonizing data (step 1/3)...")
+    print("Harmonizing data (step 1/4)...")
     harmonize_step1()
     # print("[bold red]Not implemented yet[/bold red]")
-    print("Harmonizing data (step 2/3)...")
+    print("Harmonizing data (step 2/4)...")
     harmonize_step2()
     # print("[bold red]Not implemented yet[/bold red]")
-    print("Harmonizing data (step 3/3)...")
+    print("Harmonizing data (step 3/4)...")
     harmonize_step3()
     # print("[bold red]Not implemented yet[/bold red]")
+    print("Harmonizing data (step 4/4)...")
+    harmonize_step4()
+
     print("Data harmonized successfully")
     print("Data converted successfully")
