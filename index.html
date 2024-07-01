@@ -25,6 +25,7 @@
               </li>
     
               <li class="nav-item">
+                <img src="png-transparent-computer-icons-service-technology-setting-miscellaneous-service-business-thumbnail.png" height="30">
                 <a class="nav-link" href="#" style="margin-left: 5em">Settings</a>
               </li>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/SuitSpades.svg/1200px-SuitSpades.svg.png"
@@ -34,7 +35,8 @@
               </li>
     
               <li class="nav-item">
-                <a class="nav-link" href="#" style="margin-right: 5em">Contacts</a>
+                <img src="https://pngimg.com/d/at_sign_PNG14.png" height="30">
+                <a class="nav-link" href="2index.html" style="margin-right: 5em">Contacts</a>
               </li>
     
               <li class="nav-item dropdown">
@@ -55,121 +57,76 @@
         </div>
       </nav>
 
-      <a>
-        <!-- Email -->
-         <a href="2index.html"
-         target="_self" title="View contacts">
-         <class="display:flex">
-           <img src="https://pngimg.com/d/at_sign_PNG14.png" height="80">
-         </a>
-       <!-- Tre line -->
-        <a href="3index.html"
-         target="_self" title="View dashboard">
-           <class="display:flex">
-           <img src="menu-alt-512.png" height="80">
-       </a>
-       <!-- Home -->
-       <a href="4index.html"
-       target="_self" title="View home">
-         <class="display:flex">
-         <img src="cards_spade_icon_135806.webp" height="80">
       
-      
-          <!-- Setting -->
-          <a href="6index.html"
-          target="_self" title="View setting">
-            <class="display:flex">
-            <img align="right"src="png-transparent-computer-icons-service-technology-setting-miscellaneous-service-business-thumbnail.png" height="80">
-      
-      
-         <!-- Libro -->
-         <a href="5index.html"
-       target="_self" title="View catalogue">
-         <class="display:flex">
-         <img align="right"src="illustration-of-book-icon-free-vector.jpg" height="80">
-       </div>
-      
-      
-         <div class="progress-stacked">
-           <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-             <div class="progress-bar"></div>
-           </div>
-           <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-             <div class="progress-bar bg-success"></div>
-           </div>
-           <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-             <div class="progress-bar bg-info"></div>
-           </div>
-         </div>
-       </a>
-
-
-
-
-
-
-      <br>
-
-      <div class="d-inline p-2">
-        <div>
-          <h6 style="margin-left:1em"> Time Period </h6> 
-          
-          <div> 
-            <label for="time-period" style="margin-left:1em">From:</label>
-            <input type="date" id="time-period" name="time-period">
-          </div>
-      
-          <div> 
-            <label for="time-period" style="margin-left:2.25em">To:</label>
-            <input type="date" id="time-period" name="time-period">
-            <div>
-                <label for="other" style="margin-left: 0.75em">Other:</label>
-                <select id="other" name="Other">
-                  <option value="30d">last 30 days</option>
-                  <option>last 3 month</option>
-                  <option>last 100 days</option>
-                  <option>last 1 year</option>
-                  <option>last 2 year</option>
-                  <option>last 3 year</option>
-                  <option>last 4 year</option>
-                  <option>last 5 year</option>
-                  <option>last 10 year</option>
-                </select>  
-              </div>
-          
+      <div class="progress-stacked">
+        <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+          <div class="progress-bar"></div>
         </div>
-
+        <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+          <div class="progress-bar bg-success"></div>
         </div>
-        <div class="d-inline p-2">
-          <h6 style="margin-left:1em"> Location </h6> 
-          
-          <div> 
-            <label for="time-period" style="margin-left:1em">Latitude:</label>
-            <input type="number" id="time-period" name="time-period">
-          </div>
-      
-          <div> 
-            <label for="time-period" style="margin-left:0.1em">Longitude:</label>
-            <input type="number" id="time-period" name="time-period">
-          </div>
+        <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+          <div class="progress-bar bg-info"></div>
         </div>
       </div>
 
       <br>
 
+      <div class="d-flex justify-content-around">
+        <div class="d-flex d-flex flex-column align-items-start">
+          <h6> Time Period </h6> 
+          
+          <div> 
+            <label for="time-period-from">From:</label>
+            <input type="date" id="time-period-from" name="time-period-from">
+          </div>
+          <div>
+            <label for="time-period-to">To:</label>
+            <input type="date" id="time-period-to" name="time-period-to">
+          </div>
+          <div>
+            <label for="other">Other:</label>
+            <select id="other" name="Other">
+              <option value="30d">last 30 days</option>
+              <option>last 3 month</option>
+              <option>last 100 days</option>
+              <option>last 1 year</option>
+              <option>last 2 year</option>
+              <option>last 3 year</option>
+              <option>last 4 year</option>
+              <option>last 5 year</option>
+              <option>last 10 year</option>
+            </select>  
+          </div>    
+        </div>
 
-  
+        <div class="d-flex flex-column align-items-start">
+          <h6> Location </h6> 
+          
+          <div> 
+            <label for="latitude">Latitude:</label>
+            <input type="number" id="latitude" name="latitude">
+          </div>
+      
+          <div> 
+            <label for="longitude">Longitude:</label>
+            <input type="number" id="longitude" name="longitude">
+          </div>
+        </div>
+
+        <div class="d-flex d-flex flex-column align-items-start">
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: rgb(209, 43, 21)">Filters</button>
+        </div>
+      </div>
+
+
       <div>
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="margin-left: 90em; background-color: rgb(209, 43, 21); bg-light">Filters</button>
-
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filters</h5> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            
-            
             <nav class="navbar bg-body-tertiary">
               <div class="container-fluid">
                 <form class="d-flex" role="search">
@@ -182,26 +139,26 @@
       
             <p>Choose your filters:.</p>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
+              <input class="form-check-input" type="checkbox" value="" id="checkbox-location">
+              <label class="form-check-label" for="checkbox-location">
                 Location
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-              <label class="form-check-label" for="flexCheckChecked">
+              <input class="form-check-input" type="checkbox" value="" id="checkbox-intensity">
+              <label class="form-check-label" for="checkbox-intensity">
                 Intensity
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-              <label class="form-check-label" for="flexCheckChecked">
+              <input class="form-check-input" type="checkbox" value="" id="checkbox-magnitude">
+              <label class="form-check-label" for="checkbox-magnitude">
                 Magnitude
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-              <label class="form-check-label" for="flexCheckChecked">
+              <input class="form-check-input" type="checkbox" value="" id="checkbox-duration">
+              <label class="form-check-label" for="checkbox-duration">
                 Duration
               </label>
             </div>
@@ -210,7 +167,7 @@
       </div>
       
       
-      
+      <br>
       
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-left: 1em;">
