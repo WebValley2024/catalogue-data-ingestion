@@ -89,6 +89,7 @@ def download_agile_data():
                     # Rename headers
                     row[3] = "Trigger Time"
                     row[-2] = "TGF Name"
+                    row.append("Normalised Duration")
                     # Normalize and remove non-ASCII characters
                     row = [
                         unicodedata.normalize("NFKD", cell).encode("ascii", "ignore").decode("utf-8")
@@ -98,6 +99,8 @@ def download_agile_data():
                 else:
                     # Convert date from UTC to EPOCH
                     row[3] = '"' + str(int(datetime.strptime(row[3].strip('"'), "%Y-%m-%dT%H:%M:%S").timestamp())) + '"'
+                    row.append(float(row[4].replace('"', '')) * 2)
+                    row[-1] = str(row[-1])
 
                 # Write row to CSV file
                 row = [cell.replace('"', '') for cell in row]

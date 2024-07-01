@@ -1,4 +1,4 @@
-Trigger Time,Type,Sigma,Duration [s],Max Count,source
+Trigger Time,Type,Sigma,Normalised Duration,Max Count,source
 1035707631,,-1.0,,-1.0,integral
 1039058198,,-1.0,,-1.0,integral
 1039871128,,-1.0,,-1.0,integral

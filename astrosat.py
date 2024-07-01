@@ -87,6 +87,8 @@ def download_astrosat_data():
             headers_text.pop(2)
             headers_text.pop(0)
 
+            headers_text.append("Normalised Duration")
+
             # Write modified headers to the CSV file
             csv_writer.writerow(headers_text)
 
@@ -113,6 +115,8 @@ def download_astrosat_data():
             row_data.pop(6)
             row_data.pop(2)
             row_data.pop(0)
+
+            row_data.append(row_data[4])
 
             # Write processed row data to the CSV file
             csv_writer.writerow(row_data)

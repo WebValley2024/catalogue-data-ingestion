@@ -1,7 +1,7 @@
 trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,updated,place,type,horizontal_err,depth_err,magnitude_err,magnst,status,locationsource,magsource,source
-1719810723,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-01T07:22:09.759Z,"149 km ESE of Saipan, Northern Mariana Islands",earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
+1719810723,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-01T09:22:17.380Z,"149 km ESE of Saipan, Northern Mariana Islands",earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 1719801483,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01T02:53:11.040Z,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
-1719781056,34.4741,45.6314,4.552,5.0,mwr,65.0,159.0,0.311,0.76,us,us6000n9he,2024-06-30T22:13:44.264Z,"21 km W of Sarpol-e Z̄ahāb, Iran",earthquake,4.99,4.504,0.052,35.0,reviewed,us,us,earthquake
+1719781056,34.4741,45.6314,4.552,5.0,mwr,65.0,159.0,0.311,0.76,us,us6000n9he,2024-07-01T09:24:39.000Z,"21 km W of Sarpol-e Z̄ahāb, Iran",earthquake,4.99,4.504,0.052,35.0,reviewed,us,us,earthquake
 1719771800,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-01T06:33:33.970Z,"Maug Islands region, Northern Mariana Islands",earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 1719763589,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01T02:14:41.128Z,"239 km SSW of Singaparna, Indonesia",earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
 1719679126,-54.0099,7.159,10.0,5.6,mww,77.0,34.0,23.718,1.06,us,us6000n96v,2024-06-30T16:42:40.356Z,Bouvet Island region,earthquake,10.45,1.744,0.086,13.0,reviewed,us,us,earthquake

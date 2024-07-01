@@ -171,6 +171,8 @@ def download_fermi_data():
         df = df.rename(columns={"time": "Start Time Observation"})
         df = df.rename(columns={"end_time": "End Time Observation"})
 
+        df["Normalised Duration"] = df["End Time Observation"] - df["Start Time Observation"]
+
         # Divide the data into GRB and TGF
         df_grb = df[df["trigger_type"].str.contains("GRB")]
         df_tgf = df[df["trigger_type"].str.contains("TGF")]

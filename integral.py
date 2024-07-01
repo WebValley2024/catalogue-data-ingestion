@@ -50,6 +50,7 @@ def extract_table(url, filename, headers=False, first_write=False):
                     cols.pop(7)
                     cols.pop(3)
                     cols.pop(1)
+                    cols[3] = "Normalised Duration"
 
                     f.write(SEPARATOR.join(cols) + '\n')
                     continue
