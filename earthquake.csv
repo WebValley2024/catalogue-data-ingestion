@@ -1,4 +1,5 @@
 Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource,source
+1719828983,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01T10:33:17.040Z,"198 km SE of Kokopo, Papua New Guinea",earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
 1719810723,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-01T09:22:17.380Z,"149 km ESE of Saipan, Northern Mariana Islands",earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 1719801483,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01T02:53:11.040Z,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
 1719781056,34.4741,45.6314,4.552,5.0,mwr,65.0,159.0,0.311,0.76,us,us6000n9he,2024-07-01T09:24:39.000Z,"21 km W of Sarpol-e Z̄ahāb, Iran",earthquake,4.99,4.504,0.052,35.0,reviewed,us,us,earthquake

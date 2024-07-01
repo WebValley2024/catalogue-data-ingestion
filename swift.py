@@ -29,7 +29,7 @@ def download_swift_data():
         headers.pop(-1)
         # Remove the 3rd column (Trigger Time column)
         headers.pop(2)
-        headers.pop(5)
+        headers.append("Normalised Duration")
 
 
         # Remove all other instances of the same header (<thead> tag) and leave only the first one
@@ -55,7 +55,7 @@ def download_swift_data():
                     cols.pop(32) # Remove the 32th column (Comments column)
                     cols.pop(-1) # Remove the last column
                     cols.pop(2)
-                    cols.pop(5)
+                    cols.append(cols[5])
                     # Convert the date to epoch time
                     cols[1] = str(swift_to_epoch(cols[0], cols[1]))
                     file.write(";".join(cols) + "\n")
