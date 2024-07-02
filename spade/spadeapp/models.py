@@ -2,9 +2,9 @@ from django.db import models
 from django.utils import timezone
 from pathlib import Path
 
-#global
-data_folder = Path("C:/Users/Tommaso Scesi/Desktop/Challenge1/catalogue-data-ingestion/spade/spade/files_data")
-    
+#global    
+
+dirname = Path("/home/grp1/SpaDe/catalogue-data-ingestion/spade/spadeapp/scripts/")
 
 # Create your models here.
 class SampleModel(models.Model):
@@ -19,7 +19,7 @@ class SampleModel(models.Model):
         return self.fieldSample
     
     def get_last_index():
-        return Earthquake.objects.all()[-1].pk
+        return SampleModel.objects.last().pk
     
 class Earthquake(models.Model):
     trigger_time = models.DateTimeField(verbose_name="trigger_time", blank=True)
@@ -76,29 +76,31 @@ class Earthquake(models.Model):
         return str(self.pk)    
 
     def get_last_index():
-        return Earthquake.objects.all()[-1].pk
+        return Earthquake.objects.last().pk
     
-    def add_data(objs_to_add):
+    def add_data():
+        fileToOpen = dirname / "eq.csv"
         objs = []
-        fileToOpen = data_folder / "eq.csv"
-        f = open(file=fileToOpen, mode="r", encoding="cp850")
-        i = 1
-        
-        next(f)
-        for line in f:
-            params = line.split(",")
-                    
-            eart = Earthquake()
-            setattr(eart, 'id', i)
-            for att in Earthquake.attributes:                
-                setattr(eart, att, params[Earthquake.attributes.index(att)])        
-            objs.append(eart)
-            i += 1
-        f.close()
+        lastindex = Earthquake.get_last_index()
+        i = lastindex + 1
 
-        if objs:
-            Earthquake.objects.all().delete()
-            Earthquake.objects.bulk_create(objs)    
+        with open(fileToOpen, mode="r") as f:
+            
+            for _ in range(lastindex + 2): #must skip headers line and include last index line
+                next(f)
+            for line in f:
+                params = line.split(",")
+            
+                eart = Earthquake()
+                setattr(eart, 'id', i)
+                for att in Earthquake.attributes:
+                    
+                    setattr(eart, att, params[Earthquake.attributes.index(att)])
+                setattr(eart, "sat_source", "swe")        
+                objs.append(eart)
+                i += 1
+        Earthquake.objects.bulk_create(objs)
+
         
 
 class TGF(models.Model):
@@ -154,28 +156,24 @@ class TGF(models.Model):
     
     def add_data():
         objs = []
-        fileToOpen = data_folder / "tgf.csv"
-        f = open(fileToOpen, "r")
-        i = 1
-        
-        next(f)
-        for line in f:
-            params = line.split(",")
-                    
-            tgf = TGF()
-            setattr(tgf, "id", i)
-            for att in TGF.attributes:
-                if (att == "reliability" and params[TGF.attributes.index(att)] == '\n'):
-                    setattr(tgf, att, "-")
-                setattr(tgf, att, params[TGF.attributes.index(att)])        
-            objs.append(tgf)
-            i += 1
-        f.close()
+        lastindex = TGF.get_last_index()
+        i = lastindex + 1
 
-        if objs:
-            TGF.objects.all().delete()
-            TGF.objects.bulk_create(objs)    
-    
+        with open("eq.csv", mode="r") as f:
+            for _ in range(lastindex + 2): #must skip headers line and include last index line
+                next(f)
+            for line in f:
+                params = line.split(",")
+            
+                tgf = TGF()
+                setattr(tgf, 'id', i)
+                for att in TGF.attributes:
+                    
+                    setattr(tgf, att, params[TGF.attributes.index(att)])
+                setattr(tgf, "sat_source", "swe")        
+                objs.append(tgf)
+                i += 1
+        TGF.objects.bulk_create(objs)
 
 class SWE(models.Model):
     top = models.CharField(verbose_name="top", max_length=10, default="")
@@ -196,30 +194,25 @@ class SWE(models.Model):
     
     def add_data():
         objs = []
-        fileToOpen = data_folder / "swe.csv"    
-        f = open(fileToOpen, "r")
-        i = 1         
+        lastindex = SWE.get_last_index()
+        i = lastindex + 1
 
-        next(f)
-        for line in f:
-            params = line.split(",")
-        
-            print("params:", params)
-            swe = SWE()
-            setattr(swe, 'id', i)
-            for att in SWE.attributes:
-                if att == "links":
-                    continue
-                setattr(swe, att, params[SWE.attributes.index(att)])
-            setattr(swe, "sat_source", "swe")        
-            objs.append(swe)
-            i += 1
+        with open("swe.csv", mode="r") as f:
+            for _ in range(lastindex + 2): #must skip headers line and include last index line
+                next(f)
+            for line in f:
+                params = line.split(",")
+            
+                swe = SWE()
+                setattr(swe, 'id', i)
+                for att in SWE.attributes:
+                    
+                    setattr(swe, att, params[SWE.attributes.index(att)])
+                setattr(swe, "sat_source", "swe")        
+                objs.append(swe)
+                i += 1
+        SWE.objects.bulk_create(objs)
 
-        f.close()
-
-        if objs:
-            SWE.objects.all().delete()
-            SWE.objects.bulk_create(objs)    
         
 
 class GRB(models.Model):
@@ -274,23 +267,22 @@ class GRB(models.Model):
     
     def add_data():
         objs = []
-        fileToOpen = data_folder / "grb.csv"    
-        f = open(fileToOpen, "r")
-               
-        next(f)
-        for line in f:
-            params = line.split(",")
-        
-            grb = GRB()
-            
-            for att in GRB.attributes:
-                setattr(grb, att, params[GRB.attributes.index(att)])   
-                 
-            objs.append(grb)
+        lastindex = GRB.get_last_index()
+        i = lastindex + 1
 
-        f.close()
-        
-        if objs:
-            GRB.objects.all().delete()
-            GRB.objects.bulk_create(objs)    
+        with open("eq.csv", mode="r") as f:
+            for _ in range(lastindex + 2): #must skip headers line and include last index line
+                next(f)
+            for line in f:
+                params = line.split(",")
+            
+                grb = GRB()
+                setattr(grb, 'id', i)
+                for att in GRB.attributes:
+                    
+                    setattr(grb, att, params[GRB.attributes.index(att)])
+                setattr(grb, "sat_source", "swe")        
+                objs.append(grb)
+                i += 1
+        GRB.objects.bulk_create(objs)
         

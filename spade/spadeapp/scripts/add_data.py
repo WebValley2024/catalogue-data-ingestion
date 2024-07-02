@@ -6,6 +6,7 @@ def add_earthquakes():
     i = lastindex + 1
 
     with open("eq.csv", mode="r") as f:
+        
         for _ in range(lastindex + 2): #must skip headers line and include last index line
             next(f)
         for line in f:

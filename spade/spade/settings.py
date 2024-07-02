@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.core.management.commands.runserver import Command as runserver
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +27,9 @@ SECRET_KEY = 'django-insecure-=+7(ds4mql)89bf-^+mj&gwg95=vq57il@3vhby81_^l_eymxm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+runserver.default_port = '8000'        # <-- Your port
+runserver.default_addr = '0.0.0.0'   # <-- Your address
 
 # Application definition
 
@@ -42,7 +45,11 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('0 */12 * * *', 'spadeapp.eq.download_eq')
+    ('0 */12 * * *', 'spadeapp.scripts.ep.get_eq'),
+    ('5 */12 * * *', 'spadeapp.scripts.grb.get_grb'),
+    ('10 */12 * * *', 'spadeapp.scripts.tgf.get_tgf'),
+    ('15 */12 * * *', 'spadeapp.scripts.swe.get_swe'),
+    ('30 */12 * * *', 'spadeapp.views.add_all_data'),    
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,8 @@
+beautifulsoup4
+cloudscraper
+Django
+pandas
+Requests
+rich
+selenium
+django-crontab

@@ -16,6 +16,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/kt-2.12.1/r-3.0.2/rg-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <link rel="stylesheet" href="{% static 'index.css' %}">
         <script src="{% static 'index.js' %}"></script>
 
@@ -148,7 +149,7 @@
                     <a class="nav-link" id="tgf" data-bs-toggle="tab" data-bs-target="#tgfTable" type="button" role="tab" href="#">TGF</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="swe" data-bs-toggle="tab" data-bs-target="#sweTable" type="button" role="tab" href="#">SpaceWeatherEvents</a>
+                    <a class="nav-link" id="swe" data-bs-toggle="tab" data-bs-target="#sweTable" type="button" role="tab" href="#">Space Weather Events</a>
                 </li>
             </ul>
             <div class="tab-content" id="tables">
@@ -179,14 +180,14 @@
             </div>
         </div>
         <div class="modal preview-modal" tabindex="-1" id="catalogueModal">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Catalogue</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" id="downloadPDF" class="btn btn-outline-info btn-sm" aria-label="Download the complete PDF version" style="margin-left: auto; margin-right: 0.5em;"><i class="bi bi-cloud-arrow-down-fill"></i> <b>Download full version</b></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 0 !important;"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- divide in 4 tabs (1 tab for each table) to display the column meaning -->
                         <ul class="nav nav-tabs nav-fill" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active" id="earthquake-tab" data-bs-toggle="tab" data-bs-target="#earthquake-tab-content" role="tab" href="#">Earthquake</a>
@@ -198,7 +199,7 @@
                                 <a class="nav-link" id="tgf-tab" data-bs-toggle="tab" data-bs-target="#tgf-tab-content" role="tab" href="#">TGF</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="swe-tab" data-bs-toggle="tab" data-bs-target="#swe-tab-content" role="tab" href="#">SpaceWeatherEvents</a>
+                                <a class="nav-link" id="swe-tab" data-bs-toggle="tab" data-bs-target="#swe-tab-content" role="tab" href="#">Space Weather Events</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="catalogueTabs">
@@ -308,7 +309,7 @@
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>usgs.gov <a href="https://earthquake.usgs.gov/earthquakes/search/"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>USGS <a href="https://earthquake.usgs.gov/earthquakes/search/"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="grb-tab-content" role="tabpanel">
@@ -322,14 +323,94 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>WIP</td>
-                                            <td>Work In Progress</td>
+                                            <td>name</td>
+                                            <td>The identifier or name of the astronomical event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>trigger_time</td>
+                                            <td>The time at which the event was first detected</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RA</td>
+                                            <td>Right Ascension of the event in the sky</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DEC</td>
+                                            <td>Declination of the event in the sky</td>
+                                        </tr>
+                                        <tr>
+                                            <td>T90</td>
+                                            <td>The time taken to acumulate 90% of the burst fluence starting at the 5% fluence level</td>
+                                        </tr>
+                                        <tr>
+                                            <td>normalised_duration</td>
+                                            <td>Aprroximate duration of the event's occurrence</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sat_source</td>
+                                            <td>Dataset where the data comes from</td>
+                                        </tr>
+                                        <tr>
+                                            <td>start_time_obs</td>
+                                            <td>The start time of the observation period for the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>end_time_obs</td>
+                                            <td>The end time of the observation period for the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>reliability</td>
+                                            <td>Probability assigned to the classification of the trigger (100% is the most probable)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>geo_long</td>
+                                            <td>The spacecraft's geographical east longitude in degrees</td>
+                                        </tr>
+                                        <tr>
+                                            <td>geo_lat</td>
+                                            <td>The spacecraft's geographical north latitude in degrees</td>
+                                        </tr>
+                                        <tr>
+                                            <td>type</td>
+                                            <td>The type or classification of the burst</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sigma</td>
+                                            <td>A statistical measure of the detection's significance</td>
+                                        </tr>
+                                        <tr>
+                                            <td>max_count</td>
+                                            <td>The maximum count rate or intensity observed during the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>BAT_RA</td>
+                                            <td>The Right Ascension of the event detected by the Burst Alert Telescope (BAT J2000)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>BAT_DEC</td>
+                                            <td>The Declination of the event detected by the Burst Alert Telescope (BAT J2000)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>BAT_T90</td>
+                                            <td>The time interval (seconds) in which 90% of the Fluence was detected by Swift Burst Alert Telescope (BAT J2000)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>BAT_fluence</td>
+                                            <td>The total fluence (energy per unit area) (\(10^{-7}\; erg/cm^2\)) of the event as measured by Burst Alert Telescope (BAT J2000)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>xrt_spectral_index</td>
+                                            <td>Detection of the burst source obtained from an automated time-averaged spectral fit of the Photon Counting (PC)</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>WIP <a href="about:blank"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>FERMI-GBM & FERMI-LAT <a href="https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigtrig.html"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Integral <a href="http://isdc.unige.ch/integral/science/grb#ACS"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Swift <a href="https://swift.gsfc.nasa.gov/results/batgrbcat/"><i class="bi bi-globe-americas"></i></a><a href="https://swift.gsfc.nasa.gov/archive/grb_table/"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Astrosat CZTI <a href="https://astrosat.iucaa.in/czti/grb"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Konos-Wind <a href="https://gcn.gsfc.nasa.gov/konus_grbs.html"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="tgf-tab-content" role="tabpanel">
@@ -343,18 +424,107 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>WIP</td>
-                                            <td>Work In Progress</td>
+                                            <td>ID</td>
+                                            <td>Unique identifier for the record</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GEO_long</td>
+                                            <td>The spacecraft's geographical north latitude, in degrees</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GEO_lat</td>
+                                            <td>The spacecraft's geographical east longitude, in degrees</td>
+                                        </tr>
+                                        <tr>
+                                            <td>orbit</td>
+                                            <td>Satellite's Orbit number</td>
+                                        </tr>
+                                        <tr>
+                                            <td>trigger_time</td>
+                                            <td>The time at which the trigger occurred</td>
+                                        </tr>
+                                        <tr>
+                                            <td>T50</td>
+                                            <td>Median duration of the event in milliseconds</td>
+                                        </tr>
+                                        <tr>
+                                            <td>T50_err</td>
+                                            <td>Error in the median duration in milliseconds</td>
+                                        </tr>
+                                        <tr>
+                                            <td>T50_err_applied</td>
+                                            <td>Median duration of the event and its error in milliseconds</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sat_altitude</td>
+                                            <td>Satellite altitude at trigger time</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ML_counts</td>
+                                            <td>TGF number of counts</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ML_counts_err</td>
+                                            <td>Error in TGF number counts</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ML_counts_err_applied</td>
+                                            <td>TGF number of counts and its error</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TGF_name</td>
+                                            <td>Name of the Terrestrial Gamma-ray Flash event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>event_type</td>
+                                            <td>Type of the event:
+                                                <ul>
+                                                    <li>0 = single pulse</li>
+                                                    <li>1 = candidate multipulse (MP) event</li>
+                                                    <li>2 = first pulse of MP event</li>
+                                                    <li>3 = following pulse(s) of MP event</li>
+                                                    <li>4 = Terrestrial Electron Beam (TEB)</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>normalised_duration</td>
+                                            <td>Duration of the event normalised</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RA</td>
+                                            <td>Right Ascension</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DEC</td>
+                                            <td>Declination</td>
+                                        </tr>
+                                        <tr>
+                                            <td>start_time_obs</td>
+                                            <td>Observation start time</td>
+                                        </tr>
+                                        <tr>
+                                            <td>end_time_obs</td>
+                                            <td>Observation end time</td>
+                                        </tr>
+                                        <tr>
+                                            <td>reliability</td>
+                                            <td>Reliability of the data</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sat_source</td>
+                                            <td>Source of the satellite data</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>WIP <a href="about:blank"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>FERMI-GBM & FERMI-LAT <a href="https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigtrig.html"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Agile <a href="https://www.ssdc.asi.it/mcal3tgfcat/"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="swe-tab-content" role="tabpanel">
-                                <h3 class="titleTab">SpaceWeatherEvents</h3>
+                                <h3 class="titleTab">Space Weather Events</h3>
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
                                         <tr>
@@ -364,14 +534,37 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>WIP</td>
-                                            <td>Work In Progress</td>
+                                            <td>top</td>
+                                            <td>Number in the top 50 events of the specific year</td>
+                                        </tr>
+                                        <tr>
+                                            <td>flux</td>
+                                            <td>The rate of flow of a physical quantity through a reference surface</td>
+                                        </tr>
+                                        <tr>
+                                            <td>region</td>
+                                            <td>Number assigned to a plage or sunspot region</td>
+                                        </tr>
+                                        <tr>
+                                            <td>time_start_obs</td>
+                                            <td>Start time of the event's observation</td>
+                                        </tr>
+                                        <tr>
+                                            <td>trigger_time</td>
+                                            <td>Time in which the event was first triggered</td>
+                                        </tr>
+                                        <tr>
+                                            <td>time_end_obs</td>
+                                            <td>End time of the event's observation</td>
+                                        <tr>
+                                            <td>sat_source</td>
+                                            <td>Dataset where the data comes from</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>WIP <a href="about:blank"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>SpaceWeatherLive <a href="https://www.spaceweatherlive.com/en/solar-activity/top-50-solar-flares.html"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
                     </div>

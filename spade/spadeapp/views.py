@@ -19,33 +19,10 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-def add_data(request):
-    data_folder = Path("C:/Users/Tommaso Scesi/Desktop/Challenge1/catalogue-data-ingestion/spade/spade/files_data")
-    fileToOpen = data_folder / "file_ex.csv"
-    f = open(fileToOpen, "r") 
-    objs = []
-    attributes = ["fieldSample", "num"]
-    for line in f:
-        #print("Line:", line)
-        params = line.split(",")
-        print(params)
-        sm = SampleModel()
-        for att in attributes:
-            print("att", att)
-            setattr(sm, att, params[attributes.index(att)])        
-        objs.append(sm)
-        
-    f.close()
-    print("Objs:", objs)
-    if objs:
-        SampleModel.objects.bulk_create(objs)
-    else:
-        return HttpResponse("Failed")
-    return HttpResponse("Data added correctly")
 
 def add_all_data(request):
-    SWE.add_data()
-    #Earthquake.add_data()
+    #SWE.add_data()
+    Earthquake.add_data()
     #TGF.add_data()
     #GRB.add_data()
 

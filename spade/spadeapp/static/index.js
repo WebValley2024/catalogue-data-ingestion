@@ -414,6 +414,10 @@ document.addEventListener('DOMContentLoaded', function () {
         catalogueModal.show();
     });
 
+    document.getElementById('downloadPDF').addEventListener('click', function() {
+        alert('This feature is not available yet');
+    });
+
     // Add event listener to the tabs to update the filters
     const tabs = document.querySelectorAll('.nav-link');
     tabs.forEach(tab => {
