@@ -20,7 +20,7 @@ console = Console()
 
 OLD = ["astrosat.csv", "integral.csv", "fermi_grb.csv", "swift.csv", "konus.csv",]
 
-FINAL = "tgf.csv"
+FINAL = "grb.csv"
 
 NAMES = {
         # Earthquake
