@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from time_related import iso_to_epoch
 
 
-def download_earthquake_data(initial_date=datetime.now() - timedelta(days=120), end_date=datetime.now()):
+def download_earthquake_data(initial_date=datetime.now() - timedelta(days=4000), end_date=datetime.now()):
     """
     Downloads data from Earthquakes and saves it as a CSV file.
     """
@@ -40,7 +40,6 @@ def download_earthquake_data(initial_date=datetime.now() - timedelta(days=120), 
                 fields[0] = str(iso_to_epoch(fields[0]))
                 converted_row = ','.join(fields)
                 file.write(converted_row + '\n')
-
     else:
         print("Failed to download data")
         sys.exit(1)
