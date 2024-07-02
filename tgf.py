@@ -1,10 +1,11 @@
-from spaceweatherevents import download_space_weather_data
+from fermi import download_fermi_data
+from agile import download_agile_data
 import pandas as pd
 from time import strftime, localtime
 
-OLD = ["spaceweatherevents.csv"]
+OLD = ["agile.csv", "fermi_tgf.csv"]
 
-FINAL = "swe.csv"
+FINAL = "tgf.csv"
 
 NAMES = {
         # Earthquake
@@ -87,7 +88,7 @@ def step4():
         new_lines = []
         new_lines.append(lines[0])
 
-        columns = [3, 4, 5]
+        columns = [3, 17, 18]
 
         for line in lines[1:]:
             data = line.strip().split(",")
@@ -105,7 +106,8 @@ def step4():
 
 
 if __name__ == "__main__":
-    download_space_weather_data()
+    download_fermi_data("tgf")
+    download_agile_data()
 
     step1()
     step2()

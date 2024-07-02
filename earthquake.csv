@@ -63,7 +63,7 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1718339208,-30.9154,-13.4724,10.0,5.9,mww,84.0,56.0,6.212,0.7,us,us7000msb0,2024-06-15T04:29:52.960Z,southern Mid-Atlantic Ridge,earthquake,10.0,1.852,0.078,16.0,reviewed,us,us,earthquake
 1718318809,-8.7047,-76.0218,10.0,5.0,mb,84.0,72.0,2.82,0.77,us,us7000ms9k,2024-06-28T01:43:14.526Z,55 km ESE of Uchiza Peru,earthquake,8.65,1.806,0.036,244.0,reviewed,us,us,earthquake
 1718298773,-22.7636,-176.6699,124.612,5.1,mww,75.0,62.0,2.104,0.71,us,us7000ms7h,2024-06-30T14:42:17.040Z,226 km SW of Houma Tonga,earthquake,9.52,5.271,0.086,13.0,reviewed,us,us,earthquake
-1718274187,12.6133,144.2362,29.917,5.1,mb,76.0,39.0,1.149,1.08,us,us7000ms3s,2024-06-29T10:33:20.590Z,86 km SSW of Merizo Village Guam,earthquake,9.17,5.198,0.04,203.0,reviewed,us,us,earthquake
+1718274187,12.6133,144.2362,29.917,5.1,mb,76.0,39.0,1.149,1.08,us,us7000ms3s,2024-07-02T10:33:11.262Z,86 km SSW of Merizo Village Guam,earthquake,9.17,5.198,0.04,203.0,reviewed,us,us,earthquake
 1718252006,-18.936,-172.7715,10.0,5.0,mb,43.0,79.0,2.695,1.28,us,us7000ms2f,2024-06-28T05:21:04.040Z,131 km ESE of Neiafu Tonga,earthquake,7.0,1.877,0.106,28.0,reviewed,us,us,earthquake
 1718211680,4.3806,126.455,37.976,5.8,mww,218.0,23.0,2.81,0.61,us,us7000mrz8,2024-06-26T19:52:25.744Z,157 km SE of Sarangani Philippines,earthquake,7.29,3.492,0.052,35.0,reviewed,us,us,earthquake
 1718159155,8.3388,-103.3487,10.0,5.7,mww,99.0,57.0,10.283,0.64,us,us7000mrv4,2024-06-27T04:29:13.438Z,northern East Pacific Rise,earthquake,4.29,1.819,0.045,48.0,reviewed,us,us,earthquake

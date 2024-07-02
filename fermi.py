@@ -4,14 +4,15 @@ from time_related import mjd_to_epoch
 import warnings
 
 
-def download_fermi_data():
+def download_fermi_data(type):
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", category=FutureWarning, message=".*Passing bytes to 'read_excel'.*")
         
         # Download data
-        download()
+        download(type)
 
-def download():
+
+def download(type):
     """
     Downloads data from Fermi and saves it as a CSV file.
     """
@@ -196,8 +197,14 @@ def download():
         df_tgf = df_tgf.drop(columns=['trigger_type'])
 
         # Save the divided data as CSV files
-        df_grb.to_csv("fermi_grb.csv", index=False)
-        df_tgf.to_csv("fermi_tgf.csv", index=False)
+
+        if type == "grb":
+            df_grb.to_csv("fermi_grb.csv", index=False)
+        elif type == "tgf":
+            df_tgf.to_csv("fermi_tgf.csv", index=False)
+        else:
+            df_grb.to_csv("fermi_grb.csv", index=False)
+            df_tgf.to_csv("fermi_tgf.csv", index=False)
 
 
 if __name__ == "__main__":
