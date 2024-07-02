@@ -1,4 +1,5 @@
 Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource,source
+1719911855,-35.4177,-179.3869,10.0,5.1,mb,47.0,126.0,2.834,0.54,us,us6000n9ss,2024-07-02T09:34:14.040Z,east of the North Island of New Zealand,earthquake,9.19,1.83,0.106,29.0,reviewed,us,us,earthquake
 1719888363,-6.2962,130.0936,164.984,5.0,mb,57.0,93.0,1.772,0.79,us,us6000n9rg,2024-07-02T03:02:29.040Z,Banda Sea,earthquake,6.11,6.776,0.082,47.0,reviewed,us,us,earthquake
 1719873893,26.9048,140.2993,471.947,5.3,mww,85.0,52.0,1.693,0.57,us,us6000n9pu,2024-07-01T22:59:41.040Z,Bonin Islands Japan region,earthquake,10.03,7.456,0.089,12.0,reviewed,us,us,earthquake
 1719828983,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01T10:33:17.040Z,198 km SE of Kokopo Papua New Guinea,earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
