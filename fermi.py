@@ -1,9 +1,17 @@
 import requests
 import pandas as pd
 from time_related import mjd_to_epoch
+import warnings
 
 
 def download_fermi_data():
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=FutureWarning, message=".*Passing bytes to 'read_excel'.*")
+        
+        # Download data
+        download()
+
+def download():
     """
     Downloads data from Fermi and saves it as a CSV file.
     """

@@ -47,34 +47,38 @@ EQ = ["earthquake.csv"]
 FINAL = ["eq.csv", "grb.csv", "swe.csv", "tgf.csv"]
 
 
+def thread_download_konus_data():
+    download_konus_data()
+    print("<konus>              Download completed.")
+
 def thread_download_astrosat_data():
     download_astrosat_data()
-    print("<astrosat> Download completed.")
+    print("<astrosat>           Download completed.")
 
 
 def thread_download_fermi_data():
     download_fermi_data()
-    print("<fermi> Download completed.")
+    print("<fermi>              Download completed.")
 
 
 def thread_download_earthquake_data():
     download_earthquake_data()
-    print("<earthquake> Download completed.")
+    print("<earthquake>         Download completed.")
 
 
 def thread_download_integral_data():
     download_integral_data()
-    print("<integral> Download completed.")
+    print("<integral>           Download completed.")
 
 
 def thread_download_agile_data():
     download_agile_data()
-    print("<agile> Download completed.")
+    print("<agile>              Download completed.")
 
 
 def thread_download_swift_data():
     download_swift_data()
-    print("<swift> Download completed.")
+    print("<swift>              Download completed.")
 
 
 def thread_download_space_weather_data():
@@ -86,13 +90,13 @@ def harmonize_step1():
     # Add a column to each dataset to indicate the source (e.g. astrosat, fermi, earthquake, etc.)
     # This will be useful when converting the data to SQL
     for dataset in TGF:
-        print("Harmonizing", dataset)
+        # print("Harmonizing", dataset)
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
         df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
     for dataset in GRB:
-        print("Harmonizing", dataset)
+        # print("Harmonizing", dataset)
         if dataset == "swift.csv":
             df = pd.read_csv(dataset, sep=';')
         else:
@@ -104,13 +108,13 @@ def harmonize_step1():
             df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
     for dataset in SWE:
-        print("Harmonizing", dataset)
+        # print("Harmonizing", dataset)
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
         df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
     for dataset in EQ:
-        print("Harmonizing", dataset)
+        # print("Harmonizing", dataset)
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
         df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
@@ -273,20 +277,18 @@ def harmonize_step4():
 
 
 if __name__ == "__main__":
-
-    print("Downloading data...")
-
     with Progress() as progress:
         download_task = progress.add_task("[green]Downloading data...", total=8)
 
         threads = []
-        threads.append(threading.Thread(target=lambda: [thread_download_astrosat_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_fermi_data(), progress.advance(download_task)]))
+        threads.append(threading.Thread(target=lambda: [thread_download_astrosat_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_earthquake_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_integral_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_agile_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_swift_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_space_weather_data(), progress.advance(download_task)]))
+        threads.append(threading.Thread(target=lambda: [thread_download_konus_data(), progress.advance(download_task)]))
 
         for thread in threads:
             thread.start()
@@ -294,15 +296,9 @@ if __name__ == "__main__":
         for thread in threads:
             thread.join()
 
-        # Apparently, the Konus data is not being downloaded correctly when using threads
-        # It will be downloaded separately in the main thread after all other data has been downloaded
-        download_konus_data()
-        print("<konus> Download completed.")
-        progress.advance(download_task)
         if not progress.finished:
             progress.stop()
 
-    print("All data downloaded successfully")
     print("Harmonizing data (step 1/4)...")
     harmonize_step1()
     # print("[bold red]Not implemented yet[/bold red]")
