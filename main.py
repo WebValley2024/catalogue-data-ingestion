@@ -316,4 +316,3 @@ if __name__ == "__main__":
     harmonize_step4()
 
     print("Data harmonized successfully")
-    print("Data converted successfully")

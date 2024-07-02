@@ -66,17 +66,17 @@ def download_data(url, mod):
                 except:
                     # This row may not be in the correct format, instead of being '.' it may be ':'
                     # This is a workaround to fix the issue
-                    print("Error: ", row_data)
+                    # print("Error: ", row_data)
                     try:
                         row_data[1] = row_data[1].rsplit(':', 1)[0] + '.' + row_data[1].rsplit(':', 1)[1]
                         timestamp = konus_to_epoch(row_data[0], row_data[1])
                         row_data[0] = timestamp
                         row_data.pop(1)
                         csv_writer.writerow(row_data)
-                        print("Fixed: ", row_data)
+                        # print("Fixed: ", row_data)
                     except:
                         # If the row is still not in the correct format, skip it
-                        print("Still error: ", row_data)
+                        # print("Still error: ", row_data)
                         pass
 
 
