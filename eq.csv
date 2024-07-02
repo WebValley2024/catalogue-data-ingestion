@@ -333,7 +333,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-04-17 01:45:14,26.1567,-110.4997,10.0,5.0,mww,73.0,67.0,1.427,0.76,us,us7000mckg,2024-06-25T21:02:52.040Z,86 km E of Loreto Mexico,earthquake,5.12,1.852,0.049,40.0,reviewed,us,us,earthquake
 2024-04-16 23:01:24,11.3815,92.9599,57.532,5.0,mww,168.0,34.0,6.712,0.69,us,us7000mcjj,2024-06-25T21:02:52.040Z,39 km SE of Port Blair India,earthquake,8.29,5.486,0.093,11.0,reviewed,us,us,earthquake
 2024-04-16 16:06:15,9.6873,126.2537,51.666,5.0,mb,217.0,20.0,2.685,0.85,us,us7000mcg7,2024-06-25T21:02:50.040Z,17 km ESE of Union Philippines,earthquake,8.37,4.498,0.036,248.0,reviewed,us,us,earthquake
-2024-04-16 14:58:55,12.9353,145.4323,9.219,5.4,mww,269.0,24.0,0.851,0.73,us,us7000mcej,2024-06-25T21:02:48.040Z,83 km ESE of Inarajan Village Guam,earthquake,6.85,2.865,0.066,22.0,reviewed,us,us,earthquake
+2024-04-16 14:58:55,12.9353,145.4323,9.219,5.4,mww,269.0,24.0,0.851,0.73,us,us7000mcej,2024-07-02T15:09:03.355Z,83 km ESE of Inarajan Village Guam,earthquake,6.85,2.865,0.066,22.0,reviewed,us,us,earthquake
 2024-04-16 07:56:40,-14.8116,168.0105,10.0,5.0,mww,78.0,55.0,6.721,0.81,us,us7000mccx,2024-06-25T21:02:47.040Z,104 km ENE of Port-Olry Vanuatu,earthquake,10.08,1.759,0.093,11.0,reviewed,us,us,earthquake
 2024-04-15 22:38:56,29.4397,131.7622,7.556,5.9,mww,293.0,30.0,2.352,0.49,us,us7000mcb1,2024-06-25T21:02:46.040Z,147 km SE of Koshima Japan,earthquake,6.25,2.675,0.045,48.0,reviewed,us,us,earthquake
 2024-04-15 10:43:28,-5.2266,151.892,71.991,5.4,mww,105.0,32.0,5.513,0.99,us,us7000mc5q,2024-06-25T21:02:43.040Z,106 km SSW of Kokopo Papua New Guinea,earthquake,8.03,4.695,0.078,16.0,reviewed,us,us,earthquake
