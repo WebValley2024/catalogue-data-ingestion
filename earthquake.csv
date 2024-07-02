@@ -421,7 +421,7 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1712102701,15.8214,146.8668,10.0,5.3,mb,43.0,97.0,1.188,0.91,us,us7000mbhn,2024-06-12T21:51:58.040Z,137 km ENE of Saipan Northern Mariana Islands,earthquake,8.85,1.843,0.106,30.0,reviewed,us,us,earthquake
 1712102292,23.8356,121.5976,40.0,7.4,mww,322.0,17.0,0.337,0.93,us,us7000m9g4,2024-06-30T15:44:53.337Z,15 km S of Hualien City Taiwan,earthquake,4.73,1.877,0.027,133.0,reviewed,us,us,earthquake
 1712096204,15.8934,146.8532,10.0,5.2,mww,241.0,40.0,1.213,0.83,us,us7000m9fv,2024-06-12T21:51:51.040Z,139 km ENE of Saipan Northern Mariana Islands,earthquake,9.09,1.774,0.061,26.0,reviewed,us,us,earthquake
-1712051648,15.8146,146.8779,10.0,6.2,mww,247.0,37.0,1.195,0.43,us,us7000m9bq,2024-06-25T10:04:09.940Z,137 km ENE of Saipan Northern Mariana Islands,earthquake,5.68,1.806,0.044,49.0,reviewed,us,us,earthquake
+1712051648,15.8146,146.8779,10.0,6.2,mww,247.0,37.0,1.195,0.43,us,us7000m9bq,2024-07-02T10:04:21.320Z,137 km ENE of Saipan Northern Mariana Islands,earthquake,5.68,1.806,0.044,49.0,reviewed,us,us,earthquake
 1711999476,40.1435,141.6984,73.0,5.9,mww,147.0,29.0,0.806,0.98,us,us7000m98g,2024-06-12T21:51:50.040Z,7 km SW of Kuji Japan,earthquake,4.39,1.879,0.045,47.0,reviewed,us,us,earthquake
 1711982716,8.246,-103.2397,10.0,5.3,mww,120.0,104.0,10.318,0.65,us,us7000m976,2024-06-12T21:51:49.040Z,northern East Pacific Rise,earthquake,11.17,1.85,0.056,31.0,reviewed,us,us,earthquake
 1711935545,-6.256,155.0964,163.637,5.1,mww,100.0,61.0,5.752,0.5,us,us7000m94s,2024-06-12T21:51:48.040Z,43 km W of Panguna Papua New Guinea,earthquake,10.2,5.032,0.11,8.0,reviewed,us,us,earthquake
