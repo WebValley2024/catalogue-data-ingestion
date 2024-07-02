@@ -72,12 +72,12 @@ def step2():
 
 
 def step3():
-        df = pd.read_csv(FINAL, low_memory=False)
-        t = df.columns
-        df.rename(columns=NAMES, inplace=True, errors='ignore')
-        f = df.columns
-        df.columns = df.columns.str.lower().str.replace(' ', '_')
-        df.to_csv(FINAL, index=False)
+    df = pd.read_csv(FINAL, low_memory=False)
+    t = df.columns
+    df.rename(columns=NAMES, inplace=True, errors='ignore')
+    f = df.columns
+    df.columns = df.columns.str.lower().str.replace(' ', '_')
+    df.to_csv(FINAL, index=False)
 
 
 def step4():

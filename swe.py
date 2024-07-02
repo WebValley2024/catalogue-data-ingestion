@@ -67,8 +67,8 @@ def step1():
 
 
 def step2():
-    eq = pd.concat([pd.read_csv(dataset) for dataset in OLD])
-    eq.to_csv(FINAL, index=False)
+    swe = pd.concat([pd.read_csv(dataset) for dataset in OLD])
+    swe.to_csv("swe.csv", index=False)
 
 
 def step3():

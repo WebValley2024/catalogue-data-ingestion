@@ -3,6 +3,18 @@ from agile import download_agile_data
 import pandas as pd
 from time import strftime, localtime
 
+import threading
+from sqlalchemy import create_engine
+import pandas as pd
+import os
+
+from rich.console import Console
+from rich.progress import Progress
+from rich import print
+from time import strftime, localtime
+
+console = Console()
+
 OLD = ["agile.csv", "fermi_tgf.csv"]
 
 FINAL = "tgf.csv"
@@ -68,8 +80,8 @@ def step1():
 
 
 def step2():
-    eq = pd.concat([pd.read_csv(dataset) for dataset in OLD])
-    eq.to_csv(FINAL, index=False)
+    tgf = pd.concat([pd.read_csv(dataset) for dataset in OLD])
+    tgf.to_csv("tgf.csv", index=False)
 
 
 def step3():
@@ -106,8 +118,21 @@ def step4():
 
 
 if __name__ == "__main__":
-    download_fermi_data("tgf")
-    download_agile_data()
+    with Progress() as progress:
+        download_task = progress.add_task("[green]Downloading data...", total=2)
+
+        threads = []
+        threads.append(threading.Thread(target=lambda: [download_fermi_data("tgf"), progress.advance(download_task)]))
+        threads.append(threading.Thread(target=lambda: [download_agile_data(), progress.advance(download_task)]))
+
+        for thread in threads:
+            thread.start()
+
+        for thread in threads:
+            thread.join()
+
+        if not progress.finished:
+            progress.stop()
 
     step1()
     step2()

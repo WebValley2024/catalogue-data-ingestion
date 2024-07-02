@@ -76,16 +76,16 @@ NAMES = {
 
 
 def step1():
-        for o in OLD:
-            if o == "swift.csv":
-                df = pd.read_csv(o, sep=';')
-            else:
-                df = pd.read_csv(o)
-            df['source'] = o.split('.')[0]
-            if o == "swift.csv":
-                df.to_csv(o, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=';')
-            else:
-                df.to_csv(o, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
+    for dataset in OLD:
+        if dataset == "swift.csv":
+            df = pd.read_csv(dataset, sep=';')
+        else:
+            df = pd.read_csv(dataset)
+        df['source'] = dataset.split('.')[0]
+        if dataset == "swift.csv":
+            df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=';')
+        else:
+            df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
 
 def step2():
@@ -118,7 +118,7 @@ def step4():
             data = line.strip().split(",")
             for c in columns:
                 if data[c] != "":
-                    epoch_int = int(float(data[c]))
+                    epoch_int = int(float(str(data[c])))
                     utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
                     data[c] = utc_dt
             new_line = ",".join(data)
