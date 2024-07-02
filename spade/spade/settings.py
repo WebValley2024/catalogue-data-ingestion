@@ -30,14 +30,19 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'spadeapp.apps.SpadeappConfig',
+INSTALLED_APPS = [    
+    'spadeapp.apps.SpadeappConfig',    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
+]
+
+CRONJOBS = [
+    
 ]
 
 MIDDLEWARE = [

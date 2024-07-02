@@ -1,3 +1,64 @@
+const tablesOptions = {
+    "scrollX": true, // Enable horizontal scrolling
+    "autoWidth": true, // Disable automatic column width calculation
+    "retrieve": true,
+    "pageLength": 50,
+    "sorting": false,
+    "lengthMenu": [10, 25, 50, 100, 250, 500, { label: 'All', value: -1 }],
+    "initComplete": function () {
+        // call the findFilters function to update the filters
+        findFilters();
+
+        // Apply the checkbox state to the columns
+        const activeTab = document.querySelector('.nav-link.active');
+        const tabName = activeTab.textContent.trim();
+        const tableSelector = activeTab.getAttribute('data-bs-target') + ' div table';
+        // check if the table has been initialized
+        if (!$.fn.dataTable.isDataTable(tableSelector)) {
+            return;
+        }
+        const table = $(tableSelector).DataTable({
+            "retrieve": true,
+            "responsive": true,
+        });
+
+        try {
+            tableColumnsState[tabName].forEach(column => {
+                table.column(column.index).visible(column.shown);
+            });
+        }
+        catch (error) {
+            console.error('Error applying the columns state:', error);
+        }
+    },
+    "layout": {
+        "topStart": {
+            "paging": true,
+            "info": true,
+        },
+        "topEnd": {
+            "search": true,
+            "buttons": [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="bi bi-file-earmark-bar-graph-fill"></i> XLSX',
+                    filename: 'SpaDe_Data',
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: '<i class="bi bi-file-earmark-spreadsheet-fill"></i> CSV',
+                    filename: 'SpaDe_Data',
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="bi bi-printer-fill"></i> Print',
+                    filename: 'SpaDe_Data',
+                },
+            ],
+        },
+    },
+};
+
 function fixNav() {
     let navHeight = document.querySelector('#supBar').offsetHeight;
     let navbar = document.querySelector('.navbar').offsetHeight;
@@ -14,6 +75,8 @@ function autoDateSelector() {
     let endDate = new Date();
 
     startDate.setMonth(startDate.getMonth() - 1);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
     
     // set the date in the date selector
     document.getElementById('startDate').valueAsDate = startDate;
@@ -62,6 +125,8 @@ function updateTimePeriod(timePeriod) {
 
     document.getElementById('startDate').valueAsDate = startDate;
     document.getElementById('endDate').valueAsDate = endDate;
+
+    document.getElementById('applyDateRange').click();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -137,7 +202,18 @@ document.addEventListener('DOMContentLoaded', function () {
         let startDate = document.getElementById('startDate').value;
         let endDate = document.getElementById('endDate').value;
 
-        if (startDate === '' || endDate === '') {
+        // List of conditions to check before applying the date range
+        const conditions = [
+            startDate === '',
+            endDate === '',
+            startDate === null,
+            endDate === null,
+            new Date(startDate) > new Date(endDate),
+            new Date(startDate) < new Date(1900, 1, 1),
+            new Date(endDate) < new Date(1900, 1, 1),
+        ];
+
+        if (conditions.some(Boolean)) {
             showAlert('Please select a valid date range', 'danger');
             return;
         }
@@ -145,25 +221,187 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Start Date: ' + startDate);
         console.log('End Date: ' + endDate);
 
-        // fetch data from the server
-        // TODO
-        // simulate data fetch json very small or very big randomly
-        let data = Math.random() > 0.5 ? 'small' : 'big';
-        if (data === 'small') {
-            data = JSON.stringify({'data': 'small data'});
-        } else {
-            data = JSON.stringify({'data': 'big data'.repeat(1000)});
-        }
+        // disable the button to prevent multiple clicks
+        document.getElementById('applyDateRange').disabled = true;
+        document.getElementById('applyDateRange').textContent = 'Loading...';
+        document.getElementById('dateRangeDropdown').parentNode.querySelector('.dropdown-menu').classList.remove('show');
+        document.getElementById('dateRangeDropdown').disabled = true;
+        document.getElementById('startDate').disabled = true;
+        document.getElementById('endDate').disabled = true;
 
-        // check if length of data is very big to avoid crashing the browser or the computer itself
-        // if it is, show an alert to the user
-        if (data.length > 1000) {
-            if (!confirm('The data you are trying to fetch is very big and may crash your browser. Do you want to continue?')) {
+        // make an array
+        let isEverythingLoaded = [false, false, false, false];
+
+        let myBeautifulURL = '/spadeapp/select_earthquake/?start=' + startDate + '&end=' + endDate;
+        fetch(myBeautifulURL)
+            .then(response => response.text())
+            .then(data => {
+                $('#earthquakeTable div table').DataTable().destroy();
+                // EQ
+                let EQ = document.getElementById('earthquakeTable').querySelector('div table');
+                // Check if the data contains a debug message (generated by Django's debug mode)
+                if (data.includes('DEBUG')) {
+                    showAlert(data, 'danger');
+                    return;
+                }
+                // Check if the table has a lot of rows and show a warning before continuing
+                // it's an HTML table, so we can count the number of rows
+                let rowCount = data.split('<tr').length - 1;
+                if (rowCount > 2000) {
+                    let confirmResult = confirm('The earthquake table contains ' + rowCount + ' rows. Are you sure you want to continue?');
+                    if (confirmResult) {
+                        EQ.innerHTML = data;
+                    } else {
+                        showAlert('Not loading Earthquake data', 'warning');
+                        EQ.innerHTML = '';
+                    }
+                } else if (rowCount < 2) {
+                    EQ.innerHTML = '';
+                } else {
+                    EQ.innerHTML = data;
+                }
+                // Initialize the DataTable
+                $('#earthquakeTable div table').DataTable(tablesOptions);
+
+                isEverythingLoaded[0] = true;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Error loading Earthquake data', 'danger');
+            });
+
+        myBeautifulURL = '/spadeapp/select_swe/?start=' + startDate + '&end=' + endDate;
+        fetch(myBeautifulURL)
+            .then(response => response.text())
+            .then(data => {
+                $('#sweTable div table').DataTable().destroy();
+                // SWE
+                let SWE = document.getElementById('sweTable').querySelector('div table');
+                // Check if the data contains a debug message (generated by Django's debug mode)
+                if (data.includes('DEBUG')) {
+                    showAlert(data, 'danger');
+                    return;
+                }
+                // Check if the table has a lot of rows and show a warning before continuing
+                // it's an HTML table, so we can count the number of rows
+                rowCount = data.split('<tr').length - 1;
+                if (rowCount > 2000) {
+                    let confirmResult = confirm('The Space Weather Events table contains ' + rowCount + ' rows. Are you sure you want to continue?');
+                    if (confirmResult) {
+                        SWE.innerHTML = data;
+                    } else {
+                        showAlert('Not loading SWE data', 'warning');
+                        SWE.innerHTML = '';
+                    }
+                } else if (rowCount < 2) {
+                    SWE.innerHTML = '';
+                } else {
+                    SWE.innerHTML = data;
+                }
+
+                // Initialize the DataTable
+                $('#sweTable div table').DataTable(tablesOptions);
+
+                isEverythingLoaded[1] = true;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Error loading SWE data', 'danger');
                 return;
-            }
-        }
+            });
 
-        showAlert('Date range applied', 'success');
+        myBeautifulURL = '/spadeapp/select_tgf/?start=' + startDate + '&end=' + endDate;
+        fetch(myBeautifulURL)
+            .then(response => response.text())
+            .then(data => {
+                $('#tgfTable div table').DataTable().destroy();
+                // TGF
+                let TGF = document.getElementById('tgfTable').querySelector('div table');
+                // Check if the data contains a debug message (generated by Django's debug mode)
+                if (data.includes('DEBUG')) {
+                    showAlert(data, 'danger');
+                    return;
+                }
+                // Check if the table has a lot of rows and show a warning before continuing
+                // it's an HTML table, so we can count the number of rows
+                rowCount = data.split('<tr').length - 1;
+                if (rowCount > 2000) {
+                    let confirmResult = confirm('The TGF table contains ' + rowCount + ' rows. Are you sure you want to continue?');
+                    if (confirmResult) {
+                        TGF.innerHTML = data;
+                    } else {
+                        showAlert('Not loading TGF data', 'warning');
+                        TGF.innerHTML = '';
+                    }
+                } else if (rowCount < 2) {
+                    TGF.innerHTML = '';
+                } else {
+                    TGF.innerHTML = data;
+                }
+
+                // Initialize the DataTable
+                $('#tgfTable div table').DataTable(tablesOptions);
+
+                isEverythingLoaded[2] = true;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Error loading TGF data', 'danger');
+                return;
+            });
+
+        myBeautifulURL = '/spadeapp/select_grb/?start=' + startDate + '&end=' + endDate;
+        fetch(myBeautifulURL)
+            .then(response => response.text())
+            .then(data => {
+                $('#grbTable div table').DataTable().destroy();
+                // GRB
+                let GRB = document.getElementById('grbTable').querySelector('div table');
+                // Check if the data contains a debug message (generated by Django's debug mode)
+                if (data.includes('DEBUG')) {
+                    showAlert(data, 'danger');
+                    return;
+                }
+                // Check if the table has a lot of rows and show a warning before continuing
+                // it's an HTML table, so we can count the number of rows
+                rowCount = data.split('<tr').length - 1;
+                if (rowCount > 2000) {
+                    let confirmResult = confirm('The GRB table contains ' + rowCount + ' rows. Are you sure you want to continue?');
+                    if (confirmResult) {
+                        GRB.innerHTML = data;
+                    } else {
+                        showAlert('Not loading GRB data', 'warning');
+                        GRB.innerHTML = '';
+                    }
+                } else if (rowCount < 2) {
+                    GRB.innerHTML = '';
+                } else {
+                    GRB.innerHTML = data;
+                }
+                
+                // Initialize the DataTable
+                $('#grbTable div table').DataTable(tablesOptions);
+
+                isEverythingLoaded[3] = true;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Error loading GRB data', 'danger');
+                return;
+            });
+
+        // while the data is being loaded, check if all the data has been loaded
+        let checkData = setInterval(function() {
+            if (isEverythingLoaded.every(Boolean)) {
+                document.getElementById('applyDateRange').disabled = false;
+                document.getElementById('applyDateRange').textContent = 'Apply Date Range';
+                document.getElementById('dateRangeDropdown').disabled = false;
+                document.getElementById('startDate').disabled = false;
+                document.getElementById('endDate').disabled = false;
+                showAlert('Data loaded successfully', 'success');
+                clearInterval(checkData);
+            }
+        }, 1000);
     });
 
     document.getElementById('openFilters').addEventListener('click', function() {
@@ -185,7 +423,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    fetch('/spadeapp/select_earthquake/')
+    let url = '/spadeapp/select_earthquake/?start=' + document.getElementById('startDate').value + '&end=' + document.getElementById('endDate').value;
+
+    fetch(url)
         .then(response => response.text())
         .then(data => {
             // EQ
@@ -196,17 +436,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             EQ.innerHTML = data;
-            $('#earthquakeTable div table').DataTable({
-                "scrollX": true, // Enable horizontal scrolling
-                "autoWidth": false, // Disable automatic column width calculation
-                "retrieve": true
-            });
+            $('#earthquakeTable div table').DataTable(tablesOptions);
         })
         .catch(error => {
             console.error('Error:', error);
         });
 
-    fetch('/spadeapp/select_swe/')
+    url = '/spadeapp/select_swe/?start=' + document.getElementById('startDate').value + '&end=' + document.getElementById('endDate').value;
+
+    fetch(url)
         .then(response => response.text())
         .then(data => {
             // SWE
@@ -217,17 +455,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             SWE.innerHTML = data;
-            $('#sweTable div table').DataTable({
-                "scrollX": true, // Enable horizontal scrolling
-                "autoWidth": false, // Disable automatic column width calculation
-                "retrieve": true
-            });
+            $('#sweTable div table').DataTable(tablesOptions);
         })
         .catch(error => {
             console.error('Error:', error);
         });
 
-    fetch('/spadeapp/select_tgf/')
+    url = '/spadeapp/select_tgf/?start=' + document.getElementById('startDate').value + '&end=' + document.getElementById('endDate').value;
+
+    fetch(url)
         .then(response => response.text())
         .then(data => {
             // TGF
@@ -238,17 +474,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             TGF.innerHTML = data;
-            $('#tgfTable div table').DataTable({
-                "scrollX": true, // Enable horizontal scrolling
-                "autoWidth": false, // Disable automatic column width calculation
-                "retrieve": true
-            });
+            $('#tgfTable div table').DataTable(tablesOptions);
         })
         .catch(error => {
             console.error('Error:', error);
         });
 
-        fetch('/spadeapp/select_grb/')
+    url = '/spadeapp/select_grb/?start=' + document.getElementById('startDate').value + '&end=' + document.getElementById('endDate').value;
+
+    fetch(url)
         .then(response => response.text())
         .then(data => {
             // GRB
@@ -259,11 +493,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             GRB.innerHTML = data;
-            $('#grbTable div table').DataTable({
-                "scrollX": true, // Enable horizontal scrolling
-                "autoWidth": false, // Disable automatic column width calculation
-                "retrieve": true
-            });
+            $('#grbTable div table').DataTable(tablesOptions);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -285,10 +515,35 @@ function findFilters() {
     }
     // Retrieve the DataTable instance
     const table = $(tableSelector).DataTable({
-        "retrieve": true
+        "retrieve": true,
+        "responsive": true,
     });
 
-
+    if (table.columns().header().toArray().length === 0) {
+        console.log('No columns found in the table:', tabName);
+        // find all the checkboxes and disable them
+        const checkboxes = filterOffcanvas.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.disabled = true;
+        });
+        // disable the select all button
+        const toggleAllButton = document.getElementById('toggleAllButton');
+        if (toggleAllButton) {
+            toggleAllButton.disabled = true;
+        }
+        return;
+    } else {
+        // find all the checkboxes and enable them
+        const checkboxes = filterOffcanvas.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.disabled = false;
+        });
+        // enable the select all button
+        const toggleAllButton = document.getElementById('toggleAllButton');
+        if (toggleAllButton) {
+            toggleAllButton.disabled = false;
+        }
+    }
 
     // Initialize or clear the state for this table
     if (!tableColumnsState[tabName]) {
@@ -318,6 +573,20 @@ function findFilters() {
     }
 
     let docFragment = document.createDocumentFragment();
+
+    const toggleAllButton = document.createElement('button');
+    toggleAllButton.className = 'btn btn-outline-primary mb-3';
+    toggleAllButton.id = 'toggleAllButton';
+    toggleAllButton.textContent = 'Select All';
+    toggleAllButton.style.marginTop = '-10px';
+
+    const checkedCount = tableColumnsState[tabName].filter(column => column.shown).length;
+    const shouldSelectAll = checkedCount < tableColumnsState[tabName].length / 2;
+    toggleAllButton.textContent = shouldSelectAll ? 'Select All' : 'Deselect All';
+
+    // Append the button to the document fragment
+    docFragment.appendChild(toggleAllButton);
+
     const tabNameElement = document.createElement('h5');
     tabNameElement.style.fontWeight = 'bold';
     tabNameElement.textContent = tabName;
@@ -343,31 +612,32 @@ function findFilters() {
             const currentVisibility = table.column(column.index).visible();
             table.column(column.index).visible(!currentVisibility);
             column.shown = !currentVisibility;
+            const toggleAllButton = document.getElementById('toggleAllButton');
+            if (toggleAllButton) {
+                const checkedCount = tableColumnsState[tabName].filter(column => column.shown).length;
+                const shouldSelectAll = checkedCount < tableColumnsState[tabName].length / 2;
+                toggleAllButton.textContent = shouldSelectAll ? 'Select All' : 'Deselect All';
+            }
         });
     });
 
-    filterOffcanvas.appendChild(docFragment);
-}
+    toggleAllButton.addEventListener('click', function() {
+        const newState = toggleAllButton.textContent === 'Select All';
+        // check if the table has columns
+        if (table.columns().header().toArray().length === 0) {
+            return;
+        }
 
-function showHideColumn(columnName, shown) {
-    // Assuming the table is already initialized with DataTables
-    let tableObj = $('.tab-pane.active table').DataTable({
-        "retrieve": true
+        tableColumnsState[tabName].forEach(column => {
+            const checkbox = document.getElementById(column.name);
+            checkbox.checked = newState;
+            table.column(column.index).visible(newState);
+            column.shown = newState;
+        });
+        toggleAllButton.textContent = newState ? 'Deselect All' : 'Select All';
     });
 
-    // Find the column index using DataTables API
-    let columnIndex = tableObj.column(`${columnName}:name`).index();
-
-    // Check if the column was found
-    if (columnIndex !== undefined) {
-        // Show/hide the column using DataTables' method
-        tableObj.column(columnIndex).visible(shown);
-    } else {
-        console.error('Column not found:', columnName);
-    }
-
-    // Optionally, refresh filters or UI elements
-    findFilters();
+    filterOffcanvas.appendChild(docFragment);
 }
 
 function showAlert(message, alertType) {
@@ -375,12 +645,16 @@ function showAlert(message, alertType) {
 
     alertContainer.style.setProperty('padding-bottom', '15px', 'important');
 
-    // Remove any existing alerts
-    while (alertContainer.firstChild) {
-        alertContainer.removeChild(alertContainer.firstChild);
-    }
-
     alertContainer.style.setProperty('display', 'block', 'important');
+
+    // remove style attributes from message
+    // Parse the message as HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(message, 'text/html');
+    // Remove style attributes from all elements
+    doc.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'));
+    // Serialize back to a string
+    message = new XMLSerializer().serializeToString(doc.body).replace(/<\/?body>/g, '');    
 
     const alertElement = document.createElement('div');
     alertElement.className = `alert alert-${alertType} alert-dismissible fade show`;
@@ -399,10 +673,6 @@ function showAlert(message, alertType) {
             alertContainer.style.setProperty('display', 'none', 'important');
         }
     });
-
-    // setTimeout(function () {
-    //     bsAlert.close();
-    // }, 2500);
 
     setTimeout(function () {
         bsAlert.close();

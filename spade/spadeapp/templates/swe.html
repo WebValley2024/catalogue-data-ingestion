@@ -9,7 +9,9 @@
             <thead>
                 <tr>
                     {% for att in attributes %}
-                        <th>{{att}}</th>
+                        {% if att !=  "links" %}
+                            <th>{{att}}</th>
+                        {% endif %}
                     {% endfor %}
                 </tr>                
             </thead>
@@ -18,7 +20,7 @@
                 {%for x in models%}
                 
                 <tr>          
-                    
+                    <td>{{x.top}}</td> 
                     <td>{{x.flux}}</td> 
                     <td>{{x.region}}</td> 
                     <td>{{x.time_start_obs}}</td> 

@@ -8,6 +8,7 @@
         <table border = 1>
             <thead>
                 <tr>
+                    <th>ID</th>
                     {% for att in attributes %}
                         <th>{{att}}</th>
                     {% endfor %}
@@ -18,7 +19,7 @@
                 {%for x in models%}
                 
                 <tr>          
-                    
+                    <td>{{x.id}}</td>
                     <td>{{x.GEO_long}}</td> 
                     <td>{{x.GEO_lat}}</td> 
                     <td>{{x.orbit}}</td> 

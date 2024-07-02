@@ -8,12 +8,14 @@ html, body {
     -ms-user-select: none;
 }
 
+/*
 #themeDropdown {
     position: fixed;
-    left: 20px; /* Adjust as needed */
-    bottom: 20px; /* Adjust as needed */
+    left: 20px;
+    bottom: 20px;
     z-index: 9998 !important;
 }
+*/
 
 .theme-dropdown .dropdown-menu.show {
     z-index: 9999 !important;
@@ -25,7 +27,7 @@ html, body {
 }
 
 .alert {
-    margin-bottom: -10px !important;
+    margin-bottom: 10px !important;
 }
 
 #alert-container {
@@ -90,6 +92,10 @@ table {
     margin-right: 0 !important;
 }
 
+.dt-buttons {
+    margin-top: 0.5em !important;
+}
+
 .dt-scroll-headInner {
     min-width: 100% !important;
 }
@@ -98,6 +104,10 @@ table {
     min-width: 100% !important;
 }
 
+.dt-scroll-body table {
+    min-width: 100% !important;
+}
+
 .coolDIV {
-    width: calc(100%-2em) !important;
+    max-width: 99% !important;
 }

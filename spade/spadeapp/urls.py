@@ -11,6 +11,9 @@ urlpatterns = [
     path("select_earthquake/", views.select_earthquake, name="select_earthquake"),
     path("select_swe/", views.select_swe, name="select_swe"),
     path("select_tgf/", views.select_tgf, name="select_tgf"),
-    path("select_grb/", views.select_grb, name="select_grb")    
-
+    path("select_grb/", views.select_grb, name="select_grb"), 
+    path("earthquake_json/", views.select_earthquake_json, name="select_earthquake_json"),
+    path("swe_json/", views.select_swe_json, name="select_swe_json"),
+    path("tgf_json/", views.select_tgf_json, name="select_tgf_json"),
+    path("grb_json/", views.select_grb_json, name="select_grb_json"),
 ]
