@@ -178,5 +178,205 @@
                 </div>
             </div>
         </div>
+        <div class="modal preview-modal" tabindex="-1" id="catalogueModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Catalogue</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- divide in 4 tabs (1 tab for each table) to display the column meaning -->
+                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="earthquake-tab" data-bs-toggle="tab" data-bs-target="#earthquake-tab-content" role="tab" href="#">Earthquake</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="grb-tab" data-bs-toggle="tab" data-bs-target="#grb-tab-content" role="tab" href="#">GRB</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tgf-tab" data-bs-toggle="tab" data-bs-target="#tgf-tab-content" role="tab" href="#">TGF</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="swe-tab" data-bs-toggle="tab" data-bs-target="#swe-tab-content" role="tab" href="#">SpaceWeatherEvents</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="catalogueTabs">
+                            <div class="tab-pane fade show active" id="earthquake-tab-content" role="tabpanel">
+                                <h3 class="titleTab">Earthquake</h3>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Column</th>
+                                            <th>Meaning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>trigger_time</td>
+                                            <td>Time when the event occurred</td>
+                                        </tr>
+                                        <tr>
+                                            <td>latitude</td>
+                                            <td>Decimal degrees latitude</td>
+                                        </tr>
+                                        <tr>
+                                            <td>longitude</td>
+                                            <td>Decimal degrees longitude</td>
+                                        </tr>
+                                        <tr>
+                                            <td>depth</td>
+                                            <td>Depth of the event in kilometers</td>
+                                        </tr>
+                                        <tr>
+                                            <td>magnitude</td>
+                                            <td>The level of magnitude of the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>magType</td>
+                                            <td>Type of magnitude</td>
+                                        </tr>
+                                        <tr>
+                                            <td>nst</td>
+                                            <td>Number of stations used to determine the location</td>
+                                        </tr>
+                                        <tr>
+                                            <td>gap</td>
+                                            <td>Gap between azimuthally adjacent stations</td>
+                                        </tr>
+                                        <tr>
+                                            <td>dmin</td>
+                                            <td>Horizontal distance from the epicenter to the nearest station</td>
+                                        </tr>
+                                        <tr>
+                                            <td>rms</td>
+                                            <td>Root mean square travel time residual</td>
+                                        </tr>
+                                        <tr>
+                                            <td>net</td>
+                                            <td>Network that originally authored the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>identifier</td>
+                                            <td>Unique identifier for the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>updated</td>
+                                            <td>Time when the event was most recently updated</td>
+                                        </tr>
+                                        <tr>
+                                            <td>place</td>
+                                            <td>Textual description of named geographic region near to the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>type</td>
+                                            <td>Type of seismic event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>horizontal_err</td>
+                                            <td>Uncertainty of reported location of the event in kilometers</td>
+                                        </tr>
+                                        <tr>
+                                            <td>depth_err</td>
+                                            <td>Uncertainty of reported depth of the event in kilometers</td>
+                                        </tr>
+                                        <tr>
+                                            <td>magnitude_err</td>
+                                            <td>Uncertainty of reported magnitude of the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>magnst</td>
+                                            <td>Number of stations reporting the magnitude</td>
+                                        </tr>
+                                        <tr>
+                                            <td>status</td>
+                                            <td>Status of the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>locationSource</td>
+                                            <td>Network that originally authored the event</td>
+                                        </tr>
+                                        <tr>
+                                            <td>magSource</td>
+                                            <td>Network that originally authored the magnitude</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sat_source</td>
+                                            <td>Dataset where the data comes from</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h4>Sources</h4>
+                                <ul>
+                                    <li>usgs.gov <a href="https://earthquake.usgs.gov/earthquakes/search/"><i class="bi bi-globe-americas"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="grb-tab-content" role="tabpanel">
+                                <h3 class="titleTab">GRB</h3>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Column</th>
+                                            <th>Meaning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>WIP</td>
+                                            <td>Work In Progress</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h4>Sources</h4>
+                                <ul>
+                                    <li>WIP <a href="about:blank"><i class="bi bi-globe-americas"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="tgf-tab-content" role="tabpanel">
+                                <h3 class="titleTab">TGF</h3>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Column</th>
+                                            <th>Meaning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>WIP</td>
+                                            <td>Work In Progress</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h4>Sources</h4>
+                                <ul>
+                                    <li>WIP <a href="about:blank"><i class="bi bi-globe-americas"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="swe-tab-content" role="tabpanel">
+                                <h3 class="titleTab">SpaceWeatherEvents</h3>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Column</th>
+                                            <th>Meaning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>WIP</td>
+                                            <td>Work In Progress</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h4>Sources</h4>
+                                <ul>
+                                    <li>WIP <a href="about:blank"><i class="bi bi-globe-americas"></i></a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

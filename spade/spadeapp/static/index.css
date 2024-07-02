@@ -108,6 +108,21 @@ table {
     min-width: 100% !important;
 }
 
+.dt-paging {
+    margin-top: 0.5em !important;
+    display: inline-block;
+}
+
+.dt-length {
+    margin-top: 0.5em !important;
+    margin-left: 1em !important;
+    display: inline-block;
+}
+
 .coolDIV {
     max-width: 99% !important;
+}
+
+.titleTab {
+    margin-top: 0.5em;
 }

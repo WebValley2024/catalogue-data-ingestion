@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    
+    ('0 */12 * * *', 'spadeapp.eq.download_eq')
 ]
 
 MIDDLEWARE = [

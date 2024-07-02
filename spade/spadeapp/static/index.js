@@ -34,6 +34,7 @@ const tablesOptions = {
     "layout": {
         "topStart": {
             "paging": true,
+            "pageLength": true,
             "info": true,
         },
         "topEnd": {
@@ -406,6 +407,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('openFilters').addEventListener('click', function() {
         findFilters();
+    });
+    
+    document.getElementById('openCatalogue').addEventListener('click', function() {
+        let catalogueModal = new bootstrap.Modal(document.getElementById('catalogueModal'));
+        catalogueModal.show();
     });
 
     // Add event listener to the tabs to update the filters
