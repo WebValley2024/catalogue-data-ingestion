@@ -2,18 +2,8 @@ from fermi import download_fermi_data
 from agile import download_agile_data
 import pandas as pd
 from time import strftime, localtime
-
 import threading
-from sqlalchemy import create_engine
-import pandas as pd
-import os
-
-from rich.console import Console
-from rich.progress import Progress
-from rich import print
 from time import strftime, localtime
-
-console = Console()
 
 OLD = ["agile.csv", "fermi_tgf.csv"]
 
@@ -72,6 +62,26 @@ NAMES = {
 }
 
 
+def get_tgf():
+    download()
+    step1()
+    step2()
+    step3()
+    step4()
+
+
+def download():
+    threads = []
+    threads.append(threading.Thread(target=lambda: [download_fermi_data("tgf")]))
+    threads.append(threading.Thread(target=lambda: [download_agile_data()]))
+
+    for thread in threads:
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+
+
 def step1():
     for dataset in OLD:
         df = pd.read_csv(dataset)
@@ -118,23 +128,4 @@ def step4():
 
 
 if __name__ == "__main__":
-    with Progress() as progress:
-        download_task = progress.add_task("[green]Downloading data...", total=2)
-
-        threads = []
-        threads.append(threading.Thread(target=lambda: [download_fermi_data("tgf"), progress.advance(download_task)]))
-        threads.append(threading.Thread(target=lambda: [download_agile_data(), progress.advance(download_task)]))
-
-        for thread in threads:
-            thread.start()
-
-        for thread in threads:
-            thread.join()
-
-        if not progress.finished:
-            progress.stop()
-
-    step1()
-    step2()
-    step3()
-    step4()
+    get_tgf()

@@ -59,6 +59,18 @@ NAMES = {
 }
 
 
+def get_swe():
+    download()
+    step1()
+    step2()
+    step3()
+    step4()
+
+
+def download():
+    download_space_weather_data()
+
+
 def step1():
     for dataset in OLD:
         df = pd.read_csv(dataset)
@@ -105,9 +117,4 @@ def step4():
 
 
 if __name__ == "__main__":
-    download_space_weather_data()
-
-    step1()
-    step2()
-    step3()
-    step4()
+    get_swe()

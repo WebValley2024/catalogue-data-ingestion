@@ -59,6 +59,18 @@ NAMES = {
 }
 
 
+def get_eq():
+    download()
+    step1()
+    step2()
+    step3()
+    step4()
+
+
+def download():
+    download_earthquake_data()
+
+
 def step1():
     for dataset in OLD:
         df = pd.read_csv(dataset)
@@ -105,9 +117,4 @@ def step4():
 
 
 if __name__ == "__main__":
-    download_earthquake_data()
-
-    step1()
-    step2()
-    step3()
-    step4()
+    get_eq()

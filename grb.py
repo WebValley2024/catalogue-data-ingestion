@@ -5,18 +5,8 @@ from swift import download_swift_data
 from konus import download_konus_data
 import pandas as pd
 from time import strftime, localtime
-
 import threading
-from sqlalchemy import create_engine
-import pandas as pd
-import os
-
-from rich.console import Console
-from rich.progress import Progress
-from rich import print
 from time import strftime, localtime
-
-console = Console()
 
 OLD = ["astrosat.csv", "integral.csv", "fermi_grb.csv", "swift.csv", "konus.csv",]
 
@@ -75,6 +65,29 @@ NAMES = {
 }
 
 
+def get_grb():
+    download()
+    step1()
+    step2()
+    step3()
+    step4()
+
+
+def download():
+    threads = []
+    threads.append(threading.Thread(target=lambda: [download_fermi_data("grb")]))
+    threads.append(threading.Thread(target=lambda: [download_astrosat_data()]))
+    threads.append(threading.Thread(target=lambda: [download_integral_data()]))
+    threads.append(threading.Thread(target=lambda: [download_swift_data()]))
+    threads.append(threading.Thread(target=lambda: [download_konus_data()]))
+
+    for thread in threads:
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+
+
 def step1():
     for dataset in OLD:
         if dataset == "swift.csv":
@@ -130,26 +143,4 @@ def step4():
 
 
 if __name__ == "__main__":
-    with Progress() as progress:
-        download_task = progress.add_task("[green]Downloading data...", total=5)
-
-        threads = []
-        threads.append(threading.Thread(target=lambda: [download_fermi_data("grb"), progress.advance(download_task)]))
-        threads.append(threading.Thread(target=lambda: [download_astrosat_data(), progress.advance(download_task)]))
-        threads.append(threading.Thread(target=lambda: [download_integral_data(), progress.advance(download_task)]))
-        threads.append(threading.Thread(target=lambda: [download_swift_data(), progress.advance(download_task)]))
-        threads.append(threading.Thread(target=lambda: [download_konus_data(), progress.advance(download_task)]))
-
-        for thread in threads:
-            thread.start()
-
-        for thread in threads:
-            thread.join()
-
-        if not progress.finished:
-            progress.stop()
-
-    step1()
-    step2()
-    step3()
-    step4()
+    get_grb()
