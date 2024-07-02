@@ -1,6 +1,8 @@
 Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource,source
+1719888363,-6.2962,130.0936,164.984,5.0,mb,57.0,93.0,1.772,0.79,us,us6000n9rg,2024-07-02T03:02:29.040Z,Banda Sea,earthquake,6.11,6.776,0.082,47.0,reviewed,us,us,earthquake
+1719873893,26.9048,140.2993,471.947,5.3,mww,85.0,52.0,1.693,0.57,us,us6000n9pu,2024-07-01T22:59:41.040Z,Bonin Islands Japan region,earthquake,10.03,7.456,0.089,12.0,reviewed,us,us,earthquake
 1719828983,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01T10:33:17.040Z,198 km SE of Kokopo Papua New Guinea,earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
-1719810723,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-01T17:22:07.686Z,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
+1719810723,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-02T05:22:17.171Z,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 1719801483,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01T02:53:11.040Z,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
 1719771800,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-01T18:33:25.043Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 1719763589,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01T02:14:41.128Z,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
@@ -533,8 +535,3 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1709604452,33.4841,93.0234,10.0,5.4,mww,114.0,26.0,8.749,0.46,us,us6000mgsv,2024-05-15T17:35:06.040Z,240 km NNE of Nagqu China,earthquake,7.64,1.801,0.075,17.0,reviewed,us,us,earthquake
 1709557276,-17.821,-172.3887,10.0,5.0,mb,44.0,84.0,2.649,0.66,us,us7000m465,2024-05-15T17:35:07.040Z,192 km ENE of Neiafu Tonga,earthquake,10.69,1.611,0.086,43.0,reviewed,us,us,earthquake
 1709520501,-5.8279,102.179,10.0,5.2,mwb,79.0,102.0,1.65,0.81,us,us6000mgkc,2024-05-15T17:35:07.040Z,224 km S of Bengkulu Indonesia,earthquake,7.33,1.802,0.055,32.0,reviewed,us,us,earthquake
-1709489312,-28.7289,61.6042,10.0,5.0,mb,76.0,78.0,9.077,0.67,us,us6000mghy,2024-05-10T21:25:59.040Z,Southwest Indian Ridge,earthquake,9.75,1.869,0.061,86.0,reviewed,us,us,earthquake
-1709482613,-58.8881,159.1441,23.187,6.8,mww,49.0,58.0,4.403,0.57,us,us6000mghc,2024-05-10T21:25:58.040Z,Macquarie Island region,earthquake,10.52,3.009,0.037,72.0,reviewed,us,us,earthquake
-1709481392,-29.5411,-112.0415,10.0,5.0,mb,31.0,86.0,3.302,0.76,us,us6000mgha,2024-05-10T21:25:58.040Z,Easter Island region,earthquake,4.49,1.858,0.081,49.0,reviewed,us,us,earthquake
-1709478463,-5.0063,103.0276,63.387,5.1,mb,63.0,91.0,0.645,0.54,us,us6000mgh3,2024-05-10T21:25:58.040Z,111 km SSW of Pagar Alam Indonesia,earthquake,8.15,5.338,0.055,108.0,reviewed,us,us,earthquake
-1709431266,-32.4116,-178.0679,10.0,5.0,mb,29.0,118.0,3.142,0.63,us,us6000mgdt,2024-05-10T21:25:58.040Z,south of the Kermadec Islands,earthquake,5.18,1.888,0.146,17.0,reviewed,us,us,earthquake

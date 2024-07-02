@@ -46,33 +46,41 @@ EQ = ["earthquake.csv"]
 # Final data
 FINAL = ["eq.csv", "grb.csv", "swe.csv", "tgf.csv"]
 
+
 def thread_download_astrosat_data():
     download_astrosat_data()
     print("<astrosat> Download completed.")
+
 
 def thread_download_fermi_data():
     download_fermi_data()
     print("<fermi> Download completed.")
 
+
 def thread_download_earthquake_data():
     download_earthquake_data()
     print("<earthquake> Download completed.")
+
 
 def thread_download_integral_data():
     download_integral_data()
     print("<integral> Download completed.")
 
+
 def thread_download_agile_data():
     download_agile_data()
     print("<agile> Download completed.")
+
 
 def thread_download_swift_data():
     download_swift_data()
     print("<swift> Download completed.")
 
+
 def thread_download_space_weather_data():
     download_space_weather_data()
     print("<spaceweatherevents> Download completed.")
+
 
 def harmonize_step1():
     # Add a column to each dataset to indicate the source (e.g. astrosat, fermi, earthquake, etc.)
@@ -82,7 +90,7 @@ def harmonize_step1():
         df = pd.read_csv(dataset)
         df['source'] = dataset.split('.')[0]
         df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
-    
+
     for dataset in GRB:
         print("Harmonizing", dataset)
         if dataset == "swift.csv":
@@ -107,6 +115,7 @@ def harmonize_step1():
         df['source'] = dataset.split('.')[0]
         df.to_csv(dataset, index=False, quoting=0, quotechar='"', escapechar='\\', doublequote=False, sep=',')
 
+
 def harmonize_step2():
     # Combine all tables of the same type (e.g. TGF, GRB, SWE, EQ) into a single table
     # This will be useful when converting the data to SQL
@@ -129,6 +138,7 @@ def harmonize_step2():
     # EQ
     eq = pd.concat([pd.read_csv(dataset) for dataset in EQ])
     eq.to_csv("eq.csv", index=False)
+
 
 def harmonize_step3():
     # Convert all csv columns to lowercase and remove spaces (replace with underscores)
@@ -187,14 +197,14 @@ def harmonize_step3():
     }
 
     for dataset in FINAL:
-        print("Correcting", dataset)
+        # print("Correcting", dataset)
         df = pd.read_csv(dataset, low_memory=False)
         t = df.columns
-        print(df.columns)
+        # print(df.columns)
         df.rename(columns=NAMES, inplace=True, errors='ignore')
         f = df.columns
-        print(df.columns)
-        print(t == f)
+        # print(df.columns)
+        # print(t == f)
         df.columns = df.columns.str.lower().str.replace(' ', '_')
         df.to_csv(dataset, index=False)
 
@@ -261,7 +271,7 @@ def harmonize_step4():
     convert_columns_to_datetime('eq.csv', [0])
     convert_columns_to_datetime('swe.csv', [3, 4, 5])
 
-    
+
 if __name__ == "__main__":
 
     print("Downloading data...")
@@ -277,7 +287,7 @@ if __name__ == "__main__":
         threads.append(threading.Thread(target=lambda: [thread_download_agile_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_swift_data(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_download_space_weather_data(), progress.advance(download_task)]))
-        
+
         for thread in threads:
             thread.start()
 
