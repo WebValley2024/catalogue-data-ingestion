@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.template import loader
 from .models import SampleModel, TGF, SWE, Earthquake, GRB
 from pathlib import Path
@@ -45,8 +45,8 @@ def add_data(request):
 def add_all_data(request):
     #SWE.add_data()
     #Earthquake.add_data()
-    TGF.add_data()
-    #GRB.add_data()
+    #TGF.add_data()
+    GRB.add_data()
 
     return HttpResponse("All data added")
 
@@ -63,7 +63,7 @@ def select_model_sample(request):
 def select_earthquake(request):
     #samplemodels = SampleModel.objects.raw("SELECT * FROM spadeapp_sampleModel")
     models = Earthquake.objects.all() 
-       
+    print("Request: ", request)
     #print(samplemodels)
     context = {"models":models, "attributes":Earthquake.attributes}
     return render(request, "earthquake.html", context)
@@ -76,9 +76,15 @@ def select_swe(request):
     return render(request, "swe.html", context)
 
 def select_tgf(request):
-    
-    models = TGF.objects.all()               
-    
+    #print("submitted", request.GET)
+    models = TGF.objects.all()     
+    #request.GET.get(start)          
     context = {"models":models, "attributes":TGF.attributes}
     return render(request, "tgf.html", context)
 
+def select_grb(request):
+    #print("submitted", request.GET) #TO GET USER PARAMETERS
+    models = GRB.objects.all()     
+    #request.GET.get(start)          
+    context = {"models":models, "attributes":GRB.attributes}
+    return render(request, "grb.html", context)

@@ -58,7 +58,7 @@
                     
                     <!-- Right container for buttons with flex-basis for specific width -->
                     <div style="flex: 1; display: flex; justify-content: flex-end;">
-                        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+                        <button class="btn" type="button" id="openFilters" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
                             <i class="bi bi-filter-square-fill"></i>
                         </button>
                         <button class="btn" id="openSettings">
@@ -89,10 +89,10 @@
         <div class="container">
             <div class="card" id="dateSelectorBox" style="width: auto;">
                 <div class="card-body">
-                    <h5 class="card-title">Time period<div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dateRangeDropdown"
+                    <h5 class="card-title">Time period <div class="dropdown" style="display: inline-block;">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dateRangeDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            Quick range
+                            Quick range <i class="bi bi-calendar2-date-fill"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dateRangeDropdown">
                             <li><a class="dropdown-item" href="#" id="quickRange7g">7 days</a></li>
