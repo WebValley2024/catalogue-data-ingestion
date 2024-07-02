@@ -57,7 +57,7 @@ def thread_download_astrosat_data():
 
 
 def thread_download_fermi_data():
-    download_fermi_data()
+    download_fermi_data("")
     print("<fermi>              Download completed.")
 
 

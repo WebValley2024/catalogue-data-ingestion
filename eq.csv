@@ -8,7 +8,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-06-30 18:23:20,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-01T18:33:25.043Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 2024-06-30 16:06:29,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01T02:14:41.128Z,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
 2024-06-29 16:38:46,-54.0099,7.159,10.0,5.6,mww,77.0,34.0,23.718,1.06,us,us6000n96v,2024-06-30T16:42:40.356Z,Bouvet Island region,earthquake,10.45,1.744,0.086,13.0,reviewed,us,us,earthquake
-2024-06-29 11:10:32,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,2024-07-01T11:20:38.127Z,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
+2024-06-29 11:10:32,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,2024-07-02T11:20:46.382Z,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
 2024-06-29 07:22:53,-16.1686,-74.3463,52.923,5.3,mww,58.0,137.0,4.408,1.24,us,us6000n94d,2024-06-29T21:46:39.059Z,41 km S of Atiquipa Peru,earthquake,5.47,7.128,0.086,13.0,reviewed,us,us,earthquake
 2024-06-29 07:05:33,-16.1219,-74.5791,19.32,6.1,mww,98.0,89.0,4.625,1.04,us,us6000n948,2024-06-30T07:38:42.474Z,42 km SSW of Atiquipa Peru,earthquake,6.04,4.406,0.059,28.0,reviewed,us,us,earthquake
 2024-06-29 04:21:48,-24.0128,-70.2167,43.529,5.2,mb,62.0,110.0,1.279,1.02,us,us6000n933,2024-06-29T11:58:54.823Z,43 km SSE of Antofagasta Chile,earthquake,6.18,6.129,0.031,354.0,reviewed,us,us,earthquake
