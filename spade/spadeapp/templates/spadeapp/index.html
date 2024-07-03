@@ -55,7 +55,7 @@
             <nav class="navbar navbar-expand-md">
                 <div class="container-fluid d-flex">
                     <!-- Left spacer with flex-basis equal to the right container for balance -->
-                    <div style="flex: 1;">
+                    <div style="flex: 1; display: flex; justify-content: flex-start;">
                         <div class="dropdown theme-dropdown">
                             <button class="btn dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -70,6 +70,9 @@
                                         class="bi bi-moon-stars-fill"></i> Dark</a></li>
                             </ul>
                         </div>
+                        <button class="btn" id="openGraphs" data-bs-toggle="tooltip" data-bs-title="View graphs">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                        </button>
                     </div>
                     
                     <!-- Logo centered with flex-grow to ensure it takes available space -->
@@ -87,6 +90,7 @@
                         </button>
                         <button class="btn" id="openContacts" data-bs-toggle="tooltip" data-bs-title="Meet our team!">
                             <i class="bi bi-people-fill"></i>
+                        </button>
                     </div>
                 </div>
             </nav>
@@ -137,7 +141,7 @@
             </div>
         </div>
         <div class="container">
-            <ul class="nav nav-tabs nav-fill mt-3">
+            <ul class="nav nav-tabs nav-fill mt-3" id="tablesNav">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="earthquake" data-bs-toggle="tab" data-bs-target="#earthquakeTable" type="button" role="tab" href="#">Earthquake</a>
                 </li>
@@ -159,7 +163,6 @@
                     <div class="coolDIV" >
                         <table class="table table-striped table-hover table-bordered" style="overflow-y: auto;">
                         </table>
-                        <canvas id="earthquakeChart"></canvas>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="grbTable" role="tabpanel">
@@ -197,7 +200,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 0 !important;"></button>
                     </div>
                     <div class="modal-body">
-                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                        <ul class="nav nav-tabs nav-fill" role="tablist" id="catalogueTabsNav">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active" id="earthquake-tab" data-bs-toggle="tab" data-bs-target="#earthquake-tab-content" role="tab" href="#">Earthquake</a>
                             </li>
@@ -626,6 +629,52 @@
                     </div>
                     <div class="modal-body">
                         <img src="{% static 'coolphotoofus.png' %}" class="img-fluid rounded mx-auto d-block" alt="A cool photo of our team"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal preview-modal fade" tabindex="-1" id="graphsModal">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">View Graphs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs nav-fill" role="tablist" id="graphsTabsNav">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="earthquake-tab" data-bs-toggle="tab" data-bs-target="#earthquake-graph-content" role="tab" href="#">Earthquake</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="grb-tab" data-bs-toggle="tab" data-bs-target="#grb-graph-content" role="tab" href="#">GRB</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tgf-tab" data-bs-toggle="tab" data-bs-target="#tgf-graph-content" role="tab" href="#">TGF</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="swe-tab" data-bs-toggle="tab" data-bs-target="#swe-graph-content" role="tab" href="#">Space Weather Events</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="dst-tab" data-bs-toggle="tab" data-bs-target="#dst-graph-content" role="tab" href="#">Magnetic disturbances (Dst)</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="graphTabs">
+                            <div class="tab-pane show active" id="earthquake-graph-content" role="tabpanel">
+                                <canvas id="earthquakeChart"></canvas>
+                            </div>
+                            <div class="tab-pane" id="grb-graph-content" role="tabpanel">
+                                <canvas id="grbChart"></canvas>
+                            </div>
+                            <div class="tab-pane" id="tgf-graph-content" role="tabpanel">
+                                <canvas id="tgfChart"></canvas>
+                            </div>
+                            <div class="tab-pane" id="swe-graph-content" role="tabpanel">
+                                <canvas id="sweChart"></canvas>
+                            </div>
+                            <div class="tab-pane" id="dst-graph-content" role="tabpanel">
+                                <canvas id="dstChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
-    "django_extensions"
+    "django_extensions",
 ]
 
 CRONJOBS = [
@@ -51,7 +51,7 @@ CRONJOBS = [
     #('15 */12 * * *', 'spadeapp.scripts.swe.get_swe'),
     #('20 */12 * * *', 'spadeapp.scripts.gms.get_gms'),
     #('30 */12 * * *', 'spadeapp.views.add_all_data'),    
-    ('* * * * *', 'spadeapp.scripts.ciao.ciao')
+    ('*/1 * * * *', 'spadeapp.cron.say_hello')
 ]
 
 MIDDLEWARE = [

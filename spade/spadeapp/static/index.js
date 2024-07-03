@@ -1,3 +1,5 @@
+let earthquakeChartInstance = null; // Global variable to hold the chart instance
+
 const tablesOptions = {
   "scrollX": true, // Enable horizontal scrolling
   "autoWidth": true, // Disable automatic column width calculation
@@ -429,7 +431,7 @@ function loadData() {
 
 document.addEventListener('DOMContentLoaded', function () {
   window.alert = (function () {
-    var nativeAlert = window.alert;
+    let nativeAlert = window.alert;
     return function (message) {
       window.alert = nativeAlert;
       message.indexOf("DataTables warning") === 0 ?
@@ -511,7 +513,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('openCatalogue').addEventListener('click', function () {
     let catalogueModal = new bootstrap.Modal(document.getElementById('catalogueModal'));
+    
+    // Get the current active tab in the table (id: tablesNav)
+    let activeTab = document.querySelector('#tablesNav .nav-link.active');
+    
+    // Tabs in the catalogue have the same text
+    if (activeTab) {
+      let activeTabText = activeTab.textContent.trim(); // Get the text of the active tab
+      
+      // Find the corresponding tab in the catalogue by text
+      let catalogueTabs = document.querySelectorAll('#catalogueModal .nav-link');
+      catalogueTabs.forEach(tab => {
+        if (tab.textContent.trim() === activeTabText) {
+          new bootstrap.Tab(tab).show(); // Use Bootstrap's Tab class to show the corresponding tab
+        }
+      });
+    }
+    
     catalogueModal.show();
+  });
+  
+  document.getElementById('openGraphs').addEventListener('click', function () {
+    let graphsModal = new bootstrap.Modal(document.getElementById('graphsModal'));
+    
+    // Get the current active tab in the table (id: tablesNav)
+    let activeTab = document.querySelector('#tablesNav .nav-link.active');
+
+    // Tabs in the graphs have the same text
+    if (activeTab) {
+      let activeTabText = activeTab.textContent.trim(); // Get the text of the active tab
+
+      // Find the corresponding tab in the graphs by text
+      let graphsTabs = document.querySelectorAll('#graphsModal .nav-link');
+      graphsTabs.forEach(tab => {
+        if (tab.textContent.trim() === activeTabText) {
+          new bootstrap.Tab(tab).show(); // Use Bootstrap's Tab class to show the corresponding tab
+        }
+      });
+    }
+    
+    graphsModal.show();
   });
 
   document.getElementById('downloadPDF').addEventListener('click', function () {
@@ -760,13 +801,22 @@ function showAlert(message, alertType) {
 }
 
 function drawEQLineChart(htmlTable) {
-  var time = [];   //trigger_time
-  var magnitude = []; //magnitude
+  // Destroy the existing chart instance if it exists
+  if (earthquakeChartInstance) {
+    earthquakeChartInstance.destroy();
+  }
+
+  // get the table from htmlTable
+  let parser = new DOMParser();
+  let doc = parser.parseFromString(htmlTable, 'text/html');
+  let table = doc.querySelector('table');
+  let time = [];   //trigger_time
+  let magnitude = []; //magnitude
 
   function getData(cols) {
-    var data = [];
-    for (var i = 1; i < htmlTable.rows.length; i++) {
-      data.push(htmlTable.rows[i].cells[cols].innerHTML);
+    let data = [];
+    for (let i = 1; i < table.rows.length; i++) {
+      data.push(table.rows[i].cells[cols].innerHTML);
     }
     return data;
   }
@@ -775,7 +825,7 @@ function drawEQLineChart(htmlTable) {
 
   const ctx = document.getElementById('earthquakeChart');
 
-  new Chart(ctx, {
+  earthquakeChartInstance = new Chart(ctx, {
     type: 'line',
     normalized: true,
     data: {
@@ -785,13 +835,13 @@ function drawEQLineChart(htmlTable) {
         data: magnitude,
         borderWidth: 2,
         tension: 0.2,
-        borderColor: 'rgb(144, 12, 63)',
-        backgroundColor: 'rgb(144, 12, 63, 0.25)',
+        borderColor: 'rgb(13, 110, 253)', // #0d6efd
+        backgroundColor: 'rgba(13, 110, 253, 0.2)',
         borderCapStyle: 'butt',
         borderJoinStyle: 'round',
         fill: true,
-        hoverBackgroundColor: 'rgb(144, 12, 63)',
-        pointBackgroundColor: 'rgb(144, 12, 63)',
+        hoverBackgroundColor: 'rgba(13, 110, 253, 0.4)',
+        pointBackgroundColor: 'rgb(13, 110, 253)',
         pointHitRadius: 2.5,
         pointRadius: 1.5,
       }]

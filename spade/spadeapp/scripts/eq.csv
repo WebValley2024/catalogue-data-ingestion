@@ -1,4 +1,5 @@
 trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,updated,place,type,horizontal_err,depth_err,magnitude_err,magnst,status,locationsource,magsource,source
+2024-07-03 20:20:34,-22.9565,-68.5811,93.864,5.3,mww,103.0,56.0,0.371,1.01,us,usd0011dnn,2024-07-03T20:12:01.498Z,39 km W of San Pedro de Atacama Chile,earthquake,6.67,3.977,0.061,26.0,reviewed,us,us,earthquake
 2024-07-03 13:44:27,26.6344,-110.9773,10.0,5.3,mww,61.0,184.0,1.318,1.04,us,us6000na0d,2024-07-03T14:42:30.150Z,78 km NNE of Loreto Mexico,earthquake,8.09,1.927,0.042,54.0,reviewed,us,us,earthquake
 2024-07-03 09:17:28,-54.019,-2.4486,10.0,5.2,mb,30.0,91.0,17.72,0.73,us,us6000n9zp,2024-07-03T07:34:24.040Z,southern Mid-Atlantic Ridge,earthquake,13.67,1.91,0.089,42.0,reviewed,us,us,earthquake
 2024-07-03 04:20:22,44.0978,156.5284,10.0,5.0,mb,63.0,137.0,9.042,1.05,us,us6000n9yc,2024-07-03T02:38:02.040Z,North Pacific Ocean,earthquake,10.02,1.883,0.031,323.0,reviewed,us,us,earthquake
@@ -9,7 +10,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-07-01 12:16:23,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01T10:33:17.040Z,198 km SE of Kokopo Papua New Guinea,earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
 2024-07-01 07:12:03,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-03T05:22:07.911Z,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 2024-07-01 04:38:03,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01T02:53:11.040Z,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
-2024-06-30 20:23:20,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-02T18:33:23.778Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
+2024-06-30 20:23:20,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-03T18:33:34.352Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 2024-06-30 18:06:29,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01T02:14:41.128Z,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
 2024-06-29 18:38:46,-54.0099,7.159,10.0,5.6,mww,77.0,34.0,23.718,1.06,us,us6000n96v,2024-06-30T16:42:40.356Z,Bouvet Island region,earthquake,10.45,1.744,0.086,13.0,reviewed,us,us,earthquake
 2024-06-29 13:10:32,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,2024-07-03T11:20:44.383Z,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
@@ -18574,11 +18575,3 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2013-07-22 09:01:42,-46.049,34.78,10.0,6.3,mww,259.0,22.0,,1.12,us,usb000ijj6,2022-05-03T17:41:32.600Z,Prince Edward Islands region,earthquake,,,,,reviewed,us,us,earthquake
 2013-07-22 03:12:34,34.529,104.176,10.2,5.4,mwc,102.0,15.0,,0.87,us,usb000ijfc,2022-05-03T17:41:34.486Z,68 km W of Mawu China,earthquake,,2.3,,,reviewed,us,gcmt,earthquake
 2013-07-22 02:05:03,-61.712,-58.594,13.5,5.2,mb,78.0,59.0,,1.19,us,usb000ijea,2014-11-07T01:51:19.273Z,South Shetland Islands,earthquake,,3.1,,49.0,reviewed,us,us,earthquake
-2013-07-22 01:45:56,34.512,104.262,8.0,5.9,mww,276.0,10.0,,0.8,us,usb000ije3,2022-07-25T18:48:20.707Z,60 km W of Mawu China,earthquake,,,,,reviewed,us,us,earthquake
-2013-07-22 00:47:25,-41.602,174.255,15.7,5.0,mb,68.0,100.0,,,us,usb000ijch,2022-05-03T16:24:24.761Z,26 km ESE of Blenheim New Zealand,earthquake,,,,26.0,reviewed,wel,us,earthquake
-2013-07-22 00:04:02,-60.357,-26.239,35.0,5.0,mb,48.0,52.0,,1.02,us,usp000k28q,2014-11-07T01:51:19.181Z,South Sandwich Islands region,earthquake,,1.9,,26.0,reviewed,us,us,earthquake
-2013-07-21 15:00:22,-3.494,135.385,28.9,5.2,mwb,207.0,25.0,,0.8,us,usb000ij2v,2022-05-03T16:24:22.017Z,19 km SW of Nabire Indonesia,earthquake,,7.1,,,reviewed,us,us,earthquake
-2013-07-21 11:51:11,-5.51,145.96,63.3,5.2,mb,101.0,28.0,,0.97,us,usb000ij0f,2022-07-25T18:46:12.370Z,37 km SSE of Madang Papua New Guinea,earthquake,,4.9,,91.0,reviewed,us,us,earthquake
-2013-07-21 07:13:50,-41.535,174.366,12.7,5.3,mb,59.0,100.0,,,us,usp000k27k,2014-11-07T01:51:18.884Z,34 km E of Blenheim New Zealand,earthquake,,,,33.0,reviewed,wel,us,earthquake
-2013-07-21 07:09:31,-41.704,174.337,17.0,6.5,mww,229.0,20.0,,0.85,us,usb000iivv,2023-03-21T20:57:25.353Z,38 km ESE of Blenheim New Zealand,earthquake,,,,,reviewed,us,us,earthquake
-2013-07-21 03:32:24,43.501,13.668,8.4,5.4,mb,111.0,100.0,,,us,usb000iiu5,2022-07-25T18:42:59.988Z,3 km ENE of Marcelli Italy,earthquake,,,,278.0,reviewed,rom,us,earthquake

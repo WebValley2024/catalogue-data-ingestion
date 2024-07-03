@@ -15,8 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.generic.base import TemplateView
+from django.views.static import serve
+from django.conf import settings
 from spadeapp.views import SignUpView
 
 urlpatterns = [
@@ -25,4 +27,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_URL}),
 ]

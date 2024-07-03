@@ -97,6 +97,8 @@ def download_dst_data():
 
             rows = file_content.split('\n')
 
+            new_rows = []
+
             for i in range(len(rows)-1):
                 parts = list(filter(None, rows[i].split(' ')))
                 parts[0] = to_epoch_timestamp(int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3]))
@@ -108,12 +110,13 @@ def download_dst_data():
                     parts[1] = ""
                 if parts[2] == "99999.9":
                     parts[2] = ""
-
-                rows[i] = ','.join(parts)
+                
+                if parts[1] != "" or parts[2] != "":
+                    new_rows.append(','.join(parts))
 
             with open("dst.csv", "w") as dst:
                 dst.write(f"{','.join(header)}\n")
-                for row in rows[:-1]:
+                for row in new_rows[:-1]:
                     dst.write(f"{row}\n")
 
         else:

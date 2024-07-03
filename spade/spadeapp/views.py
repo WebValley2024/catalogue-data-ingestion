@@ -24,7 +24,7 @@ def index(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def add_all_data(request):
-    print("TEST PASSED")
+    #print("TEST PASSED")
     SWE.add_data()
     Earthquake.add_data()
     TGF.add_data()
