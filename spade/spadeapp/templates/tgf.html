@@ -11,17 +11,18 @@
                     {% for att in attributes %}
                         <th>{{att}}</th>
                     {% endfor %}
-                </tr>                
+                </tr>               
             </thead>
             <tbody>
                 
                 {%for x in models%}
                 
                 <tr>                   
+                    <td>{{x.TGF_name}}</td>
+                    <td>{{x.trigger_time|date:'Y-m-d H:i'}}</td> 
                     <td>{{x.GEO_long}}</td> 
                     <td>{{x.GEO_lat}}</td> 
                     <td>{{x.orbit}}</td> 
-                    <td>{{x.trigger_time|date:'Y-m-d H:i'}}</td> 
                     <td>{{x.T50}}</td> 
                     <td>{{x.T50_err}}</td> 
                     <td>{{x.T50_err_applied}}</td>
@@ -29,7 +30,6 @@
                     <td>{{x.ML_counts}}</td>
                     <td>{{x.ML_counts_err}}</td>
                     <td>{{x.ML_counts_err_applied}}</td>
-                    <td>{{x.TGF_name}}</td>
                     <td>{{x.event_type}}</td>
                     <td>{{x.normalised_duration}}</td>
                     <td>{{x.sat_source}}</td>

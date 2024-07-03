@@ -57,16 +57,18 @@
                                 </div>
                             {% endif %}
                             <div class="mb-3">
-                                <label for="id_email" class="form-label">Email address</label>
-                                {{ form.email }}
-                                <div id="id_email_helptext" class="form-text">We'll never share your email with anyone
-                                    else.</div>
-                            </div>
-                            <div class="mb-3">
                                 <label for="id_username" class="form-label">Username</label>
                                 {{ form.username }}
                                 <div id="id_username_helptext" class="form-text">Required. 150 characters or fewer.
-                                    Letters, digits and @/./+/-/_ only.</div>
+                                    Letters, digits and @/./+/-/_ only.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label">Email address</label>
+                                {{ form.email }}
+                                <div id="id_email_helptext" class="form-text">We'll never share your email with anyone
+                                    else.
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="id_password1" class="form-label">Password</label>

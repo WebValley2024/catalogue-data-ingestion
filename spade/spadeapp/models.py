@@ -109,10 +109,11 @@ class Earthquake(models.Model):
         
 
 class TGF(models.Model):
+    TGF_name = models.CharField(verbose_name="TGF name", max_length=30, blank=True)
+    trigger_time = models.DateTimeField(verbose_name="Trigger time", default=timezone.now(),blank=True)
     GEO_long = models.CharField(verbose_name="Geo longitude", max_length=50,blank=True)
     GEO_lat = models.CharField(verbose_name="Geo latitude", max_length=50,blank=True)
     orbit = models.CharField(verbose_name="Orbit", max_length=50,blank=True)
-    trigger_time = models.DateTimeField(verbose_name="Trigger time", default=timezone.now(),blank=True)
     T50 = models.CharField(verbose_name="T50", max_length=50,blank=True)
     T50_err = models.CharField(verbose_name="T50 error", max_length=50,blank=True)
     T50_err_applied = models.CharField(verbose_name="T50 error applied", max_length=50,blank=True)
@@ -120,7 +121,6 @@ class TGF(models.Model):
     ML_counts = models.CharField(verbose_name="ML counts", max_length=50,blank=True)
     ML_counts_err = models.CharField(verbose_name="ML counts error", max_length=50,blank=True)
     ML_counts_err_applied = models.CharField(verbose_name="ML counts error applied", max_length=50,blank=True)
-    TGF_name = models.CharField(verbose_name="TGF name", max_length=30, blank=True)
     event_type = models.CharField(verbose_name="Event type", max_length=50, blank=True)
     normalised_duration = models.CharField(verbose_name="Normalised duration", max_length=50, default="", blank=True)
     sat_source = models.CharField(verbose_name="Source", max_length=50, default="Fermi", blank=True)
@@ -131,10 +131,11 @@ class TGF(models.Model):
     reliability = models.CharField(verbose_name="Reliability", max_length=50, blank=True)
     
     attributes = [
+        "TGF_name",
+        "trigger_time", 
         "GEO_long", 
         "GEO_lat", 
         "orbit", 
-        "trigger_time", 
         "T50", 
         "T50_err", 
         "T50_err_applied",
@@ -142,7 +143,6 @@ class TGF(models.Model):
         "ML_counts",
         "ML_counts_err",
         "ML_counts_err_applied",
-        "TGF_name",
         "event_type",
         "normalised_duration",
         "sat_source",
