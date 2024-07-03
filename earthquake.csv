@@ -1,4 +1,5 @@
 Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource,source
+1720030834,-22.9565,-68.5811,93.864,5.3,mww,103.0,56.0,0.371,1.01,us,usd0011dnn,2024-07-03T20:12:01.498Z,39 km W of San Pedro de Atacama Chile,earthquake,6.67,3.977,0.061,26.0,reviewed,us,us,earthquake
 1720007067,26.6344,-110.9773,10.0,5.3,mww,61.0,184.0,1.318,1.04,us,us6000na0d,2024-07-03T14:42:30.150Z,78 km NNE of Loreto Mexico,earthquake,8.09,1.927,0.042,54.0,reviewed,us,us,earthquake
 1719991048,-54.019,-2.4486,10.0,5.2,mb,30.0,91.0,17.72,0.73,us,us6000n9zp,2024-07-03T07:34:24.040Z,southern Mid-Atlantic Ridge,earthquake,13.67,1.91,0.089,42.0,reviewed,us,us,earthquake
 1719973222,44.0978,156.5284,10.0,5.0,mb,63.0,137.0,9.042,1.05,us,us6000n9yc,2024-07-03T02:38:02.040Z,North Pacific Ocean,earthquake,10.02,1.883,0.031,323.0,reviewed,us,us,earthquake
@@ -9,7 +10,7 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1719828983,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01T10:33:17.040Z,198 km SE of Kokopo Papua New Guinea,earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
 1719810723,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-03T05:22:07.911Z,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 1719801483,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01T02:53:11.040Z,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
-1719771800,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-02T18:33:23.778Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
+1719771800,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-03T18:33:34.352Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 1719763589,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01T02:14:41.128Z,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
 1719679126,-54.0099,7.159,10.0,5.6,mww,77.0,34.0,23.718,1.06,us,us6000n96v,2024-06-30T16:42:40.356Z,Bouvet Island region,earthquake,10.45,1.744,0.086,13.0,reviewed,us,us,earthquake
 1719659432,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,2024-07-03T11:20:44.383Z,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
