@@ -2,6 +2,7 @@ from eq import get_eq
 from swe import get_swe
 from tgf import get_tgf
 from grb import get_grb
+from gms import get_gms
 import threading
 from sqlalchemy import create_engine
 import pandas as pd
@@ -35,15 +36,21 @@ def thread_get_grb():
     print("<grb> Download completed.")
 
 
+def thread_get_gms():
+    get_gms()
+    print("<gms> Download completed.")
+
+
 if __name__ == "__main__":
     with Progress() as progress:
-        download_task = progress.add_task("[green]Downloading data...", total=4)
+        download_task = progress.add_task("[green]Downloading data...", total=5)
 
         threads = []
         threads.append(threading.Thread(target=lambda: [thread_get_eq(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_get_swe(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_get_tgf(), progress.advance(download_task)]))
         threads.append(threading.Thread(target=lambda: [thread_get_grb(), progress.advance(download_task)]))
+        threads.append(threading.Thread(target=lambda: [thread_get_gms(), progress.advance(download_task)]))
 
         for thread in threads:
             thread.start()

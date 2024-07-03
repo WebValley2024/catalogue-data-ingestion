@@ -8,9 +8,11 @@ import requests
 import sys
 from datetime import datetime, timedelta
 
+
 def is_leap_year(year):
     # Check if a year is a leap year
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
 
 def day_of_year_to_date(year, day):
     # Determine the corresponding month and day for a given day of the year
@@ -21,6 +23,7 @@ def day_of_year_to_date(year, day):
         day -= days_in_month[month - 1]
         month += 1
     return month, day
+
 
 def to_epoch_timestamp(year, day, hour, minute):
     # Convert the given parameters to an epoch timestamp
@@ -83,7 +86,7 @@ def download_dst_data():
 
         try:
             response = requests.get(lst_link)
-        except:
+        except Exception as e:
             print("Could not get the data (check the data range)")
             sys.exit(0)
 
@@ -91,7 +94,7 @@ def download_dst_data():
             file_content = response.text
 
             header = ["Trigger Time", "Field Magnitude Average(nT)", "Speed(km/s)"]
-        
+
             rows = file_content.split('\n')
 
             for i in range(len(rows)-1):
@@ -101,10 +104,10 @@ def download_dst_data():
                 parts.pop(1)
                 parts.pop(1)
 
-                rows[i] = ';'.join(parts)
-                    
+                rows[i] = ','.join(parts)
+
             with open("dst.csv", "w") as dst:
-                dst.write(f"{';'.join(header)}\n")
+                dst.write(f"{','.join(header)}\n")
                 for row in rows[:-1]:
                     dst.write(f"{row}\n")
 
