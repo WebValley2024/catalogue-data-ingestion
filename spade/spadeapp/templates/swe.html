@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     {% for att in attributes %}
-                        {% if att !=  "links" %}
+                        {% if att !=  "links" and att != "top" %}
                             <th>{{att}}</th>
                         {% endif %}
                     {% endfor %}
@@ -20,11 +20,10 @@
                 {%for x in models%}
                 
                 <tr>          
-                    <td>{{x.top}}</td> 
                     <td>{{x.flux}}</td> 
                     <td>{{x.region}}</td> 
                     <td>{{x.time_start_obs}}</td> 
-                    <td>{{x.trigger_time}}</td> 
+                    <td>{{x.trigger_time|date:'Y-m-d H:i'}}</td> 
                     <td>{{x.time_end_obs}}</td>
                     <td>{{x.sat_source}}</td> 
                     

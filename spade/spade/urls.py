@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic.base import TemplateView
+from spadeapp.views import SignUpView
 
 urlpatterns = [
-    path('spadeapp/', include('spadeapp.urls')),
     path('admin/', admin.site.urls),
+    path('spadeapp/', include('spadeapp.urls'), name="spadeapp"),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/signup/", SignUpView.as_view(), name="signup"),
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]

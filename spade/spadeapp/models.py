@@ -78,10 +78,16 @@ class Earthquake(models.Model):
     def get_last_index():
         return Earthquake.objects.last().pk
     
-    def add_data():
+    def add_data(delete = False):
         fileToOpen = dirname / "eq.csv"
         objs = []
-        lastindex = Earthquake.get_last_index()
+
+        if delete:
+            Earthquake.objects.all().delete()
+            lastindex = 0
+        else:        
+            lastindex = Earthquake.get_last_index()
+        
         i = lastindex + 1
 
         with open(fileToOpen, mode="r") as f:
@@ -94,9 +100,8 @@ class Earthquake(models.Model):
                 eart = Earthquake()
                 setattr(eart, 'id', i)
                 for att in Earthquake.attributes:
-                    
                     setattr(eart, att, params[Earthquake.attributes.index(att)])
-                setattr(eart, "sat_source", "swe")        
+                
                 objs.append(eart)
                 i += 1
         Earthquake.objects.bulk_create(objs)
@@ -148,35 +153,42 @@ class TGF(models.Model):
         "reliability"
     ]
 
+    #methods
     def __str__(self):
         return str(self.pk)
     
     def get_last_index():
         return TGF.objects.all()[-1].pk
     
-    def add_data():
+    def add_data(delete = False):
         objs = []
-        lastindex = TGF.get_last_index()
+        fileToOpen = dirname / "tgf.csv"
+        
+        if delete:
+            TGF.objects.all().delete()
+            lastindex = 0
+        else:        
+            lastindex = TGF.get_last_index()
+        
         i = lastindex + 1
 
-        with open("eq.csv", mode="r") as f:
+        with open(fileToOpen, mode="r") as f:
             for _ in range(lastindex + 2): #must skip headers line and include last index line
                 next(f)
             for line in f:
                 params = line.split(",")
             
                 tgf = TGF()
-                setattr(tgf, 'id', i)
-                for att in TGF.attributes:
-                    
+                for att in TGF.attributes:                    
                     setattr(tgf, att, params[TGF.attributes.index(att)])
-                setattr(tgf, "sat_source", "swe")        
+                
                 objs.append(tgf)
                 i += 1
         TGF.objects.bulk_create(objs)
 
 class SWE(models.Model):
-    top = models.CharField(verbose_name="top", max_length=10, default="")
+
+    #fields
     flux = models.CharField(verbose_name="Flux", max_length=5, blank=True)
     region = models.CharField(verbose_name="Region", max_length=20, blank=True)
     time_start_obs = models.CharField(verbose_name="Time start observations", max_length=50, blank=True)
@@ -184,20 +196,29 @@ class SWE(models.Model):
     time_end_obs = models.CharField(verbose_name="Time end observations", max_length=50, blank=True)
     sat_source = models.CharField(verbose_name="Source", max_length=50, blank=True)
     
+    #attribute list
     attributes = ["top", "flux", "region", "time_start_obs", "trigger_time", "time_end_obs", "links", "sat_source"]
-        
+    
+    #methods
     def __str__(self):
         return str(self.pk)
     
     def get_last_index():
         return SWE.objects.all()[-1].pk
     
-    def add_data():
+    def add_data(delete = False):
         objs = []
-        lastindex = SWE.get_last_index()
+        fileToOpen = dirname / "swe.csv"
+        
+        if delete:
+            SWE.objects.all().delete()
+            lastindex = 0
+        else:        
+            lastindex = SWE.get_last_index()
+        
         i = lastindex + 1
 
-        with open("swe.csv", mode="r") as f:
+        with open(fileToOpen, mode="r") as f:
             for _ in range(lastindex + 2): #must skip headers line and include last index line
                 next(f)
             for line in f:
@@ -206,8 +227,10 @@ class SWE(models.Model):
                 swe = SWE()
                 setattr(swe, 'id', i)
                 for att in SWE.attributes:
-                    
+                    if (att == 'top' or att == 'links'):
+                        continue                     
                     setattr(swe, att, params[SWE.attributes.index(att)])
+                
                 setattr(swe, "sat_source", "swe")        
                 objs.append(swe)
                 i += 1
@@ -216,6 +239,8 @@ class SWE(models.Model):
         
 
 class GRB(models.Model):
+
+    #fields
     name = models.CharField(verbose_name="Name", max_length=50, blank=True)
     trigger_time = models.DateTimeField(verbose_name="Trigger time", default=timezone.now(), blank=True)
     RA = models.CharField(verbose_name="RA", max_length=50, default="", blank=True)
@@ -237,6 +262,7 @@ class GRB(models.Model):
     BAT_fluence = models.CharField(verbose_name="Bat fluence", max_length=50, blank=True)
     xrt_spectral_index = models.CharField(verbose_name="xrt spectral index", max_length=50, blank=True)
     
+    #attribute list
     attributes = [
             "name",
             "trigger_time",
@@ -259,30 +285,90 @@ class GRB(models.Model):
             "BAT_fluence",
             "xrt_spectral_index",            
         ]
+    
+    #methods
     def __str__(self):
         return str(self.pk)
     
     def get_last_index():
         return GRB.objects.all()[-1].pk
     
-    def add_data():
+    def add_data(delete = False):
         objs = []
-        lastindex = GRB.get_last_index()
+        fileToOpen = dirname / "grb.csv"
+        
+        if delete:
+            GRB.objects.all().delete()
+            lastindex = 0
+        else:        
+            lastindex = GRB.get_last_index()
+                
         i = lastindex + 1
 
-        with open("eq.csv", mode="r") as f:
+        with open(fileToOpen, mode="r") as f:
             for _ in range(lastindex + 2): #must skip headers line and include last index line
                 next(f)
             for line in f:
-                params = line.split(",")
-            
+                params = line.split(",")            
                 grb = GRB()
                 setattr(grb, 'id', i)
-                for att in GRB.attributes:
-                    
+
+                for att in GRB.attributes:                    
                     setattr(grb, att, params[GRB.attributes.index(att)])
-                setattr(grb, "sat_source", "swe")        
+                                        
                 objs.append(grb)
                 i += 1
         GRB.objects.bulk_create(objs)
+
+class GMS(models.Model):
+    #fields
+    trigger_time = models.DateTimeField(verbose_name="trigger_time", default=timezone.now())
+    field_magnitude_average = models.CharField(verbose_name="field_magnitude_average(nt)", blank=True, max_length=10)
+    speed = models.CharField(verbose_name="speed", max_length=10, blank=True)
+    source = models.CharField(verbose_name="source", max_length=10, blank=True)
+
+    #attribute list
+    attributes = [
+        "trigger_time",
+        "field_magnitude_average",
+        "speed",
+        "source"
+    ]
+
+    #methods
+    def __str__(self):
+        return str(self.pk)
+    
+    def get_last_index():
+        return GMS.objects.all()[-1].pk
+    
+    def add_data(delete = False):
+        objs = []
+
+        if delete:
+            GMS.objects.all().delete()
+            lastindex = 0
+        else:        
+            lastindex = GMS.get_last_index()
+                
+        i = lastindex + 1
+
+        fileToOpen = dirname / "gms.csv"
         
+        with open(fileToOpen, mode="r") as f:
+            for _ in range(lastindex + 2): #must skip headers line and include last index line
+                next(f)
+            for line in f:
+                params = line.split(",")            
+                gms = GMS()
+                setattr(gms, 'id', i)
+
+                for att in GMS.attributes:
+                    setattr(gms, att, params[GMS.attributes.index(att)])    
+                                        
+                objs.append(gms)
+                i += 1
+        GMS.objects.bulk_create(objs)
+
+    
+

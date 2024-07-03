@@ -18,7 +18,7 @@
                 {%for x in models%}
                 <tr>          
                     
-                    <td>{{x.trigger_time}}</td> 
+                    <td>{{x.trigger_time|date:'Y-m-d H:i'}}</td> 
                     <td>{{x.latitude}}</td> 
                     <td>{{x.longitude}}</td> 
                     <td>{{x.depth}}</td> 

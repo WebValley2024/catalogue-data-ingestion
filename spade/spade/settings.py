@@ -12,11 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from django.core.management.commands.runserver import Command as runserver
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -42,14 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
+    "django_extensions"
 ]
 
 CRONJOBS = [
-    ('0 */12 * * *', 'spadeapp.scripts.ep.get_eq'),
-    ('5 */12 * * *', 'spadeapp.scripts.grb.get_grb'),
-    ('10 */12 * * *', 'spadeapp.scripts.tgf.get_tgf'),
-    ('15 */12 * * *', 'spadeapp.scripts.swe.get_swe'),
-    ('30 */12 * * *', 'spadeapp.views.add_all_data'),    
+    #('0 */12 * * *', 'spadeapp.scripts.ep.get_eq'),
+    #('5 */12 * * *', 'spadeapp.scripts.grb.get_grb'),
+    #('10 */12 * * *', 'spadeapp.scripts.tgf.get_tgf'),
+    #('15 */12 * * *', 'spadeapp.scripts.swe.get_swe'),
+    #('20 */12 * * *', 'spadeapp.scripts.gms.get_gms'),
+    #('30 */12 * * *', 'spadeapp.views.add_all_data'),    
+    ('* * * * *', 'spadeapp.scripts.ciao.ciao')
 ]
 
 MIDDLEWARE = [
@@ -67,7 +69,7 @@ ROOT_URLCONF = 'spade.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,6 +125,23 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
+
+DATETIME_INPUT_FORMATS = [
+    '%Y-%m-%d %H:%M:%S',     # '2006-10-25 14:30:59'
+    '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
+    '%Y-%m-%d %H:%M',        # '2006-10-25 14:30'
+    '%Y-%m-%d',              # '2006-10-25'
+    '%m/%d/%Y %H:%M:%S',     # '10/25/2006 14:30:59'
+    '%m/%d/%Y %H:%M:%S.%f',  # '10/25/2006 14:30:59.000200'
+    '%m/%d/%Y %H:%M',        # '10/25/2006 14:30'
+    '%m/%d/%Y',              # '10/25/2006'
+    '%m/%d/%y %H:%M:%S',     # '10/25/06 14:30:59'
+    '%m/%d/%y %H:%M:%S.%f',  # '10/25/06 14:30:59.000200'
+    '%m/%d/%y %H:%M',        # '10/25/06 14:30'
+    '%m/%d/%y',              # '10/25/06'
+]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -133,3 +152,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/spadeapp/'
+LOGOUT_REDIRECT_URL = 'home'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

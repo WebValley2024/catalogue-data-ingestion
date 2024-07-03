@@ -118,25 +118,54 @@ def step3():
     df.to_csv(FINAL, index=False)
 
 
+def increment_char(char_str):
+    if char_str == '':
+        return 'A'
+    last_char = char_str[-1]
+    if last_char != 'Z':
+        return char_str[:-1] + chr(ord(last_char) + 1)
+    return increment_char(char_str[:-1]) + 'A'
+
+
 def step4():
     with open(FINAL, 'r') as file:
         lines = file.readlines()
 
-        new_lines = []
-        new_lines.append(lines[0])
+    new_lines = []
+    new_lines.append(lines[0])
 
-        columns = [1, 7, 8]
+    columns = [1, 7, 8]
 
-        for line in lines[1:]:
-            data = line.strip().split(",")
-            for c in columns:
-                if data[c] != "":
-                    epoch_int = int(float(str(data[c])))
-                    utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
-                    data[c] = utc_dt
-            new_line = ",".join(data)
-            new_line = new_line.replace("--", "")
-            new_lines.append(new_line + "\n")
+    name_table_dict = {}  # Dictionary to keep track of the last used char for each unique name
+
+    lines = sorted(lines[1:], key=lambda x: int(float(x.split(",")[1])))
+
+    for line in lines:
+        data = line.strip().split(",")
+        for c in columns:
+            if data[c] != "":
+                epoch_int = int(float(str(data[c])))
+                utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
+                data[c] = utc_dt
+
+        data[0] = f"GRB{data[1][2:4]}{data[1][5:7]}{data[1][8:10]}"
+        name_key = (data[0], data[6])  # Create a tuple to use as a key in the dictionary
+
+        if name_key in name_table_dict:
+            # Increment the character if the name is already in the dictionary
+            name_char = increment_char(name_table_dict[name_key])
+        else:
+            # Start with 'A' if the name is not yet in the dictionary
+            name_char = 'A'
+
+        # Update the dictionary with the new character
+        name_table_dict[name_key] = name_char
+
+        # Update the data with the new name and character
+        data[0] = f"{data[0]}{name_char}"
+        new_line = ",".join(data)
+        new_line = new_line.replace("--", "")
+        new_lines.append(new_line + "\n")
 
     with open(FINAL, 'w') as file:
         file.writelines(new_lines)

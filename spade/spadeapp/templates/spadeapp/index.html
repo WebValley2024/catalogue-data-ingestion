@@ -20,6 +20,10 @@
         <link rel="stylesheet" href="{% static 'index.css' %}">
         <script src="{% static 'index.js' %}"></script>
 
+        <script>
+            const downloadPDFURL = "{% static 'Spade Definitions Catalogue.pdf' %}";
+        </script>
+
         <noscript>
             <style>
                 h1 {
@@ -74,16 +78,13 @@
                     
                     <!-- Right container for buttons with flex-basis for specific width -->
                     <div style="flex: 1; display: flex; justify-content: flex-end;">
-                        <button class="btn" type="button" id="openFilters" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+                        <button class="btn" type="button" id="openFilters" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas" data-bs-title="Select filters">
                             <i class="bi bi-filter-square-fill"></i>
                         </button>
-                        <button class="btn" id="openSettings">
-                            <i class="bi bi-gear-fill"></i>
-                        </button>
-                        <button class="btn" id="openCatalogue">
+                        <button class="btn" id="openCatalogue" data-bs-toggle="tooltip" data-bs-title="View meaning of columns">
                             <i class="bi bi-info-square-fill"></i>
                         </button>
-                        <button class="btn" id="openContacts">
+                        <button class="btn" id="openContacts" data-bs-toggle="tooltip" data-bs-title="Meet our team!">
                             <i class="bi bi-people-fill"></i>
                     </div>
                 </div>
@@ -93,10 +94,9 @@
         <div class="container">
             <div class="card" id="dateSelectorBox" style="width: auto;">
                 <div class="card-body">
-                    <h5 class="card-title">Time period <div class="dropdown" style="display: inline-block;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dateRangeDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            Quick range <i class="bi bi-calendar2-date-fill"></i>
+                    <h5 class="card-title">Time period <div class="dropdown ms-2" style="display: inline-block;">
+                        <button class="btn btn-outline-info btn-sm dropdown-toggle" type="button" id="dateRangeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-calendar2-date-fill"></i> Quick range 
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dateRangeDropdown">
                             <li><a class="dropdown-item" href="#" id="quickRange7g">7 days</a></li>
@@ -131,9 +131,7 @@
                         <h5 class="offcanvas-title" id="filterOffcanvasLabel">Filters</h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body">
-                        
-                    </div>
+                    <div class="offcanvas-body"></div>
                 </div>
             </div>
         </div>
@@ -150,6 +148,9 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="swe" data-bs-toggle="tab" data-bs-target="#sweTable" type="button" role="tab" href="#">Space Weather Events</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="dst" data-bs-toggle="tab" data-bs-target="#dstTable" type="button" role="tab" href="#">Magnetic disturbances (Dst)</a>
                 </li>
             </ul>
             <div class="tab-content" id="tables">
@@ -177,14 +178,20 @@
                         </table>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="dstTable" role="tabpanel">
+                    <div class="coolDIV">
+                        <table class="table table-striped table-hover table-bordered" style="overflow-y: auto;">
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="modal preview-modal" tabindex="-1" id="catalogueModal">
+        <div class="modal preview-modal fade" tabindex="-1" id="catalogueModal">
             <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Catalogue</h5>
-                        <button type="button" id="downloadPDF" class="btn btn-outline-info btn-sm" aria-label="Download the complete PDF version" style="margin-left: auto; margin-right: 0.5em;"><i class="bi bi-cloud-arrow-down-fill"></i> <b>Download full version</b></button>
+                        <button type="button" id="downloadPDF" class="btn btn-outline-info btn-sm" aria-label="Download the metadata guide in PDF format" style="margin-left: auto; margin-right: 0.5em;"><i class="bi bi-cloud-arrow-down-fill"></i> Download metadata guide</button>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 0 !important;"></button>
                     </div>
                     <div class="modal-body">
@@ -201,9 +208,12 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="swe-tab" data-bs-toggle="tab" data-bs-target="#swe-tab-content" role="tab" href="#">Space Weather Events</a>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="dst-tab" data-bs-toggle="tab" data-bs-target="#dst-tab-content" role="tab" href="#">Magnetic disturbances (Dst)</a>
+                            </li>
                         </ul>
                         <div class="tab-content" id="catalogueTabs">
-                            <div class="tab-pane fade show active" id="earthquake-tab-content" role="tabpanel">
+                            <div class="tab-pane show active" id="earthquake-tab-content" role="tabpanel">
                                 <h3 class="titleTab">Earthquake</h3>
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
@@ -309,10 +319,10 @@
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>USGS <a href="https://earthquake.usgs.gov/earthquakes/search/"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>USGS <a href="https://earthquake.usgs.gov/earthquakes/search/" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="grb-tab-content" role="tabpanel">
+                            <div class="tab-pane" id="grb-tab-content" role="tabpanel">
                                 <h3 class="titleTab">GRB</h3>
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
@@ -324,7 +334,7 @@
                                     <tbody>
                                         <tr>
                                             <td>name</td>
-                                            <td>The identifier or name of the astronomical event</td>
+                                            <td>The identifier or name of the astronomical event at our discretion</td>
                                         </tr>
                                         <tr>
                                             <td>trigger_time</td>
@@ -406,14 +416,14 @@
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>FERMI-GBM & FERMI-LAT <a href="https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigtrig.html"><i class="bi bi-globe-americas"></i></a></li>
-                                    <li>Integral <a href="http://isdc.unige.ch/integral/science/grb#ACS"><i class="bi bi-globe-americas"></i></a></li>
-                                    <li>Swift <a href="https://swift.gsfc.nasa.gov/results/batgrbcat/"><i class="bi bi-globe-americas"></i></a><a href="https://swift.gsfc.nasa.gov/archive/grb_table/"><i class="bi bi-globe-americas"></i></a></li>
-                                    <li>Astrosat CZTI <a href="https://astrosat.iucaa.in/czti/grb"><i class="bi bi-globe-americas"></i></a></li>
-                                    <li>Konos-Wind <a href="https://gcn.gsfc.nasa.gov/konus_grbs.html"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>FERMI-GBM & FERMI-LAT <a target="_blank" href="https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigtrig.html" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Integral <a target="_blank" href="http://isdc.unige.ch/integral/science/grb#ACS" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Swift <a target="_blank" href="https://swift.gsfc.nasa.gov/results/batgrbcat/" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a><a target="_blank" href="https://swift.gsfc.nasa.gov/archive/grb_table/"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Astrosat CZTI <a target="_blank" href="https://astrosat.iucaa.in/czti/grb" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Konos-Wind <a target="_blank" href="https://gcn.gsfc.nasa.gov/konus_grbs.html" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="tgf-tab-content" role="tabpanel">
+                            <div class="tab-pane" id="tgf-tab-content" role="tabpanel">
                                 <h3 class="titleTab">TGF</h3>
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
@@ -473,7 +483,7 @@
                                         </tr>
                                         <tr>
                                             <td>TGF_name</td>
-                                            <td>Name of the Terrestrial Gamma-ray Flash event</td>
+                                            <td>Name of the Terrestrial Gamma-ray Flash event at our discretion</td>
                                         </tr>
                                         <tr>
                                             <td>event_type</td>
@@ -519,11 +529,11 @@
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>FERMI-GBM & FERMI-LAT <a href="https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigtrig.html"><i class="bi bi-globe-americas"></i></a></li>
-                                    <li>Agile <a href="https://www.ssdc.asi.it/mcal3tgfcat/"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>FERMI-GBM & FERMI-LAT <a target="_blank" href="https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigtrig.html" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>Agile <a target="_blank" href="https://www.ssdc.asi.it/mcal3tgfcat/" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="swe-tab-content" role="tabpanel">
+                            <div class="tab-pane" id="swe-tab-content" role="tabpanel">
                                 <h3 class="titleTab">Space Weather Events</h3>
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
@@ -551,7 +561,7 @@
                                         </tr>
                                         <tr>
                                             <td>trigger_time</td>
-                                            <td>Time in which the event was first triggered</td>
+                                            <td>Time in which the event was triggered</td>
                                         </tr>
                                         <tr>
                                             <td>time_end_obs</td>
@@ -564,9 +574,68 @@
                                 </table>
                                 <h4>Sources</h4>
                                 <ul>
-                                    <li>SpaceWeatherLive <a href="https://www.spaceweatherlive.com/en/solar-activity/top-50-solar-flares.html"><i class="bi bi-globe-americas"></i></a></li>
+                                    <li>SpaceWeatherLive <a target="_blank" href="https://www.spaceweatherlive.com/en/solar-activity/top-50-solar-flares.html" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
                                 </ul>
                             </div>
+                            <div class="tab-pane" id="dst-tab-content" role="tabpanel">
+                                <h3 class="titleTab">Magnetic disturbances (Dst)</h3>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Column</th>
+                                            <th>Meaning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>trigger_time</td>
+                                            <td>Time when the event occurred</td>
+                                        </tr>
+                                        <tr>
+                                            <td>field_magnitude_average (nt)</td>
+                                            <td>Average magnitude of the magnetic field in nanoteslas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>speed (km/s)</td>
+                                            <td>Speed of the x in kilometers per second</td>
+                                        </tr>
+                                        <tr>
+                                            <td>source</td>
+                                            <td>Dataset where the data comes from</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h4>Sources</h4>
+                                <ul>
+                                    <li>OmniWeb (NASA) <a target="_blank" href="https://omniweb.gsfc.nasa.gov/" data-bs-toggle="tooltip" data-bs-title="Open website"><i class="bi bi-globe-americas"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal preview-modal fade" tabindex="-1" id="contactsModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Meet our team! <i class="bi bi-emoji-smile-fill"></i></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{% static 'coolphotoofus.png' %}" class="img-fluid rounded mx-auto d-block" alt="A cool photo of our team"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="loadingModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="spinner-grow text-warning text-primary" role="status" style="margin-top: 1em; width: 3em; height: 3em;">
+                            <span class="visually-hidden">Loading data</span>
+                        </div>
+                        <p>Please wait while we load the data...</p>
                     </div>
                 </div>
             </div>

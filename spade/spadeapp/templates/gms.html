@@ -1,0 +1,32 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>        
+
+        <table border = 1>
+            <thead>
+                <tr>
+                    {% for att in attributes %}
+                        <th>{{att}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+
+                {%for x in models%}
+                <tr>          
+                    
+                    <td>{{x.trigger_time|date:'Y-m-d H:i'}}</td> 
+                    <td>{{x.field_magnitude_average}}</td> 
+                    <td>{{x.speed}}</td> 
+                    <td>{{x.source}}</td>                                                     
+                    
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </body>
+</html>

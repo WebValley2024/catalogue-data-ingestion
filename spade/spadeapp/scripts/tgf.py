@@ -103,25 +103,75 @@ def step3():
     df.to_csv(FINAL, index=False)
 
 
+def increment_char(char_str):
+    if char_str == '':
+        return 'A'
+    last_char = char_str[-1]
+    if last_char != 'Z':
+        return char_str[:-1] + chr(ord(last_char) + 1)
+    return increment_char(char_str[:-1]) + 'A'
+
+
 def step4():
     with open(FINAL, 'r') as file:
         lines = file.readlines()
 
-        new_lines = []
-        new_lines.append(lines[0])
+    new_lines = []
 
-        columns = [3, 17, 18]
+    header_data = lines[0].strip().split(",")
 
-        for line in lines[1:]:
-            data = line.strip().split(",")
-            for c in columns:
-                if data[c] != "":
-                    epoch_int = int(float(data[c]))
-                    utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
-                    data[c] = utc_dt
-            new_line = ",".join(data)
-            new_line = new_line.replace("--", "")
-            new_lines.append(new_line + "\n")
+    value_to_move = header_data[3]
+    del header_data[3]
+    header_data = [value_to_move] + header_data
+
+    value_to_move = header_data[11]
+    del header_data[11]
+    header_data = [value_to_move] + header_data
+
+    new_line = ",".join(header_data)
+    new_lines.append(new_line + "\n")
+
+    columns = [3, 17, 18]
+
+    name_table_dict = {}  # Dictionary to keep track of the last used char for each unique name
+
+    lines = sorted(lines[1:], key=lambda x: int(float(x.split(",")[3])))
+
+    for line in lines:
+        data = line.strip().split(",")
+        for c in columns:
+            if data[c] != "":
+                epoch_int = int(float(str(data[c])))
+                utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
+                data[c] = utc_dt
+
+        data[11] = f"TGF{data[3][2:4]}{data[3][5:7]}{data[3][8:10]}"
+        name_key = (data[11], data[14])  # Create a tuple to use as a key in the dictionary
+
+        if name_key in name_table_dict:
+            # Increment the character if the name is already in the dictionary
+            name_char = increment_char(name_table_dict[name_key])
+        else:
+            # Start with 'A' if the name is not yet in the dictionary
+            name_char = 'A'
+
+        # Update the dictionary with the new character
+        name_table_dict[name_key] = name_char
+
+        # Update the data with the new name and character
+        data[11] = f"{data[11]}{name_char}"
+
+        value_to_move = data[3]
+        del data[3]
+        data = [value_to_move] + data
+
+        value_to_move = data[11]
+        del data[11]
+        data = [value_to_move] + data
+
+        new_line = ",".join(data)
+        new_line = new_line.replace("--", "")
+        new_lines.append(new_line + "\n")
 
     with open(FINAL, 'w') as file:
         file.writelines(new_lines)

@@ -2,20 +2,11 @@ html, body {
     width: 100%;
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
-    /* user-select: none;
+    user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none; */
+    -ms-user-select: none;
 }
-
-/*
-#themeDropdown {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    z-index: 9998 !important;
-}
-*/
 
 .theme-dropdown .dropdown-menu.show {
     z-index: 9999 !important;
@@ -125,4 +116,12 @@ table {
 
 .titleTab {
     margin-top: 0.5em;
+}
+
+/* make all tables, th, td, etc. selectable */
+table {
+    user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
 }
