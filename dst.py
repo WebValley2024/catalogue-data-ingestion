@@ -104,6 +104,11 @@ def download_dst_data():
                 parts.pop(1)
                 parts.pop(1)
 
+                if parts[1] == "9999.99":
+                    parts[1] = ""
+                if parts[2] == "99999.9":
+                    parts[2] = ""
+
                 rows[i] = ','.join(parts)
 
             with open("dst.csv", "w") as dst:
