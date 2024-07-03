@@ -112,12 +112,24 @@ def increment_char(char_str):
     return increment_char(char_str[:-1]) + 'A'
 
 
-def step4():    
+def step4():
     with open(FINAL, 'r') as file:
         lines = file.readlines()
 
     new_lines = []
-    new_lines.append(lines[0])
+
+    header_data = lines[0].strip().split(",")
+
+    value_to_move = header_data[3]
+    del header_data[3]
+    header_data = [value_to_move] + header_data
+
+    value_to_move = header_data[11]
+    del header_data[11]
+    header_data = [value_to_move] + header_data
+
+    new_line = ",".join(header_data)
+    new_lines.append(new_line + "\n")
 
     columns = [3, 17, 18]
 
@@ -148,6 +160,15 @@ def step4():
 
         # Update the data with the new name and character
         data[11] = f"{data[11]}{name_char}"
+
+        value_to_move = data[3]
+        del data[3]
+        data = [value_to_move] + data
+
+        value_to_move = data[11]
+        del data[11]
+        data = [value_to_move] + data
+
         new_line = ",".join(data)
         new_line = new_line.replace("--", "")
         new_lines.append(new_line + "\n")
