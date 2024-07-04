@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("<int:sampleField>/", views.sampleView, name="sampleView"),
     path("add_all_data/", views.add_all_data, name="add_all_data"),    
     path("select_earthquake/", views.select_earthquake, name="select_earthquake"),
     path("select_swe/", views.select_swe, name="select_swe"),
@@ -15,7 +14,7 @@ urlpatterns = [
     path("tgf_json/", views.select_tgf_json, name="select_tgf_json"),
     path("grb_json/", views.select_grb_json, name="select_grb_json"),
     path("gms_json/", views.select_gms_json, name="select_gms_json"),
-        
+    path("graph/", views.get_graph_columns, name="graph")
 ]
 
 

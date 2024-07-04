@@ -99,7 +99,7 @@ def step4():
         new_lines = []
         new_lines.append(lines[0])
 
-        columns = [0]
+        columns = [0, 12]
 
         for line in lines[1:]:
             data = line.strip().split(",")

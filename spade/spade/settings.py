@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=+7(ds4mql)89bf-^+mj&gwg95=vq57il@3vhby81_^l_eymxm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 runserver.default_port = '8000'        # <-- Your port
@@ -45,13 +45,15 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    #('0 */12 * * *', 'spadeapp.scripts.ep.get_eq'),
-    #('5 */12 * * *', 'spadeapp.scripts.grb.get_grb'),
-    #('10 */12 * * *', 'spadeapp.scripts.tgf.get_tgf'),
-    #('15 */12 * * *', 'spadeapp.scripts.swe.get_swe'),
-    #('20 */12 * * *', 'spadeapp.scripts.gms.get_gms'),
-    #('30 */12 * * *', 'spadeapp.views.add_all_data'),    
-    ('*/1 * * * *', 'spadeapp.cron.say_hello')
+    #update csv files
+    ('0 3 * * *', 'spadeapp.scripts.ep.get_eq'),
+    ('5 3 * * *', 'spadeapp.scripts.grb.get_grb'),
+    ('10 3 * * *', 'spadeapp.scripts.tgf.get_tgf'),
+    ('15 3 * * *', 'spadeapp.scripts.swe.get_swe'),
+    ('20 3 * * *', 'spadeapp.scripts.gms.get_gms'),
+    #update database
+    ('30 3 * * *', 'spadeapp.views.add_all_data'),    
+    
 ]
 
 MIDDLEWARE = [
@@ -84,14 +86,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'spade.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -147,6 +148,8 @@ DATETIME_INPUT_FORMATS = [
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

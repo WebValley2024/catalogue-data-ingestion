@@ -1,0 +1,151 @@
+html,
+body {
+    width: 100%;
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.theme-dropdown .dropdown-menu.show {
+    z-index: 9999 !important;
+}
+
+.navbar {
+    transition: background-color 0.3s ease;
+    width: 100% !important;
+}
+
+.alert {
+    margin-bottom: 10px !important;
+}
+
+#alert-container {
+    padding: 10px;
+    padding-bottom: 0 !important;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    #alert-container {
+        max-width: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    #alert-container {
+        max-width: 50%;
+    }
+}
+
+html[data-bs-theme="light"] .navbar,
+html[data-bs-theme="light"] .nav {
+    background-color: #f3f3f3;
+    /* Darker color for light mode */
+}
+
+html[data-bs-theme="dark"] .navbar,
+html[data-bs-theme="dark"] .nav {
+    background-color: #2a2e33;
+    /* Lighter color for dark mode */
+}
+
+.container {
+    padding-bottom: 10px;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.offcanvas {
+    width: auto !important;
+}
+
+.offcanvas-body {
+    padding-right: 10em;
+}
+
+.allTables {
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+    overflow-y: auto;
+}
+
+table {
+    margin: 1em;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.dt-buttons {
+    margin-top: 0.5em !important;
+}
+
+.dt-scroll-headInner {
+    min-width: 100% !important;
+}
+
+.dt-scroll-headInner table {
+    min-width: 100% !important;
+}
+
+.dt-scroll-body table {
+    min-width: 100% !important;
+}
+
+.dt-paging {
+    margin-top: 0.5em !important;
+    display: inline-block;
+}
+
+.dt-length {
+    margin-top: 0.5em !important;
+    margin-left: 1em !important;
+    display: inline-block;
+}
+
+.coolDIV {
+    max-width: 99% !important;
+}
+
+.titleTab {
+    margin-top: 0.5em;
+}
+
+/* make all tables, th, td, etc. selectable */
+table {
+    user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+}
+
+#grbChart {
+    max-width: 85% !important;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0em;
+}
+
+html[data-bs-theme="light"] .spade-logo {
+    filter: invert(100%) sepia(0%) saturate(7486%) hue-rotate(59deg) brightness(103%) contrast(95%);
+}
+
+.spade-logo {
+    height: 1.5em;
+    margin-bottom: -0.15em;
+}

@@ -77,7 +77,9 @@
                     
                     <!-- Logo centered with flex-grow to ensure it takes available space -->
                     <a class="navbar-brand d-flex justify-content-center" href="#" id="logo" style="flex-grow: 1;">
-                        <h2><b>Sp<i id="logo_letter" class="bi bi-suit-spade-fill"></i>De</b></h2>
+                        <h2>
+                            <img src="{% static 'Logo_Full.svg' %}" alt="SpaDe logo" class="spade-logo"/>
+                        </h2>
                     </a>
                     
                     <!-- Right container for buttons with flex-basis for specific width -->
@@ -597,12 +599,12 @@
                                             <td>Time when the event occurred</td>
                                         </tr>
                                         <tr>
-                                            <td>field_magnitude_average (nt)</td>
+                                            <td>field_magnitude_average</td>
                                             <td>Average magnitude of the magnetic field in nanoteslas</td>
                                         </tr>
                                         <tr>
-                                            <td>speed (km/s)</td>
-                                            <td>Speed of the x in kilometers per second</td>
+                                            <td>speed</td>
+                                            <td>Speed of the magnetic disturbance in kilometers per second</td>
                                         </tr>
                                         <tr>
                                             <td>source</td>
@@ -649,13 +651,7 @@
                                 <a class="nav-link" id="grb-tab" data-bs-toggle="tab" data-bs-target="#grb-graph-content" role="tab" href="#">GRB</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="tgf-tab" data-bs-toggle="tab" data-bs-target="#tgf-graph-content" role="tab" href="#">TGF</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="swe-tab" data-bs-toggle="tab" data-bs-target="#swe-graph-content" role="tab" href="#">Space Weather Events</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="dst-tab" data-bs-toggle="tab" data-bs-target="#dst-graph-content" role="tab" href="#">Magnetic disturbances (Dst)</a>
+                                <a class="nav-link" id="any-tab" data-bs-toggle="tab" data-bs-target="#any-graph-content" role="tab" href="#">Any</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="graphTabs">
@@ -663,16 +659,10 @@
                                 <canvas id="earthquakeChart"></canvas>
                             </div>
                             <div class="tab-pane" id="grb-graph-content" role="tabpanel">
-                                <canvas id="grbChart"></canvas>
+                                <div id="grbChart" class="img-fluid"></div>
                             </div>
-                            <div class="tab-pane" id="tgf-graph-content" role="tabpanel">
-                                <canvas id="tgfChart"></canvas>
-                            </div>
-                            <div class="tab-pane" id="swe-graph-content" role="tabpanel">
-                                <canvas id="sweChart"></canvas>
-                            </div>
-                            <div class="tab-pane" id="dst-graph-content" role="tabpanel">
-                                <canvas id="dstChart"></canvas>
+                            <div class="tab-pane" id="any-graph-content" role="tabpanel">
+                                <canvas id="anyChart"></canvas>
                             </div>
                         </div>
                     </div>

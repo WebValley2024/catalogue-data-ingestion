@@ -1,248 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>404 Page | SpaDe</title>
+  <title>404 Page Not Found</title>
+  <link rel="stylesheet" href="./style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Fira+Mono:wght@500&display=swap');
-
-    body {
-      height: 95vh;
-      background: #000000;
-      text-align: center;
-      color: #E0E0E0;
-      font-family: 'Fira Mono', monospace;
+    @import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
+    html,
+    body{
+      margin: 0px;
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      font-family: 'Permanent Marker', cursive;
+    div{
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      background: radial-gradient(circle, #240015 0%, #12000b 100%);
+      overflow: hidden;
     }
 
-    div {
-      transform-style: preserve-3d;
+    .wrap{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
-    svg {
-      width: clamp(300px, 70%, 600px);
-      height: 500px;
-
+    h2{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: 150px;
+      font-size: 32px;
+      text-transform: uppercase;
+      transform: translate(-50%, -50%);
+      display: block;
+      color: #12000a;
+      font-weight: 300;
+      font-family: Audiowide;
+      text-shadow: 0px 0px 4px #12000a;
+      animation: fadeInText 3s ease-in 3.5s forwards, flicker4 5s linear 7.5s infinite, hueRotate 6s ease-in-out 3s infinite;
     }
 
-    #rocket {
-
-      transform: translateY(750px);
-
-      animation: launch 2s ease-out forwards;
+    #svgWrap_1,
+    #svgWrap_2{
+      position: absolute;
+      height: auto;
+      width: 600px;
+      max-width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
-    @keyframes launch {
-      from {
-        transform: translateY(750px);
+    #svgWrap_1,
+    #svgWrap_2,
+    div{
+      animation: hueRotate 6s ease-in-out 3s infinite;
+    }
+
+    #id1_1,
+    #id2_1,
+    #id3_1{
+      stroke: #ff005d;
+      stroke-width: 3px;
+      fill: transparent;
+      filter: url(#glow);
+    }
+
+    #id1_2,
+    #id2_2,
+    #id3_2{
+      stroke: #12000a;
+      stroke-width: 3px;
+      fill: transparent;
+      filter: url(#glow);
+    }
+
+    #id3_1{
+      stroke-dasharray: 940px;
+      stroke-dashoffset: -940px;
+      animation: drawLine3 2.5s ease-in-out 0s forwards, flicker3 4s linear 4s infinite;
+    }
+
+    #id2_1{
+      stroke-dasharray: 735px;
+      stroke-dashoffset: -735px;
+      animation: drawLine2 2.5s ease-in-out 0.5s forwards, flicker2 4s linear 4.5s infinite;
+    }
+
+    #id1_1{
+      stroke-dasharray: 940px;
+      stroke-dashoffset: -940px;
+      animation: drawLine1 2.5s ease-in-out 1s forwards, flicker1 4s linear 5s infinite;
+    }
+
+    @keyframes drawLine1 {
+      0%  {stroke-dashoffset: -940px;}
+      100%{stroke-dashoffset: 0px;}
+    }
+
+    @keyframes drawLine2 {
+      0%  {stroke-dashoffset: -735px;}
+      100%{stroke-dashoffset: 0px;}
+    }
+
+    @keyframes drawLine3 {
+      0%  {stroke-dashoffset: -940px;}
+      100%{stroke-dashoffset: 0px;}
+    }
+
+    @keyframes flicker1{
+      0%  {stroke: #ff005d;}
+      1%  {stroke: transparent;}
+      3%  {stroke: transparent;}
+      4%  {stroke: #ff005d;}
+      6%  {stroke: #ff005d;}
+      7%  {stroke: transparent;}
+      13% {stroke: transparent;}
+      14% {stroke: #ff005d;}
+      100%{stroke: #ff005d;}
+    }
+
+    @keyframes flicker2{
+      0%  {stroke: #ff005d;}
+      50% {stroke: #ff005d;}
+      51% {stroke: transparent;}
+      61% {stroke: transparent;}
+      62% {stroke: #ff005d;}
+      100%{stroke: #ff005d;}
+    }
+
+    @keyframes flicker3{
+      0%  {stroke: #ff005d;}
+      1%  {stroke: transparent;}
+      10% {stroke: transparent;}
+      11% {stroke: #ff005d;}
+      40% {stroke: #ff005d;}
+      41% {stroke: transparent;}
+      45% {stroke: transparent;}
+      46% {stroke: #ff005d;}
+      100%{stroke: #ff005d;}
+    }
+
+    @keyframes flicker4{
+      0%  {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      30% {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      31% {color: #12000a;text-shadow:0px 0px 4px #12000a;}
+      32% {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      36% {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      37% {color: #12000a;text-shadow:0px 0px 4px #12000a;}
+      41% {color: #12000a;text-shadow:0px 0px 4px #12000a;}
+      42% {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      85% {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      86% {color: #12000a;text-shadow:0px 0px 4px #12000a;}
+      95% {color: #12000a;text-shadow:0px 0px 4px #12000a;}
+      96% {color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+      100%{color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+    }
+
+    @keyframes fadeInText{
+      1%  {color: #12000a;text-shadow:0px 0px 4px #12000a;}
+      70% {color: #ff005d;text-shadow:0px 0px 14px #ff005d;}
+      100%{color: #ff005d;text-shadow:0px 0px 4px #ff005d;}
+    }
+
+    @keyframes hueRotate{
+      0%  {
+        filter: hue-rotate(0deg);
       }
-
-      to {
-        perspective: 500px;
-        transform: translateY(0px);
+      50%  {
+        filter: hue-rotate(-120deg);
       }
-    }
-
-    #stars {
-      animation: twinkling 2s linear;
-    }
-
-    @keyframes twinkling {
-
-      from {
-        transform: scale(0);
+      100%  {
+        filter: hue-rotate(0deg);
       }
-
-      to {
-        transform: scale(1);
-      }
-    }
-
-    .text {
-      opacity: 0;
-      animation: appear 1s ease-in forwards;
-      animation-delay: 1.8s;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    a {
-      color: #F66947;
-      text-decoration: none;
     }
   </style>
 </head>
-
 <body>
-  <div>
-    <svg width="1123" height="837" viewBox="0 0 1123 837" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="1123" height="837" fill="black" />
-      <g id="sky" filter="url(#filter0_d)">
-        <rect id="background" x="30" y="26" width="1063" height="777" rx="20" fill="black" />
-        <g id="stars">
-          <path id="Vector"
-            d="M202.12 319.2C204.937 319.2 207.22 316.917 207.22 314.1C207.22 311.283 204.937 309 202.12 309C199.303 309 197.02 311.283 197.02 314.1C197.02 316.917 199.303 319.2 202.12 319.2Z"
-            fill="white" />
-          <path id="Vector_2"
-            d="M566.12 615.2C568.937 615.2 571.22 612.917 571.22 610.1C571.22 607.283 568.937 605 566.12 605C563.303 605 561.02 607.283 561.02 610.1C561.02 612.917 563.303 615.2 566.12 615.2Z"
-            fill="white" />
-          <path id="Vector_3"
-            d="M351.12 638.95C352.694 638.95 353.97 637.674 353.97 636.1C353.97 634.526 352.694 633.25 351.12 633.25C349.546 633.25 348.27 634.526 348.27 636.1C348.27 637.674 349.546 638.95 351.12 638.95Z"
-            fill="white" />
-          <path id="Vector_4"
-            d="M985.11 503.99C986.684 503.99 987.96 502.714 987.96 501.14C987.96 499.566 986.684 498.29 985.11 498.29C983.536 498.29 982.26 499.566 982.26 501.14C982.26 502.714 983.536 503.99 985.11 503.99Z"
-            fill="white" />
-          <path id="Vector_5"
-            d="M822.11 247.99C823.684 247.99 824.96 246.714 824.96 245.14C824.96 243.566 823.684 242.29 822.11 242.29C820.536 242.29 819.26 243.566 819.26 245.14C819.26 246.714 820.536 247.99 822.11 247.99Z"
-            fill="white" />
-          <path id="Vector_6"
-            d="M1053.11 372.99C1054.68 372.99 1055.96 371.714 1055.96 370.14C1055.96 368.566 1054.68 367.29 1053.11 367.29C1051.54 367.29 1050.26 368.566 1050.26 370.14C1050.26 371.714 1051.54 372.99 1053.11 372.99Z"
-            fill="white" />
-          <path id="Vector_7"
-            d="M292.12 152.2C294.937 152.2 297.22 149.917 297.22 147.1C297.22 144.283 294.937 142 292.12 142C289.303 142 287.02 144.283 287.02 147.1C287.02 149.917 289.303 152.2 292.12 152.2Z"
-            fill="white" />
-          <path id="Vector_8"
-            d="M151.95 492.17H147.41V487.63H145.56V492.17H141.02V494.02H145.56V498.55H147.41V494.02H151.95V492.17Z"
-            fill="white" />
-          <path id="Vector_9"
-            d="M265.95 490.17H261.41V485.63H259.56V490.17H255.02V492.02H259.56V496.55H261.41V492.02H265.95V490.17Z"
-            fill="white" />
-          <path id="Vector_10"
-            d="M428.95 582.17H424.41V577.63H422.56V582.17H418.02V584.02H422.56V588.55H424.41V584.02H428.95V582.17Z"
-            fill="white" />
-          <path id="Vector_11"
-            d="M776.98 344.67H774.91V342.6H774.07V344.67H772V345.51H774.07V347.58H774.91V345.51H776.98V344.67Z"
-            fill="white" />
-          <path id="Vector_12"
-            d="M68.98 422.67H66.91V420.6H66.07V422.67H64V423.51H66.07V425.58H66.91V423.51H68.98V422.67Z" fill="white" />
-          <path id="Vector_13"
-            d="M153.98 592.67H151.91V590.6H151.07V592.67H149V593.51H151.07V595.58H151.91V593.51H153.98V592.67Z"
-            fill="white" />
-          <path id="Vector_14"
-            d="M297.97 357.71H295.9V355.64H295.06V357.71H292.99V358.55H295.06V360.62H295.9V358.55H297.97V357.71Z"
-            fill="white" />
-          <path id="Vector_15"
-            d="M321.98 268.67H319.91V266.6H319.07V268.67H317V269.51H319.07V271.58H319.91V269.51H321.98V268.67Z"
-            fill="white" />
-          <path id="Vector_16"
-            d="M956.9 333.07C957.916 333.07 958.74 332.246 958.74 331.23C958.74 330.214 957.916 329.39 956.9 329.39C955.884 329.39 955.06 330.214 955.06 331.23C955.06 332.246 955.884 333.07 956.9 333.07Z"
-            fill="white" />
-        </g>
-        <g id="rocket">
-          <path id="Vector_17" d="M635.46 400H466V406.78H635.46V400Z" fill="#535461" />
-          <g id="body-rocket">
-            <path id="Vector_18" d="M482.581 674.368H458.851L463.091 645.558H478.341L482.581 674.368Z" fill="#535461" />
-            <path id="Vector_19" d="M685.931 674.368H662.211L666.441 645.558H681.701L685.931 674.368Z" fill="#535461" />
-            <g id="Group" opacity="0.1">
-              <path id="Vector_20" opacity="0.1" d="M665.261 656.998H682.881L681.701 648.948H666.441L665.261 656.998Z"
-                fill="black" />
-            </g>
-            <path id="Vector_21" d="M559.681 674.368H535.961L540.191 645.558H555.451L559.681 674.368Z" fill="#535461" />
-            <path id="Vector_22" d="M607.981 674.368H584.261L588.491 645.558H603.741L607.981 674.368Z" fill="#535461" />
-            <g id="Group_2" opacity="0.1">
-              <path id="Vector_23" opacity="0.1" d="M587.311 656.998H604.931L603.741 648.948H588.491L587.311 656.998Z"
-                fill="black" />
-            </g>
-            <path id="Vector_24"
-              d="M677.861 300.724L677.86 300.724L677.869 300.733C681.479 304.531 686.193 310.849 691.386 320.975C702.335 342.647 707.995 366.605 707.901 390.887V390.888V652.328H633.901L633.901 391.988L633.901 391.986C633.785 367.014 639.733 342.386 651.234 320.22C655.114 312.85 659.549 305.944 664.436 300.73L664.436 300.73L664.442 300.724C665.29 299.787 666.326 299.038 667.481 298.525C668.637 298.012 669.887 297.747 671.151 297.747C672.415 297.747 673.666 298.012 674.821 298.525C675.977 299.038 677.012 299.787 677.861 300.724Z"
-              fill="#E0E0E0" stroke="black" />
-            <path id="Vector_25"
-              d="M463.524 300.733L463.524 300.733L463.532 300.724C464.38 299.787 465.416 299.038 466.571 298.525C467.727 298.012 468.977 297.747 470.241 297.747C471.505 297.747 472.755 298.012 473.911 298.525C475.067 299.038 476.102 299.787 476.95 300.724L476.95 300.724L476.957 300.731C481.853 305.944 486.278 312.85 490.168 320.22C501.665 342.388 507.612 367.014 507.501 391.986V391.988V652.328H433.501L433.501 390.888L433.501 390.887C433.408 366.605 439.067 342.647 450.017 320.975C455.2 310.849 459.913 304.531 463.524 300.733Z"
-              fill="#E0E0E0" stroke="black" />
-            <path id="Vector_26" d="M490.201 396.448L508.001 396.538V418.478H490.201V396.448Z" fill="#535461" />
-            <path id="Vector_27" d="M633.401 396.448L651.191 396.538V418.478H633.401V396.448Z" fill="#535461" />
-            <g id="Group_3" opacity="0.1">
-              <path id="Vector_28" opacity="0.1"
-                d="M490.611 319.648C486.711 312.258 482.261 305.308 477.321 300.048C475.926 298.502 474.062 297.456 472.016 297.071C469.969 296.686 467.852 296.984 465.991 297.918C467.063 298.453 468.032 299.175 468.851 300.048C473.781 305.308 478.241 312.258 482.131 319.648C493.671 341.887 499.638 366.595 499.521 391.648V652.468H508.001V391.658C508.115 366.602 502.147 341.892 490.611 319.648V319.648Z"
-                fill="black" />
-            </g>
-            <g id="Group_4" opacity="0.1">
-              <path id="Vector_29" opacity="0.1"
-                d="M657.571 320.368C661.461 312.978 665.921 306.028 670.851 300.768C671.773 299.772 672.889 298.976 674.131 298.428C672.298 297.626 670.26 297.421 668.304 297.841C666.348 298.261 664.573 299.285 663.231 300.768C658.291 306.028 653.831 312.978 649.941 320.368C638.407 342.609 632.44 367.315 632.551 392.368V653.228H640.181V392.388C640.061 367.328 646.029 342.613 657.571 320.368V320.368Z"
-                fill="black" />
-            </g>
-            <path id="Vector_30"
-              d="M471.041 738.768H470.391C467.331 738.768 464.395 737.553 462.231 735.388C460.067 733.224 458.851 730.289 458.851 727.228V674.368H482.581V727.228C482.581 730.289 481.365 733.224 479.201 735.388C477.037 737.553 474.102 738.768 471.041 738.768Z"
-              fill="url(#paint0_linear)" />
-            <path id="Vector_31"
-              d="M548.371 738.518H547.721C544.661 738.518 541.725 737.303 539.561 735.138C537.397 732.974 536.181 730.039 536.181 726.978V674.118H559.911V726.978C559.911 730.039 558.695 732.974 556.531 735.138C554.367 737.303 551.432 738.518 548.371 738.518Z"
-              fill="url(#paint1_linear)" />
-            <path id="Vector_32"
-              d="M597.371 738.518H596.721C593.661 738.518 590.725 737.303 588.561 735.138C586.397 732.974 585.181 730.039 585.181 726.978V674.118H608.911V726.978C608.911 730.039 607.695 732.974 605.531 735.138C603.367 737.303 600.432 738.518 597.371 738.518Z"
-              fill="url(#paint2_linear)" />
-            <path id="Vector_33"
-              d="M674.371 738.518H673.721C670.661 738.518 667.725 737.303 665.561 735.138C663.397 732.974 662.181 730.039 662.181 726.978V674.118H685.911V726.978C685.911 730.039 684.695 732.974 682.531 735.138C680.367 737.303 677.432 738.518 674.371 738.518Z"
-              fill="url(#paint3_linear)" />
-            <path id="Vector_34"
-              d="M578.51 96.4834L578.52 96.4957L578.531 96.5076C583.685 102.221 590.434 111.588 597.797 126.726L597.798 126.73C613.465 158.638 621.544 194.732 621.655 231.32L622.93 650.608L517.93 650.927L516.661 233.319C516.547 195.664 524.762 158.515 541.048 125.774C546.594 114.716 552.917 104.371 559.813 96.561L559.822 96.5507L559.831 96.5402C560.972 95.1742 562.398 94.0744 564.009 93.3179C565.62 92.5615 567.377 92.1667 569.157 92.1613C570.937 92.1559 572.697 92.54 574.312 93.2866C575.928 94.0333 577.361 95.1244 578.51 96.4834Z"
-              fill="#EEEEEE" stroke="black" stroke-width="2" />
-            <path id="Vector_35"
-              d="M585.811 142.368H551.971C545.896 142.368 540.971 147.293 540.971 153.368V156.958C540.971 163.034 545.896 167.958 551.971 167.958H585.811C591.886 167.958 596.811 163.034 596.811 156.958V153.368C596.811 147.293 591.886 142.368 585.811 142.368Z"
-              fill="#535461" />
-            <path id="Vector_36" d="M433.431 396.448L451.231 396.538V418.478H433.431V396.448Z" fill="#535461" />
-            <path id="Vector_37" d="M690.171 396.448L707.961 396.538V418.478H690.171V396.448Z" fill="#535461" />
-          </g>
-        </g>
-      </g>
-      <defs>
-        <filter id="filter0_d" x="0" y="0" width="1123" height="837" filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-          <feOffset dy="4" />
-          <feGaussianBlur stdDeviation="15" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-        </filter>
-        <linearGradient id="paint0_linear" x1="470.721" y1="674.368" x2="470.721" y2="738.768"
-          gradientUnits="userSpaceOnUse">
-          <stop stop-color="#E0E0E0" />
-          <stop offset="0.31" stop-color="#FCCC63" />
-          <stop offset="0.77" stop-color="#F55F44" />
-        </linearGradient>
-        <linearGradient id="paint1_linear" x1="548.051" y1="674.118" x2="548.051" y2="738.518"
-          gradientUnits="userSpaceOnUse">
-          <stop stop-color="#E0E0E0" />
-          <stop offset="0.31" stop-color="#FCCC63" />
-          <stop offset="0.77" stop-color="#F55F44" />
-        </linearGradient>
-        <linearGradient id="paint2_linear" x1="597.051" y1="674.118" x2="597.051" y2="738.518"
-          gradientUnits="userSpaceOnUse">
-          <stop stop-color="#E0E0E0" />
-          <stop offset="0.31" stop-color="#FCCC63" />
-          <stop offset="0.77" stop-color="#F55F44" />
-        </linearGradient>
-        <linearGradient id="paint3_linear" x1="674.051" y1="674.118" x2="674.051" y2="738.518"
-          gradientUnits="userSpaceOnUse">
-          <stop stop-color="#E0E0E0" />
-          <stop offset="0.31" stop-color="#FCCC63" />
-          <stop offset="0.77" stop-color="#F55F44" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-  <div class="text">
-    <h1>404 Error</h1>
-    <h2>Couldn't launch :(</h2>
-    <h3>Page Not Found - lets take you <a href="{% url 'index' %}">BACK</a></h3>
-  </div>
-</body>
-<!-- partial -->
+<div></div>
+<svg id="svgWrap_2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 700 250">
+  <g>
+    <path id="id3_2" d="M195.7 232.67h-37.1V149.7H27.76c-2.64 0-5.1-.5-7.36-1.49-2.27-.99-4.23-2.31-5.88-3.96-1.65-1.65-2.95-3.61-3.89-5.88s-1.42-4.67-1.42-7.22V29.62h36.82v82.98H158.6V29.62h37.1v203.05z"/>
+    <path id="id2_2" d="M470.69 147.71c0 8.31-1.06 16.17-3.19 23.58-2.12 7.41-5.12 14.28-8.99 20.6-3.87 6.33-8.45 11.99-13.74 16.99-5.29 5-11.07 9.28-17.35 12.81a85.146 85.146 0 0 1-20.04 8.14 83.637 83.637 0 0 1-21.67 2.83H319.3c-7.46 0-14.73-.94-21.81-2.83-7.08-1.89-13.76-4.6-20.04-8.14a88.292 88.292 0 0 1-17.35-12.81c-5.29-5-9.84-10.67-13.66-16.99-3.82-6.32-6.8-13.19-8.92-20.6-2.12-7.41-3.19-15.27-3.19-23.58v-33.13c0-12.46 2.34-23.88 7.01-34.27 4.67-10.38 10.92-19.33 18.76-26.83 7.83-7.5 16.87-13.36 27.12-17.56 10.24-4.2 20.93-6.3 32.07-6.3h66.41c7.36 0 14.58.94 21.67 2.83 7.08 1.89 13.76 4.6 20.04 8.14a88.292 88.292 0 0 1 17.35 12.81c5.29 5 9.86 10.67 13.74 16.99 3.87 6.33 6.87 13.19 8.99 20.6 2.13 7.41 3.19 15.27 3.19 23.58v33.14zm-37.1-33.13c0-7.27-1.32-13.88-3.96-19.82-2.64-5.95-6.16-11.04-10.55-15.29-4.39-4.25-9.46-7.5-15.22-9.77-5.76-2.27-11.8-3.35-18.13-3.26h-66.41c-6.14-.09-12.11.97-17.91 3.19-5.81 2.22-10.95 5.43-15.44 9.63-4.48 4.2-8.07 9.3-10.76 15.29-2.69 6-4.04 12.67-4.04 20.04v33.13c0 7.36 1.32 14.02 3.96 19.97 2.64 5.95 6.18 11.02 10.62 15.22 4.44 4.2 9.56 7.43 15.36 9.7 5.8 2.27 11.87 3.35 18.2 3.26h66.41c7.27 0 13.85-1.2 19.75-3.61s10.93-5.73 15.08-9.98 7.36-9.32 9.63-15.22c2.27-5.9 3.4-12.34 3.4-19.33v-33.15zm-16-26.91a17.89 17.89 0 0 1 2.83 6.73c.47 2.41.47 4.77 0 7.08-.47 2.31-1.39 4.48-2.76 6.51-1.37 2.03-3.14 3.75-5.31 5.17l-99.4 66.41c-1.61 1.23-3.26 2.08-4.96 2.55-1.7.47-3.45.71-5.24.71-3.02 0-5.9-.71-8.64-2.12-2.74-1.42-4.96-3.44-6.66-6.09a17.89 17.89 0 0 1-2.83-6.73c-.47-2.41-.5-4.77-.07-7.08.43-2.31 1.3-4.48 2.62-6.51 1.32-2.03 3.07-3.75 5.24-5.17l99.69-66.41a17.89 17.89 0 0 1 6.73-2.83c2.41-.47 4.77-.47 7.08 0 2.31.47 4.48 1.37 6.51 2.69 2.03 1.32 3.75 3.02 5.17 5.09z"/>
+    <path id="id1_2" d="M688.33 232.67h-37.1V149.7H520.39c-2.64 0-5.1-.5-7.36-1.49-2.27-.99-4.23-2.31-5.88-3.96-1.65-1.65-2.95-3.61-3.89-5.88s-1.42-4.67-1.42-7.22V29.62h36.82v82.98h112.57V29.62h37.1v203.05z"/>
+  </g>
+</svg>
+<svg id="svgWrap_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 700 250">
+  <g>
+    <path id="id3_1" d="M195.7 232.67h-37.1V149.7H27.76c-2.64 0-5.1-.5-7.36-1.49-2.27-.99-4.23-2.31-5.88-3.96-1.65-1.65-2.95-3.61-3.89-5.88s-1.42-4.67-1.42-7.22V29.62h36.82v82.98H158.6V29.62h37.1v203.05z"/>
+    <path id="id2_1" d="M470.69 147.71c0 8.31-1.06 16.17-3.19 23.58-2.12 7.41-5.12 14.28-8.99 20.6-3.87 6.33-8.45 11.99-13.74 16.99-5.29 5-11.07 9.28-17.35 12.81a85.146 85.146 0 0 1-20.04 8.14 83.637 83.637 0 0 1-21.67 2.83H319.3c-7.46 0-14.73-.94-21.81-2.83-7.08-1.89-13.76-4.6-20.04-8.14a88.292 88.292 0 0 1-17.35-12.81c-5.29-5-9.84-10.67-13.66-16.99-3.82-6.32-6.8-13.19-8.92-20.6-2.12-7.41-3.19-15.27-3.19-23.58v-33.13c0-12.46 2.34-23.88 7.01-34.27 4.67-10.38 10.92-19.33 18.76-26.83 7.83-7.5 16.87-13.36 27.12-17.56 10.24-4.2 20.93-6.3 32.07-6.3h66.41c7.36 0 14.58.94 21.67 2.83 7.08 1.89 13.76 4.6 20.04 8.14a88.292 88.292 0 0 1 17.35 12.81c5.29 5 9.86 10.67 13.74 16.99 3.87 6.33 6.87 13.19 8.99 20.6 2.13 7.41 3.19 15.27 3.19 23.58v33.14zm-37.1-33.13c0-7.27-1.32-13.88-3.96-19.82-2.64-5.95-6.16-11.04-10.55-15.29-4.39-4.25-9.46-7.5-15.22-9.77-5.76-2.27-11.8-3.35-18.13-3.26h-66.41c-6.14-.09-12.11.97-17.91 3.19-5.81 2.22-10.95 5.43-15.44 9.63-4.48 4.2-8.07 9.3-10.76 15.29-2.69 6-4.04 12.67-4.04 20.04v33.13c0 7.36 1.32 14.02 3.96 19.97 2.64 5.95 6.18 11.02 10.62 15.22 4.44 4.2 9.56 7.43 15.36 9.7 5.8 2.27 11.87 3.35 18.2 3.26h66.41c7.27 0 13.85-1.2 19.75-3.61s10.93-5.73 15.08-9.98 7.36-9.32 9.63-15.22c2.27-5.9 3.4-12.34 3.4-19.33v-33.15zm-16-26.91a17.89 17.89 0 0 1 2.83 6.73c.47 2.41.47 4.77 0 7.08-.47 2.31-1.39 4.48-2.76 6.51-1.37 2.03-3.14 3.75-5.31 5.17l-99.4 66.41c-1.61 1.23-3.26 2.08-4.96 2.55-1.7.47-3.45.71-5.24.71-3.02 0-5.9-.71-8.64-2.12-2.74-1.42-4.96-3.44-6.66-6.09a17.89 17.89 0 0 1-2.83-6.73c-.47-2.41-.5-4.77-.07-7.08.43-2.31 1.3-4.48 2.62-6.51 1.32-2.03 3.07-3.75 5.24-5.17l99.69-66.41a17.89 17.89 0 0 1 6.73-2.83c2.41-.47 4.77-.47 7.08 0 2.31.47 4.48 1.37 6.51 2.69 2.03 1.32 3.75 3.02 5.17 5.09z"/>
+    <path id="id1_1" d="M688.33 232.67h-37.1V149.7H520.39c-2.64 0-5.1-.5-7.36-1.49-2.27-.99-4.23-2.31-5.88-3.96-1.65-1.65-2.95-3.61-3.89-5.88s-1.42-4.67-1.42-7.22V29.62h36.82v82.98h112.57V29.62h37.1v203.05z"/>
+  </g>
+</svg>
 
-</body>
+<svg>
+  <defs>
+    <filter id="glow">
+      <fegaussianblur class="blur" result="coloredBlur" stddeviation="4"></fegaussianblur>
+      <femerge>
+        <femergenode in="coloredBlur"></femergenode>
+        <femergenode in="SourceGraphic"></femergenode>
+      </femerge>
+    </filter>
+  </defs>
+</svg>
 
+<h2>Page Not Found</h2>
+  
+</body>
 </html>

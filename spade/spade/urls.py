@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.static import serve
 from django.conf import settings
 from spadeapp.views import SignUpView
+
+favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +29,6 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_URL}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+    re_path(r'^favicon\.ico$', favicon_view),
 ]

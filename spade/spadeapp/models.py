@@ -21,6 +21,7 @@ class SampleModel(models.Model):
     def get_last_index():
         return SampleModel.objects.last().pk
     
+#earthquakes table
 class Earthquake(models.Model):
     trigger_time = models.DateTimeField(verbose_name="trigger_time", blank=True)
     latitude = models.FloatField(verbose_name="latitude", blank=True)
@@ -78,6 +79,7 @@ class Earthquake(models.Model):
     def get_last_index():
         return Earthquake.objects.last().pk
     
+    #table update
     def add_data(delete = False):
         fileToOpen = dirname / "eq.csv"
         objs = []
@@ -107,7 +109,7 @@ class Earthquake(models.Model):
         Earthquake.objects.bulk_create(objs)
 
         
-
+#TGF table
 class TGF(models.Model):
     TGF_name = models.CharField(verbose_name="TGF name", max_length=30, blank=True)
     trigger_time = models.DateTimeField(verbose_name="Trigger time", default=timezone.now(),blank=True)
@@ -130,6 +132,7 @@ class TGF(models.Model):
     end_time_obs = models.CharField(verbose_name="End time observations", max_length=50, blank=True)
     reliability = models.CharField(verbose_name="Reliability", max_length=50, blank=True)
     
+    #attribute list
     attributes = [
         "TGF_name",
         "trigger_time", 
@@ -158,7 +161,7 @@ class TGF(models.Model):
         return str(self.pk)
     
     def get_last_index():
-        return TGF.objects.all()[-1].pk
+        return TGF.objects.last().pk
     
     def add_data(delete = False):
         objs = []
@@ -186,6 +189,7 @@ class TGF(models.Model):
                 i += 1
         TGF.objects.bulk_create(objs)
 
+#SWE table
 class SWE(models.Model):
 
     #fields
@@ -204,7 +208,7 @@ class SWE(models.Model):
         return str(self.pk)
     
     def get_last_index():
-        return SWE.objects.all()[-1].pk
+        return SWE.objects.last().pk
     
     def add_data(delete = False):
         objs = []
@@ -291,7 +295,7 @@ class GRB(models.Model):
         return str(self.pk)
     
     def get_last_index():
-        return GRB.objects.all()[-1].pk
+        return GRB.objects.last().pk
     
     def add_data(delete = False):
         objs = []
@@ -340,7 +344,7 @@ class GMS(models.Model):
         return str(self.pk)
     
     def get_last_index():
-        return GMS.objects.all()[-1].pk
+        return GMS.objects.last().pk
     
     def add_data(delete = False):
         objs = []
