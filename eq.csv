@@ -1,5 +1,9 @@
 trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,updated,place,type,horizontal_err,depth_err,magnitude_err,magnst,status,locationsource,magsource,source
-2024-07-03 18:20:34,-22.9565,-68.5811,93.864,5.3,mww,103.0,56.0,0.371,1.01,us,usd0011dnn,2024-07-03T20:12:01.498Z,39 km W of San Pedro de Atacama Chile,earthquake,6.67,3.977,0.061,26.0,reviewed,us,us,earthquake
+2024-07-04 03:12:29,35.1225,140.3816,40.909,5.1,mww,110.0,64.0,2.057,0.95,us,us7000mwzq,2024-07-04T06:11:22.799Z,6 km ESE of Katsuura Japan,earthquake,6.91,5.519,0.098,10.0,reviewed,us,us,earthquake
+2024-07-04 00:17:31,19.7853,-109.2244,10.0,5.2,mww,89.0,190.0,6.881,1.13,us,us7000mwyt,2024-07-04T00:34:13.040Z,Revilla Gigedo Islands region,earthquake,10.03,1.933,0.044,50.0,reviewed,us,us,earthquake
+2024-07-03 23:28:01,-25.4165,-176.0848,10.0,5.0,mb,57.0,128.0,4.151,0.94,us,us7000mwyr,2024-07-03T23:59:06.040Z,south of the Fiji Islands,earthquake,10.59,1.82,0.058,95.0,reviewed,us,us,earthquake
+2024-07-03 23:20:53,-34.3632,-178.5057,10.0,5.2,mb,61.0,70.0,4.108,1.01,us,us7000mwyi,2024-07-03T23:39:52.040Z,south of the Kermadec Islands,earthquake,8.96,1.847,0.071,66.0,reviewed,us,us,earthquake
+2024-07-03 18:20:34,-22.9565,-68.5811,93.864,5.3,mww,103.0,56.0,0.371,1.01,us,usd0011dnn,2024-07-04T04:31:00.377Z,39 km W of San Pedro de Atacama Chile,earthquake,6.67,3.977,0.061,26.0,reviewed,us,us,earthquake
 2024-07-03 11:44:27,26.6344,-110.9773,10.0,5.3,mww,61.0,184.0,1.318,1.04,us,us6000na0d,2024-07-03T14:42:30.150Z,78 km NNE of Loreto Mexico,earthquake,8.09,1.927,0.042,54.0,reviewed,us,us,earthquake
 2024-07-03 07:17:28,-54.019,-2.4486,10.0,5.2,mb,30.0,91.0,17.72,0.73,us,us6000n9zp,2024-07-03T07:34:24.040Z,southern Mid-Atlantic Ridge,earthquake,13.67,1.91,0.089,42.0,reviewed,us,us,earthquake
 2024-07-03 02:20:22,44.0978,156.5284,10.0,5.0,mb,63.0,137.0,9.042,1.05,us,us6000n9yc,2024-07-03T02:38:02.040Z,North Pacific Ocean,earthquake,10.02,1.883,0.031,323.0,reviewed,us,us,earthquake
@@ -8,7 +12,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-07-02 02:46:03,-6.2962,130.0936,164.984,5.0,mb,57.0,93.0,1.772,0.79,us,us6000n9rg,2024-07-02T03:02:29.040Z,Banda Sea,earthquake,6.11,6.776,0.082,47.0,reviewed,us,us,earthquake
 2024-07-01 22:44:53,26.9048,140.2993,471.947,5.3,mww,85.0,52.0,1.693,0.57,us,us6000n9pu,2024-07-01T22:59:41.040Z,Bonin Islands Japan region,earthquake,10.03,7.456,0.089,12.0,reviewed,us,us,earthquake
 2024-07-01 10:16:23,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01T10:33:17.040Z,198 km SE of Kokopo Papua New Guinea,earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
-2024-07-01 05:12:03,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-03T05:22:07.911Z,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
+2024-07-01 05:12:03,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-04T05:22:10.841Z,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 2024-07-01 02:38:03,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01T02:53:11.040Z,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
 2024-06-30 18:23:20,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-03T18:33:34.352Z,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 2024-06-30 16:06:29,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01T02:14:41.128Z,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
@@ -65,7 +69,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-06-14 09:51:57,-31.1972,-13.3447,10.0,5.9,mww,157.0,56.0,5.918,0.53,us,us7000msc3,2024-06-15T09:55:48.576Z,southern Mid-Atlantic Ridge,earthquake,9.19,1.841,0.086,13.0,reviewed,us,us,earthquake
 2024-06-14 09:29:34,-30.793,-13.7184,10.0,5.4,mb,45.0,109.0,16.468,0.79,us,us7000msc1,2024-06-15T09:32:39.773Z,southern Mid-Atlantic Ridge,earthquake,13.62,1.911,0.09,42.0,reviewed,us,us,earthquake
 2024-06-14 09:28:12,-31.2473,-13.4676,10.0,5.3,mb,32.0,79.0,5.884,0.76,us,us7000msbz,2024-06-14T09:46:33.040Z,southern Mid-Atlantic Ridge,earthquake,9.02,1.622,0.11,28.0,reviewed,us,us,earthquake
-2024-06-14 04:26:48,-30.9154,-13.4724,10.0,5.9,mww,84.0,56.0,6.212,0.7,us,us7000msb0,2024-06-15T04:29:52.960Z,southern Mid-Atlantic Ridge,earthquake,10.0,1.852,0.078,16.0,reviewed,us,us,earthquake
+2024-06-14 04:26:48,-30.9405,-13.4722,10.0,6.0,mww,111.0,30.0,6.187,0.81,us,us7000msb0,2024-07-03T22:37:09.342Z,southern Mid-Atlantic Ridge,earthquake,8.71,1.715,0.06,27.0,reviewed,us,us,earthquake
 2024-06-13 22:46:49,-8.7047,-76.0218,10.0,5.0,mb,84.0,72.0,2.82,0.77,us,us7000ms9k,2024-06-28T01:43:14.526Z,55 km ESE of Uchiza Peru,earthquake,8.65,1.806,0.036,244.0,reviewed,us,us,earthquake
 2024-06-13 17:12:53,-22.7636,-176.6699,124.612,5.1,mww,75.0,62.0,2.104,0.71,us,us7000ms7h,2024-06-30T14:42:17.040Z,226 km SW of Houma Tonga,earthquake,9.52,5.271,0.086,13.0,reviewed,us,us,earthquake
 2024-06-13 10:23:07,12.6133,144.2362,29.917,5.1,mb,76.0,39.0,1.149,1.08,us,us7000ms3s,2024-07-02T10:33:11.262Z,86 km SSW of Merizo Village Guam,earthquake,9.17,5.198,0.04,203.0,reviewed,us,us,earthquake
@@ -242,7 +246,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-05-02 07:10:51,52.0509,-169.3645,18.33,5.4,mww,123.0,74.0,0.769,0.79,us,us6000mvmq,2024-05-15T05:39:47.992Z,104 km SSW of Nikolski Alaska,earthquake,3.39,4.428,0.058,29.0,reviewed,us,us,earthquake
 2024-05-02 07:06:25,51.9797,-169.3393,12.901,5.3,mww,104.0,134.0,0.842,0.72,us,us6000mvmm,2024-05-15T04:59:52.040Z,111 km SSW of Nikolski Alaska,earthquake,4.99,3.966,0.048,41.0,reviewed,us,us,earthquake
 2024-05-02 07:01:47,51.9779,-169.2887,10.0,5.1,mb,136.0,182.0,0.853,0.54,us,us6000mvms,2024-05-15T04:45:27.040Z,110 km SSW of Nikolski Alaska,earthquake,5.12,1.871,0.051,124.0,reviewed,us,us,earthquake
-2024-05-02 06:58:00,52.1554,-169.4615,13.892,5.5,mww,217.0,134.0,0.806,0.65,us,us6000mvmi,2024-06-27T07:08:14.725Z,96 km SSW of Nikolski Alaska,earthquake,7.68,3.678,0.04,59.0,reviewed,us,us,earthquake
+2024-05-02 06:58:00,52.1554,-169.4615,13.892,5.5,mww,217.0,134.0,0.806,0.65,us,us6000mvmi,2024-07-04T07:08:12.684Z,96 km SSW of Nikolski Alaska,earthquake,7.68,3.678,0.04,59.0,reviewed,us,us,earthquake
 2024-05-02 06:36:31,-55.8567,-27.01,12.416,5.3,mwb,116.0,68.0,5.669,0.72,us,us6000mvmb,2024-06-25T18:39:24.040Z,South Sandwich Islands region,earthquake,11.08,4.25,0.068,21.0,reviewed,us,us,earthquake
 2024-05-02 05:53:52,-55.6383,-27.089,34.778,5.0,mb,36.0,71.0,5.583,0.9,us,us6000mvm5,2024-05-12T05:58:30.040Z,South Sandwich Islands region,earthquake,12.35,6.754,0.097,34.0,reviewed,us,us,earthquake
 2024-05-02 02:16:10,-13.5527,-72.4815,10.0,5.1,mb,166.0,99.0,4.529,0.69,us,us6000mvky,2024-06-25T17:15:52.040Z,28 km WNW of Chinchaypujio Peru,earthquake,6.12,1.835,0.046,151.0,reviewed,us,us,earthquake
@@ -746,7 +750,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-01-11 09:20:26,36.4979,70.6013,204.0,6.4,mww,140.0,17.0,3.122,1.02,us,us6000m31m,2024-03-16T19:00:18.040Z,45 km SSW of Jurm Afghanistan,earthquake,6.09,1.879,0.039,62.0,reviewed,us,us,earthquake
 2024-01-11 04:54:31,-26.4576,-141.2625,10.0,5.2,mb,147.0,83.0,36.935,0.61,us,us6000m30y,2024-03-16T19:00:17.040Z,South Pacific Ocean,earthquake,13.38,1.817,0.05,131.0,reviewed,us,us,earthquake
 2024-01-10 23:54:46,-5.9215,-76.7022,120.742,5.0,mb,167.0,69.0,2.069,0.53,us,us6000m2zs,2024-03-16T19:00:16.040Z,32 km ENE of Moyobamba Peru,earthquake,8.61,5.069,0.047,145.0,reviewed,us,us,earthquake
-2024-01-10 22:44:39,17.4642,147.6218,10.0,5.0,mb,100.0,128.0,2.825,0.45,us,us6000m2z8,2024-06-26T22:54:50.298Z,Mariana Islands region,earthquake,10.89,1.878,0.063,80.0,reviewed,us,us,earthquake
+2024-01-10 22:44:39,17.4642,147.6218,10.0,5.0,mb,100.0,128.0,2.825,0.45,us,us6000m2z8,2024-07-03T22:54:41.577Z,Mariana Islands region,earthquake,10.89,1.878,0.063,80.0,reviewed,us,us,earthquake
 2024-01-10 02:29:02,-49.2149,-8.1614,10.0,5.0,mb,39.0,90.0,18.187,0.57,us,us6000m2vd,2024-03-16T19:00:12.040Z,southern Mid-Atlantic Ridge,earthquake,8.05,1.806,0.108,27.0,reviewed,us,us,earthquake
 2024-01-09 16:47:25,-21.8843,-67.2296,175.245,5.4,mww,221.0,32.0,1.379,0.69,us,us6000m2sb,2024-03-16T18:59:45.040Z,128 km SE of Ollagüe Chile,earthquake,5.64,2.083,0.052,36.0,reviewed,us,us,earthquake
 2024-01-09 08:59:10,37.8629,137.7814,10.0,5.9,mww,147.0,24.0,0.416,0.88,us,us6000m2ny,2024-03-16T19:00:09.040Z,53 km WSW of Sado Japan,earthquake,6.73,1.692,0.047,43.0,reviewed,us,us,earthquake
@@ -1300,7 +1304,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2023-10-12 22:33:39,44.2409,148.51,40.251,5.1,mww,107.0,121.0,4.258,0.52,us,us6000lf8b,2023-12-16T22:13:08.040Z,120 km SSE of Kuril’sk Russia,earthquake,8.25,3.277,0.093,11.0,reviewed,us,us,earthquake
 2023-10-12 10:34:56,-6.746,155.2721,36.869,5.1,mb,107.0,26.0,4.002,0.94,us,us6000lf1v,2023-12-16T22:13:07.040Z,53 km SSW of Panguna Papua New Guinea,earthquake,7.24,3.963,0.041,199.0,reviewed,us,us,earthquake
 2023-10-12 06:18:41,-4.5721,133.9193,10.0,5.2,mww,68.0,48.0,2.34,0.47,us,us6000lf0q,2023-12-16T22:13:07.040Z,174 km NE of Tual Indonesia,earthquake,7.69,1.842,0.078,16.0,reviewed,us,us,earthquake
-2023-10-12 02:41:13,52.8792,-171.3013,119.522,5.6,mww,373.0,39.0,0.774,0.92,us,us6000leyu,2024-06-27T02:51:28.186Z,164 km W of Nikolski Alaska,earthquake,6.04,3.388,0.031,103.0,reviewed,us,us,earthquake
+2023-10-12 02:41:13,52.8792,-171.3013,119.522,5.6,mww,373.0,39.0,0.774,0.92,us,us6000leyu,2024-07-04T02:51:15.799Z,164 km W of Nikolski Alaska,earthquake,6.04,3.388,0.031,103.0,reviewed,us,us,earthquake
 2023-10-11 20:04:58,-52.0446,139.6131,10.0,6.3,mww,112.0,35.0,10.516,0.95,us,us6000lews,2023-12-16T22:13:07.040Z,west of Macquarie Island,earthquake,5.49,1.743,0.052,35.0,reviewed,us,us,earthquake
 2023-10-11 10:36:56,23.2664,121.3166,16.025,5.2,mww,93.0,88.0,0.127,0.67,us,us6000leqs,2023-12-16T22:13:07.040Z,78 km SE of Lugu Taiwan,earthquake,3.81,3.571,0.098,10.0,reviewed,us,us,earthquake
 2023-10-11 04:37:08,-20.4851,-174.0596,25.013,5.0,mb,51.0,102.0,0.711,0.6,us,us6000leps,2023-12-16T22:13:07.040Z,80 km SSE of Pangai Tonga,earthquake,5.16,3.085,0.096,35.0,reviewed,us,us,earthquake
@@ -1420,7 +1424,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2023-09-21 21:11:48,-14.0192,167.2467,185.0,6.1,mww,161.0,16.0,7.084,0.63,us,us7000kx7j,2023-12-02T23:01:09.040Z,Vanuatu,earthquake,8.1,1.868,0.054,33.0,reviewed,us,us,earthquake
 2023-09-21 15:20:31,-30.6653,-178.2396,34.0,5.6,mww,219.0,44.0,1.426,0.72,us,us7000kx4l,2023-12-02T23:01:09.040Z,Kermadec Islands New Zealand,earthquake,4.76,1.653,0.056,31.0,reviewed,us,us,earthquake
 2023-09-21 09:48:23,13.8086,144.6809,151.861,5.0,mb,95.0,38.0,0.284,0.92,us,us7000kx26,2024-06-27T09:58:32.311Z,36 km NNW of Dededo Village Guam,earthquake,9.91,2.615,0.028,398.0,reviewed,us,us,earthquake
-2023-09-21 01:13:58,54.9138,-160.3674,50.348,5.4,mww,299.0,58.0,0.441,0.69,us,us7000kx0x,2024-06-27T01:24:09.755Z,47 km S of Sand Point Alaska,earthquake,5.3,4.79,0.048,42.0,reviewed,us,us,earthquake
+2023-09-21 01:13:58,54.9138,-160.3674,50.348,5.4,mww,299.0,58.0,0.441,0.69,us,us7000kx0x,2024-07-04T01:24:13.298Z,47 km S of Sand Point Alaska,earthquake,5.3,4.79,0.048,42.0,reviewed,us,us,earthquake
 2023-09-20 19:22:32,-44.8936,35.2016,10.0,5.7,mww,63.0,36.0,16.775,1.27,us,us7000kwz5,2023-12-02T23:01:09.040Z,Prince Edward Islands region,earthquake,9.77,1.796,0.08,15.0,reviewed,us,us,earthquake
 2023-09-20 15:03:36,-4.6444,-105.8825,10.0,5.8,mww,134.0,57.0,16.068,0.55,us,us7000kwwq,2024-01-18T20:55:48.130Z,central East Pacific Rise,earthquake,12.38,1.827,0.06,27.0,reviewed,us,us,earthquake
 2023-09-20 14:45:56,-4.5869,-105.6088,10.0,5.9,mww,315.0,46.0,15.789,0.58,us,us7000kww3,2023-12-02T23:01:08.040Z,central East Pacific Rise,earthquake,3.96,1.866,0.05,39.0,reviewed,us,us,earthquake
@@ -8730,7 +8734,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2019-07-06 05:23:33,56.2117,164.2719,10.0,5.3,mb,,63.0,4.569,0.63,us,us70004bud,2019-09-26T14:30:31.040Z,111 km E of Ust’-Kamchatsk Staryy Russia,earthquake,7.7,1.8,0.055,113.0,reviewed,us,us,earthquake
 2019-07-06 04:18:55,35.9101667,-117.6848333,7.41,5.44,mw,66.0,37.0,0.07213,0.17,ci,ci38457847,2021-12-10T23:08:47.080Z,20km E of Little Lake CA,earthquake,0.12,0.36,,6.0,reviewed,ci,ci,earthquake
 2019-07-06 03:47:53,35.9011667,-117.7495,5.04,5.5,mw,49.0,33.0,0.07334,0.16,ci,ci38457687,2020-07-09T21:44:24.632Z,15km ESE of Little Lake CA,earthquake,0.13,0.5,,4.0,reviewed,ci,ci,earthquake
-2019-07-06 03:19:53,35.7695,-117.5993333,8.0,7.1,mw,77.0,43.0,0.04616,0.22,ci,ci38457511,2024-07-01T21:25:37.989Z,Ridgecrest Earthquake Sequence,earthquake,0.19,31.61,0.028,126.0,reviewed,ci,ci,earthquake
+2019-07-06 03:19:53,35.7695,-117.5993333,8.0,7.1,mw,77.0,43.0,0.04616,0.22,ci,ci38457511,2024-07-04T03:30:09.273Z,Ridgecrest Earthquake Sequence,earthquake,0.19,31.61,0.028,126.0,reviewed,ci,ci,earthquake
 2019-07-06 00:10:45,-30.2905,-177.7958,35.0,5.2,mb,,63.0,1.048,1.02,us,us70004bjy,2019-09-26T14:30:23.040Z,Kermadec Islands New Zealand,earthquake,8.6,1.0,0.042,184.0,reviewed,us,us,earthquake
 2019-07-05 22:09:53,-21.5792,-174.0315,10.0,5.0,mb,,94.0,4.586,0.99,us,us70004bgv,2019-09-26T14:30:22.040Z,99 km ESE of ‘Ohonua Tonga,earthquake,11.6,1.9,0.098,33.0,reviewed,us,us,earthquake
 2019-07-05 19:59:13,-5.984,130.8534,101.17,5.2,mww,,25.0,2.034,0.84,us,us70004be6,2019-09-26T14:30:21.040Z,213 km W of Tual Indonesia,earthquake,5.9,4.4,0.056,31.0,reviewed,us,us,earthquake
@@ -18575,11 +18579,3 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2013-07-22 07:01:42,-46.049,34.78,10.0,6.3,mww,259.0,22.0,,1.12,us,usb000ijj6,2022-05-03T17:41:32.600Z,Prince Edward Islands region,earthquake,,,,,reviewed,us,us,earthquake
 2013-07-22 01:12:34,34.529,104.176,10.2,5.4,mwc,102.0,15.0,,0.87,us,usb000ijfc,2022-05-03T17:41:34.486Z,68 km W of Mawu China,earthquake,,2.3,,,reviewed,us,gcmt,earthquake
 2013-07-22 00:05:03,-61.712,-58.594,13.5,5.2,mb,78.0,59.0,,1.19,us,usb000ijea,2014-11-07T01:51:19.273Z,South Shetland Islands,earthquake,,3.1,,49.0,reviewed,us,us,earthquake
-2013-07-21 23:45:56,34.512,104.262,8.0,5.9,mww,276.0,10.0,,0.8,us,usb000ije3,2022-07-25T18:48:20.707Z,60 km W of Mawu China,earthquake,,,,,reviewed,us,us,earthquake
-2013-07-21 22:47:25,-41.602,174.255,15.7,5.0,mb,68.0,100.0,,,us,usb000ijch,2022-05-03T16:24:24.761Z,26 km ESE of Blenheim New Zealand,earthquake,,,,26.0,reviewed,wel,us,earthquake
-2013-07-21 22:04:02,-60.357,-26.239,35.0,5.0,mb,48.0,52.0,,1.02,us,usp000k28q,2014-11-07T01:51:19.181Z,South Sandwich Islands region,earthquake,,1.9,,26.0,reviewed,us,us,earthquake
-2013-07-21 13:00:22,-3.494,135.385,28.9,5.2,mwb,207.0,25.0,,0.8,us,usb000ij2v,2022-05-03T16:24:22.017Z,19 km SW of Nabire Indonesia,earthquake,,7.1,,,reviewed,us,us,earthquake
-2013-07-21 09:51:11,-5.51,145.96,63.3,5.2,mb,101.0,28.0,,0.97,us,usb000ij0f,2022-07-25T18:46:12.370Z,37 km SSE of Madang Papua New Guinea,earthquake,,4.9,,91.0,reviewed,us,us,earthquake
-2013-07-21 05:13:50,-41.535,174.366,12.7,5.3,mb,59.0,100.0,,,us,usp000k27k,2014-11-07T01:51:18.884Z,34 km E of Blenheim New Zealand,earthquake,,,,33.0,reviewed,wel,us,earthquake
-2013-07-21 05:09:31,-41.704,174.337,17.0,6.5,mww,229.0,20.0,,0.85,us,usb000iivv,2023-03-21T20:57:25.353Z,38 km ESE of Blenheim New Zealand,earthquake,,,,,reviewed,us,us,earthquake
-2013-07-21 01:32:24,43.501,13.668,8.4,5.4,mb,111.0,100.0,,,us,usb000iiu5,2022-07-25T18:42:59.988Z,3 km ENE of Marcelli Italy,earthquake,,,,278.0,reviewed,rom,us,earthquake

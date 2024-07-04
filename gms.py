@@ -108,9 +108,11 @@ def step4():
                     epoch_int = int(float(data[c]))
                     utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
                     data[c] = utc_dt
-            new_line = ",".join(data)
-            new_line = new_line.replace("--", "")
-            new_lines.append(new_line + "\n")
+
+            if data[0][14:16] == "00" or data[0][14:16] == "30":
+                new_line = ",".join(data)
+                new_line = new_line.replace("--", "")
+                new_lines.append(new_line + "\n")
 
     with open(FINAL, 'w') as file:
         file.writelines(new_lines)
