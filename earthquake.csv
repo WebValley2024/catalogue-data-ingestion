@@ -17,7 +17,7 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1719771800,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,1720031614,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 1719763589,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,1719800081,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
 1719679126,-54.0099,7.159,10.0,5.6,mww,77.0,34.0,23.718,1.06,us,us6000n96v,1719765760,Bouvet Island region,earthquake,10.45,1.744,0.086,13.0,reviewed,us,us,earthquake
-1719659432,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,1720005644,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
+1719659432,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,1720092034,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
 1719645773,-16.1686,-74.3463,52.923,5.3,mww,58.0,137.0,4.408,1.24,us,us6000n94d,1719697599,41 km S of Atiquipa Peru,earthquake,5.47,7.128,0.086,13.0,reviewed,us,us,earthquake
 1719644733,-16.1219,-74.5791,19.32,6.1,mww,98.0,89.0,4.625,1.04,us,us6000n948,1719961600,42 km SSW of Atiquipa Peru,earthquake,6.04,4.406,0.059,28.0,reviewed,us,us,earthquake
 1719634908,-24.0128,-70.2167,43.529,5.2,mb,62.0,110.0,1.279,1.02,us,us6000n933,1719662334,43 km SSE of Antofagasta Chile,earthquake,6.18,6.129,0.031,354.0,reviewed,us,us,earthquake
@@ -558,8 +558,8 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1709276796,-4.7608,139.56,10.0,5.2,mb,76.0,76.0,2.506,0.62,us,us6000mg0v,1715376356,180 km ENE of Agats Indonesia,earthquake,8.51,1.862,0.069,69.0,reviewed,us,us,earthquake
 1709239396,35.371,140.632,23.083,5.1,mww,105.0,114.0,2.287,0.62,us,us6000mfxd,1715376356,22 km E of Ichinomiya Japan,earthquake,6.52,4.238,0.066,22.0,reviewed,us,us,earthquake
 1709208967,-9.2616,158.8249,10.0,5.0,mb,73.0,30.0,1.122,0.93,us,us6000mfta,1715376356,109 km WNW of Malango Solomon Islands,earthquake,6.43,1.221,0.063,81.0,reviewed,us,us,earthquake
-1709202535,41.3681,-127.1671,10.0,5.2,mww,141.0,78.0,2.307,0.82,us,us6000mft0,1719484745,251 km W of Crescent City California,earthquake,7.63,1.818,0.052,35.0,reviewed,us,us,earthquake
-1709198539,51.0421,-177.3209,26.936,5.0,mww,200.0,75.0,0.722,0.83,us,us6000mfsl,1719480749,104 km SSW of Adak Alaska,earthquake,5.04,3.867,0.069,20.0,reviewed,us,us,earthquake
+1709202535,41.3681,-127.1671,10.0,5.2,mww,141.0,78.0,2.307,0.82,us,us6000mft0,1720089542,251 km W of Crescent City California,earthquake,7.63,1.818,0.052,35.0,reviewed,us,us,earthquake
+1709198539,51.0421,-177.3209,26.936,5.0,mww,200.0,75.0,0.722,0.83,us,us6000mfsl,1720085547,104 km SSW of Adak Alaska,earthquake,5.04,3.867,0.069,20.0,reviewed,us,us,earthquake
 1709187871,85.3528,91.2168,10.0,5.2,mww,193.0,58.0,11.255,0.44,us,us6000mfs3,1715376355,north of Severnaya Zemlya,earthquake,8.72,1.87,0.052,36.0,reviewed,us,us,earthquake
 1709166238,8.8593,126.7364,18.0,5.4,mww,193.0,64.0,2.115,0.65,us,us6000mfqj,1715376355,46 km E of Aras-asan Philippines,earthquake,8.62,1.738,0.065,23.0,reviewed,us,us,earthquake
 1709165412,8.8465,126.8221,14.569,5.1,mww,191.0,42.0,2.152,0.94,us,us6000mfqh,1715376355,56 km E of Aras-asan Philippines,earthquake,8.13,3.153,0.098,10.0,reviewed,us,us,earthquake
@@ -1423,7 +1423,7 @@ Trigger Time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,update
 1695331332,30.966,141.8013,12.765,5.7,mww,99.0,53.0,2.728,0.69,us,us7000kx7t,1701558069,Izu Islands Japan region,earthquake,8.54,3.656,0.052,35.0,reviewed,us,us,earthquake
 1695330708,-14.0192,167.2467,185.0,6.1,mww,161.0,16.0,7.084,0.63,us,us7000kx7j,1701558069,Vanuatu,earthquake,8.1,1.868,0.054,33.0,reviewed,us,us,earthquake
 1695309631,-30.6653,-178.2396,34.0,5.6,mww,219.0,44.0,1.426,0.72,us,us7000kx4l,1701558069,Kermadec Islands New Zealand,earthquake,4.76,1.653,0.056,31.0,reviewed,us,us,earthquake
-1695289703,13.8086,144.6809,151.861,5.0,mb,95.0,38.0,0.284,0.92,us,us7000kx26,1719482312,36 km NNW of Dededo Village Guam,earthquake,9.91,2.615,0.028,398.0,reviewed,us,us,earthquake
+1695289703,13.8086,144.6809,151.861,5.0,mb,95.0,38.0,0.284,0.92,us,us7000kx26,1720087111,36 km NNW of Dededo Village Guam,earthquake,9.91,2.615,0.028,398.0,reviewed,us,us,earthquake
 1695258838,54.9138,-160.3674,50.348,5.4,mww,299.0,58.0,0.441,0.69,us,us7000kx0x,1720056253,47 km S of Sand Point Alaska,earthquake,5.3,4.79,0.048,42.0,reviewed,us,us,earthquake
 1695237752,-44.8936,35.2016,10.0,5.7,mww,63.0,36.0,16.775,1.27,us,us7000kwz5,1701558069,Prince Edward Islands region,earthquake,9.77,1.796,0.08,15.0,reviewed,us,us,earthquake
 1695222216,-4.6444,-105.8825,10.0,5.8,mww,134.0,57.0,16.068,0.55,us,us7000kwwq,1705611348,central East Pacific Rise,earthquake,12.38,1.827,0.06,27.0,reviewed,us,us,earthquake

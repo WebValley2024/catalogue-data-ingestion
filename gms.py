@@ -64,7 +64,7 @@ def get_gms():
     step1()
     step2()
     step3()
-    step4()
+    # step4()
 
 
 def download():

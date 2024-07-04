@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from time import strftime, localtime
 from bs4 import BeautifulSoup
 import requests
 import sys
@@ -34,6 +35,66 @@ def to_epoch_timestamp(year, day, hour, minute):
     return str(epoch_timestamp)
 
 
+def get_data_from_table(second_page_content, empty=False):
+    soup = BeautifulSoup(second_page_content, 'html.parser')
+    lst_link = soup.find('a').get('href')
+
+    try:
+        response = requests.get(lst_link)
+    except Exception as e:
+        print("Could not get the data (check the data range)")
+        return
+
+    if response.status_code == 200:
+        file_content = response.text
+
+        new_rows = []
+
+        header = ["Trigger Time", "Field Magnitude Average(nT)", "Speed(km/s)"]
+
+        new_rows.append(f"{','.join(header)}\n")
+
+        rows = file_content.split('\n')
+
+        for i in range(len(rows)-1):
+            parts = list(filter(None, rows[i].split(' ')))
+            parts[0] = to_epoch_timestamp(int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3]))
+            parts.pop(1)
+            parts.pop(1)
+            parts.pop(1)
+
+            if parts[1] == "9999.99":
+                parts[1] = ""
+            if parts[2] == "99999.9":
+                parts[2] = ""
+
+            if parts[0] != "":
+                epoch_int = int(float(parts[0]))
+                utc_dt = strftime('%Y-%m-%d %H:%M:%S', localtime(epoch_int))
+                parts[0] = utc_dt
+
+            if (parts[1] != "" or parts[2] != "") and (parts[0][11:16] == "00:00" or parts[0][11:16] == "06:00" or parts[0][11:16] == "12:00" or parts[0][11:16] == "18:00"):
+                new_rows.append(','.join(parts))
+
+        return new_rows
+
+    else:
+        print(f"Failed to retrieve the file: {response.status_code}")
+        return
+
+
+def one_year_behind(date_str):
+    # Parse the input date string to a datetime object
+    date_format = "%Y%m%d"
+    original_date = datetime.strptime(date_str, date_format)
+
+    # Subtract one year
+    one_year_behind_date = original_date.replace(year=original_date.year - 1)
+
+    # Convert the datetime object back to a string
+    return one_year_behind_date.strftime(date_format)
+
+
 def download_dst_data():
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
@@ -47,6 +108,8 @@ def download_dst_data():
     # Initialize the WebDriver (here using Chrome)
     driver = webdriver.Chrome(options=options)
 
+    lines_to_write = []
+
     try:
         # Open the webpage
         driver.get('https://omniweb.gsfc.nasa.gov/form/omni_min.html')  # Replace with the actual URL
@@ -56,71 +119,53 @@ def download_dst_data():
         wait.until(EC.presence_of_element_located((By.NAME, 'start_date')))
         wait.until(EC.presence_of_element_located((By.NAME, 'end_date')))
 
-        end_date = "20240606"
-        start_date = f"{end_date[:3]}{int(end_date[3]) - 1}{end_date[4:]}"
+        for i in range(24):
 
-        # Locate the start date input field and set its value
-        start_date_input = driver.find_element(By.NAME, 'start_date')
-        start_date_input.clear()
-        start_date_input.send_keys(start_date)  # Set the desired start date
+            # Using zfill to pad the year part
+            year = str(i+1).zfill(2)
+            end_date = f"20{year}0606"
 
-        # Locate the end date input field and set its value
-        end_date_input = driver.find_element(By.NAME, 'end_date')
-        end_date_input.clear()
-        end_date_input.send_keys(end_date)  # Set the desired end date
+            start_date = one_year_behind(end_date)
 
-        # Select the second radio button ('List data')
-        list_radio_button = driver.find_element(By.CSS_SELECTOR, 'input[type="radio"][value="ftp"]')
-        list_radio_button.click()
+            print(f"<dst> Downloading year {start_date[:4]}")
 
-        # Click the submit button
-        submit_button = driver.find_element(By.CSS_SELECTOR, 'input[type="submit"][value="Submit"]')
-        submit_button.click()
+            # Locate the start date input field and set its value
+            start_date_input = driver.find_element(By.NAME, 'start_date')
+            start_date_input.clear()
+            start_date_input.send_keys(start_date)  # Set the desired start date
 
-        # Wait for the second page to load and get its content
-        wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
-        second_page_content = driver.page_source
+            # Locate the end date input field and set its value
+            end_date_input = driver.find_element(By.NAME, 'end_date')
+            end_date_input.clear()
+            end_date_input.send_keys(end_date)  # Set the desired end date
 
-        soup = BeautifulSoup(second_page_content, 'html.parser')
-        lst_link = soup.find('a').get('href')
+            # Select the second radio button ('List data')
+            list_radio_button = driver.find_element(By.CSS_SELECTOR, 'input[type="radio"][value="ftp"]')
+            list_radio_button.click()
 
-        try:
-            response = requests.get(lst_link)
-        except Exception as e:
-            print("Could not get the data (check the data range)")
-            sys.exit(0)
+            # Click the submit button
+            submit_button = driver.find_element(By.CSS_SELECTOR, 'input[type="submit"][value="Submit"]')
+            submit_button.click()
 
-        if response.status_code == 200:
-            file_content = response.text
+            # Wait for the second page to load and get its content
+            wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
+            second_page_content = driver.page_source
 
-            header = ["Trigger Time", "Field Magnitude Average(nT)", "Speed(km/s)"]
+            if i != 0:
+                lines = get_data_from_table(second_page_content)
+            else:
+                lines = get_data_from_table(second_page_content, True)
 
-            rows = file_content.split('\n')
+            lines_to_write.extend(lines)
 
-            new_rows = []
+            driver.back()
 
-            for i in range(len(rows)-1):
-                parts = list(filter(None, rows[i].split(' ')))
-                parts[0] = to_epoch_timestamp(int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3]))
-                parts.pop(1)
-                parts.pop(1)
-                parts.pop(1)
+            wait.until(EC.presence_of_element_located((By.NAME, 'start_date')))
+            wait.until(EC.presence_of_element_located((By.NAME, 'end_date')))
 
-                if parts[1] == "9999.99":
-                    parts[1] = ""
-                if parts[2] == "99999.9":
-                    parts[2] = ""
-                
-                if parts[1] != "" or parts[2] != "":
-                    new_rows.append(','.join(parts))
-
-            with open("dst.csv", "w") as dst:
-                dst.write(f"{','.join(header)}\n")
-                for row in new_rows[:-1]:
-                    dst.write(f"{row}\n")
-
-        else:
-            print(f"Failed to retrieve the file: {response.status_code}")
+        with open("dst.csv", "w") as dst:
+            for line in lines_to_write:
+                dst.write(f"{line}\n")
 
     finally:
         # Close the WebDriver
