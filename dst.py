@@ -52,7 +52,8 @@ def get_data_from_table(second_page_content, empty=False):
 
         header = ["Trigger Time", "Field Magnitude Average(nT)", "Speed(km/s)"]
 
-        new_rows.append(f"{','.join(header)}\n")
+        if empty:
+            new_rows.append(f"{','.join(header)}\n")
 
         rows = file_content.split('\n')
 

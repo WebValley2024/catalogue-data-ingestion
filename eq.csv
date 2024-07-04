@@ -1,4 +1,6 @@
 trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,updated,place,type,horizontal_err,depth_err,magnitude_err,magnst,status,locationsource,magsource,source
+2024-07-04 16:15:08,48.6778,-129.0034,10.0,5.7,mww,34.0,87.0,0.758,0.99,us,us7000mx3m,2024-07-04 18:25:17,232 km WSW of Tofino Canada,earthquake,4.38,1.867,0.046,46.0,reviewed,us,us,earthquake
+2024-07-04 15:40:56,-20.2182,-173.779,10.0,5.1,mb,25.0,130.0,1.595,1.24,us,us7000mx39,2024-07-04 16:00:16,74 km SE of Pangai Tonga,earthquake,9.04,1.91,0.121,22.0,reviewed,us,us,earthquake
 2024-07-04 03:12:29,35.1225,140.3816,40.909,5.1,mww,110.0,64.0,2.057,0.95,us,us7000mwzq,2024-07-04 06:11:22,6 km ESE of Katsuura Japan,earthquake,6.91,5.519,0.098,10.0,reviewed,us,us,earthquake
 2024-07-04 00:17:31,19.7853,-109.2244,10.0,5.2,mww,89.0,190.0,6.881,1.13,us,us7000mwyt,2024-07-04 00:34:13,Revilla Gigedo Islands region,earthquake,10.03,1.933,0.044,50.0,reviewed,us,us,earthquake
 2024-07-03 23:28:01,-25.4165,-176.0848,10.0,5.0,mb,57.0,128.0,4.151,0.94,us,us7000mwyr,2024-07-03 23:59:06,south of the Fiji Islands,earthquake,10.59,1.82,0.058,95.0,reviewed,us,us,earthquake
@@ -14,7 +16,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2024-07-01 10:16:23,-5.5604,153.5894,41.587,5.0,mb,53.0,68.0,7.387,1.16,us,us6000n9k8,2024-07-01 10:33:17,198 km SE of Kokopo Papua New Guinea,earthquake,8.92,6.929,0.082,48.0,reviewed,us,us,earthquake
 2024-07-01 05:12:03,14.7374,147.0554,10.0,5.0,mb,60.0,76.0,1.317,0.91,us,us6000n9jh,2024-07-04 05:22:10,149 km ESE of Saipan Northern Mariana Islands,earthquake,8.42,1.883,0.068,70.0,reviewed,us,us,earthquake
 2024-07-01 02:38:03,-62.6803,165.5617,10.0,5.1,mb,25.0,148.0,14.959,0.77,us,us6000n9iu,2024-07-01 02:53:11,Balleny Islands region,earthquake,9.46,1.92,0.116,24.0,reviewed,us,us,earthquake
-2024-06-30 18:23:20,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-03 18:33:34,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
+2024-06-30 18:23:20,19.0069,144.9435,600.746,5.2,mww,90.0,72.0,3.831,0.71,us,us6000n9gl,2024-07-04 18:33:33,Maug Islands region Northern Mariana Islands,earthquake,10.75,7.539,0.089,12.0,reviewed,us,us,earthquake
 2024-06-30 16:06:29,-9.3956,107.3989,25.2,5.2,mb,31.0,80.0,1.937,1.09,us,us6000n9fs,2024-07-01 02:14:41,239 km SSW of Singaparna Indonesia,earthquake,6.57,5.815,0.077,55.0,reviewed,us,us,earthquake
 2024-06-29 16:38:46,-54.0099,7.159,10.0,5.6,mww,77.0,34.0,23.718,1.06,us,us6000n96v,2024-06-30 16:42:40,Bouvet Island region,earthquake,10.45,1.744,0.086,13.0,reviewed,us,us,earthquake
 2024-06-29 11:10:32,52.2937,-175.1088,99.291,5.0,mb,77.0,126.0,0.568,1.01,us,us6000n95k,2024-07-04 11:20:34,62 km W of Atka Alaska,earthquake,7.21,5.18,0.023,614.0,reviewed,us,us,earthquake
@@ -850,7 +852,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2023-12-22 11:33:59,2.6388,128.1978,62.909,5.1,mww,98.0,34.0,2.032,0.49,us,us7000lkvf,2024-02-27 22:57:04,102 km NNE of Tobelo Indonesia,earthquake,7.78,4.991,0.08,15.0,reviewed,us,us,earthquake
 2023-12-21 20:45:23,35.2045,140.9422,13.191,5.0,mww,82.0,62.0,2.291,0.76,us,us7000lkqm,2024-02-27 22:57:03,50 km E of Ōhara Japan,earthquake,6.85,3.355,0.093,11.0,reviewed,us,us,earthquake
 2023-12-21 16:21:52,-21.8997,-70.1585,61.708,5.6,mww,271.0,51.0,0.404,0.86,us,us7000lkpg,2024-02-27 22:57:03,21 km N of Tocopilla Chile,earthquake,4.67,3.341,0.058,29.0,reviewed,us,us,earthquake
-2023-12-21 14:55:56,51.2097,-175.3313,20.0,6.1,mww,126.0,52.0,0.862,0.69,us,usd0010b4f,2024-06-27 15:06:12,116 km SE of Adak Alaska,earthquake,3.85,1.771,0.028,122.0,reviewed,us,us,earthquake
+2023-12-21 14:55:56,51.2097,-175.3313,20.0,6.1,mww,126.0,52.0,0.862,0.69,us,usd0010b4f,2024-07-04 15:06:07,116 km SE of Adak Alaska,earthquake,3.85,1.771,0.028,122.0,reviewed,us,us,earthquake
 2023-12-21 14:04:11,35.2431,141.0136,10.0,5.2,mww,76.0,87.0,2.344,0.57,us,usd0010b47,2024-02-27 22:57:06,56 km E of Ōhara Japan,earthquake,7.22,1.795,0.08,15.0,reviewed,us,us,earthquake
 2023-12-21 11:36:08,-8.5023,-74.5606,13.881,5.0,mb,81.0,65.0,4.128,0.81,us,us7000lkke,2024-02-27 22:57:03,11 km SSW of San Fernando Peru,earthquake,7.76,3.132,0.037,234.0,reviewed,us,us,earthquake
 2023-12-20 12:11:21,-15.8585,-72.5207,93.0,6.2,mww,184.0,70.0,3.253,0.79,us,us7000lkb1,2024-02-27 22:57:02,11 km E of Iray Peru,earthquake,8.73,1.939,0.04,60.0,reviewed,us,us,earthquake
@@ -1075,7 +1077,7 @@ trigger_time,latitude,longitude,depth,mag,magtype,nst,gap,dmin,rms,net,id,update
 2023-12-01 08:45:08,-19.7642,-69.1087,118.249,5.0,mb,66.0,77.0,0.125,0.87,us,us7000lf2j,2024-02-06 21:53:56,60 km SSE of Camiña Chile,earthquake,4.74,2.8,0.076,55.0,reviewed,us,us,earthquake
 2023-12-01 05:50:26,62.9574,-150.4351,101.7,5.1,mww,,,,0.71,ak,ak023fe4b796,2024-06-28 06:00:28,54 km NNE of Petersville Alaska,earthquake,,0.3,,,reviewed,ak,ak,earthquake
 2023-11-30 23:20:31,-17.9596,-177.9921,559.069,5.0,mb,104.0,39.0,3.854,0.49,us,us7000leyn,2024-02-06 21:53:55,285 km E of Levuka Fiji,earthquake,11.16,2.844,0.026,460.0,reviewed,us,us,earthquake
-2023-11-30 16:33:06,51.4774,-176.8271,48.43,5.0,mwr,226.0,56.0,0.382,0.76,us,us7000leuk,2024-06-27 16:43:13,46 km SSW of Adak Alaska,earthquake,4.05,4.082,0.078,16.0,reviewed,us,us,earthquake
+2023-11-30 16:33:06,51.4774,-176.8271,48.43,5.0,mwr,226.0,56.0,0.382,0.76,us,us7000leuk,2024-07-04 16:43:12,46 km SSW of Adak Alaska,earthquake,4.05,4.082,0.078,16.0,reviewed,us,us,earthquake
 2023-11-30 07:54:57,-56.293,-27.3246,99.0,5.8,mww,106.0,34.0,5.61,0.83,us,us7000leqe,2024-02-06 21:53:54,South Sandwich Islands region,earthquake,9.36,1.88,0.062,25.0,reviewed,us,us,earthquake
 2023-11-28 16:12:25,-6.2501,154.5215,10.0,5.0,mb,77.0,47.0,3.114,0.67,us,us7000lec2,2024-02-06 21:53:54,106 km W of Panguna Papua New Guinea,earthquake,9.03,1.767,0.073,59.0,reviewed,us,us,earthquake
 2023-11-28 15:26:11,12.6842,-59.7331,31.88,5.1,mww,107.0,58.0,2.036,0.65,us,us7000lebr,2024-02-06 21:53:54,47 km SSW of Oistins Barbados,earthquake,9.34,4.655,0.093,11.0,reviewed,us,us,earthquake
