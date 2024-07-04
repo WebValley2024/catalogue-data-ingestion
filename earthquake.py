@@ -38,6 +38,7 @@ def download_earthquake_data(initial_date=datetime.now() - timedelta(days=4000),
                 row = row.replace(", ", " ")
                 fields = row.split(',')
                 fields[0] = str(iso_to_epoch(fields[0]))
+                fields[12] = str(iso_to_epoch(fields[12]))
                 converted_row = ','.join(fields)
                 file.write(converted_row + '\n')
     else:
