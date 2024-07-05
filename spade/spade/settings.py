@@ -46,13 +46,14 @@ INSTALLED_APPS = [
 
 CRONJOBS = [
     #update csv files
-    ('0 3 * * *', 'spadeapp.scripts.ep.get_eq'),
+    ('25 3 * * *', 'spadeapp.scripts.eq.get_eq'),
     ('5 3 * * *', 'spadeapp.scripts.grb.get_grb'),
     ('10 3 * * *', 'spadeapp.scripts.tgf.get_tgf'),
     ('15 3 * * *', 'spadeapp.scripts.swe.get_swe'),
     ('20 3 * * *', 'spadeapp.scripts.gms.get_gms'),
     #update database
-    ('30 3 * * *', 'spadeapp.views.add_all_data'),    
+    ('40 3 * * *', 'spadeapp.cron.update'),
+        
     
 ]
 

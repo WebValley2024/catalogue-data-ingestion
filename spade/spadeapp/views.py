@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import TGF, SWE, Earthquake, GRB, GMS
+from .models import TGF, SWE, Earthquake, GRB, GMS, SampleModel
 from django.core import serializers
 from django.core.mail import send_mail
-from django.contrib.auth.decorators import user_passes_test
 from spade.forms import SignUpForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
@@ -25,17 +24,6 @@ def index(request):
     template = loader.get_template("spadeapp/index.html")
     context = {}
     return HttpResponse(template.render(context, request))
-
-@user_passes_test(lambda u: u.is_superuser)
-def add_all_data(request):
-    #print("Adding all data...")
-    SWE.add_data()
-    Earthquake.add_data()
-    TGF.add_data()
-    GRB.add_data()
-    GMS.add_data()
-
-    return HttpResponse("All data added")
 
 def str_to_data(s):
     try:

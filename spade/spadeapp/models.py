@@ -1,12 +1,23 @@
 from django.db import models
 from django.utils import timezone
 from pathlib import Path
+from django.contrib.auth.decorators import user_passes_test
 
 #global    
 
 dirname = Path("/home/grp1/SpaDe/catalogue-data-ingestion/spade/spadeapp/scripts/")
 
 # Create your models here.
+#@user_passes_test(lambda u: u.is_superuser)
+def add_all_data(request):
+    SampleModel.objects.create(fieldSample='notteeeee', num=1)
+    #SWE.add_data()
+    #Earthquake.add_data()
+    #TGF.add_data()
+    #GRB.add_data()
+    #GMS.add_data()
+
+
 class SampleModel(models.Model):
     fieldSample = models.CharField(max_length=10)
     num = models.CharField(max_length=10)
@@ -15,6 +26,9 @@ class SampleModel(models.Model):
         "fieldSample",
         "num",
     ]
+
+    def prova():
+        SampleModel.objects.create(fieldSample='provaaggiornamento', num = 2)
     def __str__(self):
         return self.fieldSample
     
@@ -81,6 +95,7 @@ class Earthquake(models.Model):
     
     #table update
     def add_data(delete = False):
+        
         fileToOpen = dirname / "eq.csv"
         objs = []
 
@@ -93,7 +108,6 @@ class Earthquake(models.Model):
         i = lastindex + 1
 
         with open(fileToOpen, mode="r") as f:
-            
             for _ in range(lastindex + 2): #must skip headers line and include last index line
                 next(f)
             for line in f:
@@ -107,6 +121,7 @@ class Earthquake(models.Model):
                 objs.append(eart)
                 i += 1
         Earthquake.objects.bulk_create(objs)
+        #Earthquake.objects.create(lat='100')
 
         
 #TGF table
