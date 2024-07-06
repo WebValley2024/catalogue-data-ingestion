@@ -208,4 +208,4 @@ def download(type):
 
 
 if __name__ == "__main__":
-    download_fermi_data("all")
+    download_fermi_data()
